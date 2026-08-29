@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Process \"C:\\\\Users\\\\Admin\\\\site-AAAGV\\\\index.html\")",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\Admin\\\\site-AAAGV\\\\sobre.html\")",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\Admin\\\\site-AAAGV\\\\noticias.html\")",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\Admin\\\\site-AAAGV\\\\calendario.html\")",
+      "Bash(command -v magick)",
+      "Bash(command -v convert)",
+      "Bash(command -v python3)",
+      "Bash(command -v python)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL OK'\\)\")"
+    ]
+  }
+}

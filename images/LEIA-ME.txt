@@ -1,0 +1,29 @@
+IMAGENS NECESSÁRIAS — AAAGV
+============================
+
+O site já funciona sem essas imagens (aparecem alternativas em preto/amarelo
+no lugar), mas para ficar completo, adicione os arquivos abaixo dentro
+desta pasta "images/", usando exatamente estes nomes:
+
+OBRIGATÓRIAS (citadas no briefing)
+-----------------------------------
+logo.png            -> logo da AAAGV usada no cabeçalho e rodapé (fundo transparente, recomendado)
+foto1.png            -> foto usada no plano de fundo do Hero da página Início
+foto2.png            -> segunda foto usada no plano de fundo do Hero da página Início
+foto3.png            -> foto usada no banner da página Sobre
+
+OPCIONAIS (deixam o site mais completo)
+-----------------------------------------
+favicon.png                        -> ícone da aba do navegador
+modalidades/futsal.jpg             -> uma foto por modalidade (veja js/data.js)
+modalidades/basquete.jpg
+modalidades/volei.jpg
+modalidades/handebol.jpg
+modalidades/...                    -> siga os slugs definidos em SITE_DATA.modalidades
+
+Fotos de atletas, diretoria e notícias podem ser adicionadas depois,
+apontando os caminhos correspondentes em js/data.js (procure por "foto",
+"imagem" e "TODO" nesse arquivo).
+
+Dica de tamanho: fotos de hero funcionam melhor na horizontal (mínimo
+1600x1000px); fotos de modalidade/notícia funcionam bem em 800x1000px.

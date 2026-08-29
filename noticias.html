@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notícias — AAAGV</title>
+<meta name="description" content="Acompanhe as notícias da AAAGV: esportes, eventos, parcerias, institucional, social e conquistas da atlética da FGV São Paulo.">
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo-link" aria-label="AAAGV — Início">
+      <img src="images/logo.png" alt="AAAGV" class="logo-img">
+      <span class="logo-fallback">AAAGV</span>
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="calendario.html">Calendário &amp; Modalidades</a></li>
+        <li><a href="noticias.html">Notícias</a></li>
+        <li><a href="index.html#parceiros">Parceiros</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-banner no-photo">
+    <div class="container page-banner-inner">
+      <span class="eyebrow">Acontece na AAAGV</span>
+      <h1>Notícias</h1>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="news-filters" id="news-filters"></div>
+      <div class="news-grid" id="news-grid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="images/logo.png" alt="AAAGV" class="logo-img" data-fallback-text="AAAGV" style="height:58px;margin-bottom:16px;">
+      <p><strong>AAAGV</strong></p>
+      <p>Carregamos o legado.<br>Marcamos gerações.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="calendario.html">Modalidades</a></li>
+        <li><a href="calendario.html">Atletas</a></li>
+        <li><a href="noticias.html">Notícias</a></li>
+        <li><a href="calendario.html">Calendário</a></li>
+        <li><a href="index.html#resultados">Resultados</a></li>
+        <li><a href="index.html#parceiros">Parceiros</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Redes</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/jacarefgv/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="#" target="_blank" rel="noopener">TikTok</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="mailto:contato@aaagv.com.br">contato@aaagv.com.br</a></li>
+        <li>[Inserir endereço da sede / FGV São Paulo]</li>
+        <li>[Inserir contato institucional]</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span class="motto">A história é escrita em preto e amarelo.</span>
+    <span>&copy; <span id="year"></span> AAAGV — Associação Atlética Acadêmica Getúlio Vargas</span>
+  </div>
+</footer>
+
+<!-- MODAL: artigo completo -->
+<div class="modal-overlay" id="modal-article">
+  <div class="modal-box article-modal">
+    <button type="button" class="modal-close" aria-label="Fechar">✕</button>
+    <span class="news-cat"></span>
+    <h2></h2>
+    <div class="news-date"></div>
+    <div class="thumb"></div>
+    <div class="body-text"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/noticias.js"></script>
+</body>
+</html>
