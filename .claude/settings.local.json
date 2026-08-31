@@ -9,7 +9,9 @@
       "Bash(command -v convert)",
       "Bash(command -v python3)",
       "Bash(command -v python)",
-      "Bash(python3 -c \"from PIL import Image; print\\('PIL OK'\\)\")"
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL OK'\\)\")",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\Admin\\\\site-AAAGV\\\\nossas-areas.html\")",
+      "Bash(git add *)"
     ]
   }
 }

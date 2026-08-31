@@ -67,7 +67,7 @@ function renderOrganograma() {
   if (!mount) return;
 
   const org = SITE_DATA.organograma;
-  const topRowHtml = org.nivel1.map(item => renderOrgNodeContent(item, item.filhos || '', !!item.filhos)).join('');
+  const topRowHtml = org.nivel1.map(item => renderOrgNodeContent(item, item.filhos || '', true)).join('');
   const vpeGroupHtml = org.vpe.map(item => renderOrgNodeContent(item, '', false)).join('');
   const vpaGroupHtml = org.vpa.map(item => renderOrgNodeContent(item, '', false)).join('');
 
