@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre — AAAGV</title>
-<meta name="description" content="Conheça a história da AAAGV, fundada em 1987, e a gestão que representa os estudantes da FGV São Paulo através do esporte.">
+<title>Nossas Áreas — AAAGV</title>
+<meta name="description" content="Conheça as diretorias que administram a AAAGV e a estrutura de governança que representa os estudantes da FGV São Paulo.">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -33,48 +33,47 @@
 
 <main>
 
-  <section class="page-banner">
-    <img src="images/foto3.jpg" alt="">
+  <section class="page-banner no-photo">
     <div class="container page-banner-inner">
-      <span class="eyebrow">Sobre a AAAGV</span>
-      <h1>Uma história que não para</h1>
+      <span class="eyebrow">Como a AAAGV funciona</span>
+      <h1>Nossas Áreas</h1>
     </div>
   </section>
 
-  <section class="section-tight bg-yellow">
+  <section class="section-tight bg-gray">
     <div class="container">
-      <div class="stats-bar" id="stats-mount"></div>
+      <div class="section-head">
+        <span class="eyebrow">Nossas Áreas</span>
+        <h2 class="section-heading">O que cada diretoria faz</h2>
+        <p class="section-lead">A AAAGV é muito mais do que times esportivos — é uma organização estudantil completa, dividida em áreas que cuidam de cada parte da experiência GV.</p>
+      </div>
+      <div class="areas-list" id="areas-mount"></div>
     </div>
   </section>
 
   <section class="section-tight bg-black">
     <div class="container">
       <div class="section-head center">
-        <h2 class="section-heading">Nossa história</h2>
+        <span class="eyebrow">Estrutura</span>
+        <h2 class="section-heading" style="color:var(--yellow)">Gestão 2026</h2>
+        <p class="section-lead">Quem está à frente da AAAGV hoje. Clique em alguém para ver mais.</p>
       </div>
-      <div class="history-text">
-        <p>A Associação Atlética Acadêmica Getulio Vargas (AAAGV) é uma das principais entidades estudantis da FGV São Paulo. Fundada em 1987, nasceu com o propósito de representar os estudantes por meio do esporte e, ao longo de quase quatro décadas, tornou-se parte fundamental da experiência universitária da comunidade GV.</p>
-        <p>Hoje, a AAAGV reúne esporte, eventos, integração, projetos sociais e experiências que conectam diferentes gerações de estudantes. São diversas modalidades esportivas, equipes que representam a FGV em competições universitárias e uma agenda de eventos que movimenta a comunidade acadêmica durante todo o ano.</p>
-        <p>Mais do que promover competições, a AAAGV cria espaços de convivência e pertencimento. É onde estudantes constroem amizades, desenvolvem habilidades, assumem responsabilidades e participam ativamente da vida universitária.</p>
-        <p>Por trás de cada equipe, evento e projeto existe o trabalho de estudantes que dedicam seu tempo para construir a atlética e deixá-la melhor para a próxima geração. É essa continuidade que mantém a AAAGV em constante movimento, preservando suas tradições enquanto cria novas histórias.</p>
-        <p><strong>Uma entidade feita por estudantes, para estudantes, construída geração após geração.</strong></p>
-      </div>
-      <div class="timeline" id="timeline-mount"></div>
-    </div>
-  </section>
-
-  <section class="bg-gray">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Legado</span>
-        <h2 class="section-heading">Retrospectiva — Últimas Gestões</h2>
-        <p class="section-lead">Cada geração deixou sua marca na história da AAAGV. Conheça quem já esteve à frente da atlética.</p>
-      </div>
-      <div id="retrospectiva-mount"></div>
+      <div class="org-tree" id="organograma-mount"></div>
     </div>
   </section>
 
 </main>
+
+<!-- MODAL: detalhe da pessoa (organograma) -->
+<div class="modal-overlay" id="modal-pessoa">
+  <div class="modal-box pessoa-modal">
+    <button type="button" class="modal-close" aria-label="Fechar">✕</button>
+    <div class="avatar" id="pessoa-avatar"></div>
+    <h2 id="pessoa-nome"></h2>
+    <span class="cargo" id="pessoa-cargo"></span>
+    <p class="curso" id="pessoa-curso"></p>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -121,6 +120,6 @@
 
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
-<script src="js/sobre.js"></script>
+<script src="js/areas.js"></script>
 </body>
 </html>

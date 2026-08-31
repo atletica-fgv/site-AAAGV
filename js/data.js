@@ -26,18 +26,54 @@ const SITE_DATA = {
     { ano: 2026, texto: '[Adicionar marco histórico deste período]' }
   ],
 
-  // TODO: substituir por nomes, fotos e cargos reais da gestão vigente
-  diretoriaExecutiva: [
-    { nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' },
-    { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }
+  // TODO: preencher com os nomes reais de cada gestão. Estrutura de exemplo,
+  // uma entrada por ano — edite "pessoas" mantendo o mesmo formato.
+  retrospectivaGestoes: [
+    { ano: 2015, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2016, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2017, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2018, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2019, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2020, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2021, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2022, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2023, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2024, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2025, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
+    { ano: 2026, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] }
   ],
 
-  diretorias: [
-    { area: 'Diretoria de Esportes', pessoas: ['Nome Sobrenome', 'Nome Sobrenome'] },
-    { area: 'Diretoria de Marketing', pessoas: ['Nome Sobrenome'] },
-    { area: 'Diretoria de Captação de Recursos', pessoas: ['Nome Sobrenome'] },
-    { area: 'Diretoria de Projetos Sociais', pessoas: ['Nome Sobrenome'] }
+  // TODO: colar o texto definitivo de cada área (aba Governança da planilha EAP)
+  areasDescricao: [
+    { area: 'Diretoria de Esportes', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Esportes]' },
+    { area: 'Diretoria de Marketing', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Marketing]' },
+    { area: 'Diretoria de Eventos', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Eventos]' },
+    { area: 'Diretoria de Produtos', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Produtos]' },
+    { area: 'Diretoria de Parcerias / Captação de Recursos', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Parcerias / Captação de Recursos]' },
+    { area: 'Diretoria de Projetos Sociais', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Projetos Sociais]' }
   ],
+
+  // Estrutura da Gestão 2026 vigente. Ainda sem fotos — os avatares usam
+  // o mesmo fallback de iniciais já usado no resto do site (preencha
+  // "foto" com o caminho da imagem quando estiver disponível).
+  // TODO: preencher "curso" de cada pessoa (curso na FGV) para aparecer no clique.
+  organograma: {
+    nivel1: [
+      { cargo: 'VPE', pessoas: [{ nome: 'Fredi', curso: '[Curso]', foto: '' }], filhos: 'vpe' },
+      { cargo: 'Presidente', pessoas: [{ nome: 'Papa', curso: '[Curso]', foto: '' }] },
+      { cargo: 'Financeiro', pessoas: [{ nome: 'Teles', curso: '[Curso]', foto: '' }] },
+      { cargo: 'VPA', pessoas: [{ nome: 'Marina', curso: '[Curso]', foto: '' }], filhos: 'vpa' }
+    ],
+    vpe: [
+      { cargo: 'DGE', pessoas: [{ nome: 'Aisha', curso: '[Curso]', foto: '' }, { nome: 'Patrick', curso: '[Curso]', foto: '' }] }
+    ],
+    vpa: [
+      { cargo: 'Captação', pessoas: [{ nome: 'Pistoninho', curso: '[Curso]', foto: '' }] },
+      { cargo: 'Marketing', pessoas: [{ nome: 'Nay', curso: '[Curso]', foto: '' }] },
+      { cargo: 'Social', pessoas: [{ nome: 'Aisha', curso: '[Curso]', foto: '' }] },
+      { cargo: 'Produtos & Eventos', pessoas: [{ nome: 'Gi Lois', curso: '[Curso]', foto: '' }] }
+    ]
+  },
 
   // TODO: conferir a lista completa e real de modalidades da AAAGV
   modalidades: [
@@ -151,99 +187,6 @@ const SITE_DATA = {
         'A final acontece em breve — fique de olho no calendário completo para não perder o próximo jogo.'
       ]
     },
-    {
-      id: 2,
-      categoria: 'Esportes',
-      titulo: 'Futsal feminino vence a USP por 2 a 0',
-      data: '2026-08-25',
-      imagem: '',
-      resumo: 'Equipe feminina de futsal venceu a USP por 2 a 0 diante da torcida no Pacaembu.',
-      corpo: [
-        'A equipe feminina de futsal da AAAGV venceu a USP por 2 a 0 em partida disputada no Ginásio do Pacaembu, com boa presença de torcida.',
-        'O resultado mantém a equipe na briga pelas primeiras posições do campeonato universitário.'
-      ]
-    },
-    {
-      id: 3,
-      categoria: 'Esportes',
-      titulo: 'Vôlei feminino vence por 2 sets a 0',
-      data: '2026-08-21',
-      imagem: '',
-      resumo: 'Equipe feminina de vôlei venceu com tranquilidade no Ginásio FGV.',
-      corpo: [
-        'Jogando em casa, a equipe feminina de vôlei da AAAGV venceu por 2 sets a 0, com atuação sólida em quadra.'
-      ]
-    },
-    {
-      id: 4,
-      categoria: 'Institucional',
-      titulo: 'AAAGV apresenta a gestão 2026',
-      data: '2026-02-10',
-      imagem: '',
-      resumo: 'Nova diretoria assume com o compromisso de fortalecer esporte, eventos e projetos sociais na FGV.',
-      corpo: [
-        'A AAAGV apresentou oficialmente a diretoria que conduz a atlética ao longo de 2026, reunindo as áreas de Esportes, Marketing, Eventos, Produtos, Parcerias e Projetos Sociais.',
-        'O novo time reforça o compromisso de manter viva a tradição de quase quatro décadas da entidade, ampliando a integração entre os cursos da FGV São Paulo.'
-      ]
-    },
-    {
-      id: 5,
-      categoria: 'Parcerias',
-      titulo: 'AAAGV anuncia novos parceiros para a temporada',
-      data: '2026-03-15',
-      imagem: '',
-      resumo: 'Novas marcas se juntam à comunidade GV através do esporte e dos eventos da atlética.',
-      corpo: [
-        'A AAAGV fechou novas parcerias para a temporada, ampliando a presença de marcas junto à comunidade acadêmica em eventos, competições e redes sociais.',
-        'Quer ser um parceiro? Fale com a diretoria de Captação de Recursos pela página inicial do site.'
-      ]
-    },
-    {
-      id: 6,
-      categoria: 'Social',
-      titulo: 'Projeto social da AAAGV leva esporte a alunos da rede pública',
-      data: '2026-04-20',
-      imagem: '',
-      resumo: 'Ação de projetos sociais aproxima estudantes da FGV de crianças e jovens da comunidade.',
-      corpo: [
-        'A diretoria de Projetos Sociais da AAAGV realizou mais uma edição de sua ação com escolas da rede pública, levando atividades esportivas e voluntários da comunidade GV.'
-      ]
-    },
-    {
-      id: 7,
-      categoria: 'Eventos',
-      titulo: 'Maior evento do calendário da AAAGV bate recorde de público',
-      data: '2026-05-30',
-      imagem: '',
-      resumo: 'Edição deste ano reuniu milhares de estudantes em celebração à tradição preto e amarela.',
-      corpo: [
-        'O principal evento do calendário da AAAGV reuniu milhares de estudantes da FGV e de outras instituições, celebrando quase quatro décadas de história.'
-      ]
-    },
-    {
-      id: 8,
-      categoria: 'Conquistas',
-      titulo: 'AAAGV conquista título em competição universitária',
-      data: '2026-06-12',
-      imagem: '',
-      resumo: 'Mais um título é somado à história da atlética.',
-      corpo: [
-        'Mais uma equipe da AAAGV subiu ao lugar mais alto do pódio em competição universitária, reforçando a tradição vencedora da entidade.'
-      ]
-    },
-    {
-      id: 9,
-      categoria: 'Social',
-      titulo: 'AAAGV leva autodefesa feminina para dentro da FGV com atletas de MMA',
-      data: '2026-08-20',
-      imagem: '',
-      resumo: 'Ação da diretoria de Projetos Sociais reúne lutadoras e lutadores para ensinar noções de autodefesa às meninas da comunidade GV.',
-      corpo: [
-        'A AAAGV promoveu mais uma edição do seu projeto de autodefesa feminina, dessa vez com a presença de atletas de MMA que vieram compartilhar técnicas básicas de defesa pessoal com as meninas da comunidade GV.',
-        'Durante a atividade, as participantes aprenderam movimentos simples de esquiva e escape, além de trocarem experiências com os atletas convidados sobre disciplina, confiança e segurança no dia a dia.',
-        'A ação faz parte da agenda contínua da diretoria de Projetos Sociais da AAAGV, que busca levar iniciativas de impacto para dentro e fora da FGV.'
-      ]
-    }
   ],
 
   // TODO: substituir por logos e contato reais da diretoria de parcerias

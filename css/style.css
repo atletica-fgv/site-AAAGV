@@ -403,34 +403,101 @@ section { padding: 96px 0; }
 .bg-black .timeline::before { background: linear-gradient(var(--yellow), rgba(255,255,255,.15)); }
 .bg-black .timeline-item::before { border-color: var(--black); }
 
-/* ===== Diretoria ===== */
-.exec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; max-width: 640px; margin: 0 auto; }
-.exec-card { text-align: center; }
+/* ===== Avatar (base reutilizada em vários componentes) ===== */
 .avatar {
   width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 18px; overflow: hidden;
   background: var(--gray-100); display: flex; align-items: center; justify-content: center;
   border: 4px solid var(--yellow); font-family: var(--font-heading); font-size: 2.2rem; color: var(--gray-600);
 }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
-.exec-card .avatar { background: var(--yellow); color: var(--black); border: 4px solid var(--black); }
-.exec-name { font-weight: 800; font-size: 1.05rem; color: var(--black); }
-.exec-role { color: var(--gray-600); font-size: .88rem; margin-top: 4px; }
 
-.diretorias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-top: 48px; }
-.diretoria-card {
-  padding: 26px; border-radius: var(--radius); background: var(--white); box-shadow: 0 10px 30px -18px rgba(0,0,0,.2);
+/* ===== Retrospectiva de gestões (Sobre) — seletor de anos ===== */
+.retro-years { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 48px; }
+.retro-year-btn {
+  width: 76px; height: 76px; border-radius: var(--radius); border: 2px solid var(--black); background: var(--white);
+  font-family: var(--font-heading); font-size: 1.25rem; color: var(--black); transition: var(--transition); cursor: pointer;
 }
-.diretoria-card .area {
-  font-weight: 800; font-size: .76rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gray-600);
-  margin-bottom: 16px;
+.retro-year-btn:hover { border-color: var(--yellow); background: var(--yellow); }
+.retro-year-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+.retro-detail-year {
+  text-align: center; font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 36px;
+  color: var(--black);
 }
-.diretoria-people { display: flex; flex-direction: column; gap: 14px; }
-.diretoria-person { display: flex; align-items: center; gap: 12px; }
-.diretoria-person .avatar-mini {
-  width: 40px; height: 40px; border-radius: 50%; background: var(--yellow); color: var(--black);
-  display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: .85rem; flex-shrink: 0;
+.retro-detail-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 56px; }
+.retro-detail-card { text-align: center; }
+.retro-detail-card .avatar { width: 130px; height: 130px; font-size: 2rem; margin: 0 auto 16px; }
+.retro-detail-card .name { font-weight: 800; font-size: 1.15rem; }
+.retro-detail-card .role { color: var(--gray-600); font-size: .9rem; margin-top: 4px; }
+
+/* ===== Nossas Áreas — texto por diretoria ===== */
+.areas-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.area-item {
+  position: relative; padding: 32px 28px; border-radius: var(--radius); overflow: hidden;
+  background: var(--black); color: var(--white); transition: var(--transition); isolation: isolate;
 }
-.diretoria-person .nome { font-weight: 700; font-size: .94rem; color: var(--black); }
+.area-item:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.area-item .num {
+  position: absolute; top: -6px; right: 14px; z-index: -1;
+  font-family: var(--font-heading); font-size: 5.2rem; line-height: 1; color: rgba(255,217,1,.14);
+}
+.area-item h3 {
+  font-family: var(--font-body); text-transform: none; font-weight: 800; font-size: 1.15rem; margin-bottom: 14px; color: var(--yellow);
+}
+.area-item p { color: rgba(255,255,255,.75); font-size: .95rem; line-height: 1.75; }
+
+/* ===== Organograma (Gestão 2026) — linhas desenhadas via SVG (JS) ===== */
+.org-tree {
+  position: relative; max-width: 980px; margin: 0 auto; padding: 76px 16px 76px; border-radius: var(--radius);
+  background-color: #0a0a0a;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 2px, transparent 2px 11px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.03) 0 2px, transparent 2px 11px);
+  overflow-x: auto;
+}
+.org-svg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.org-top-row {
+  position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 18px;
+  margin-bottom: 96px; min-width: 560px;
+}
+.org-children-row { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 30px; min-width: 560px; }
+.org-group { display: flex; gap: 26px; flex-wrap: nowrap; }
+.org-group:last-child { flex: 1; justify-content: space-around; }
+
+.org-node { position: relative; display: flex; flex-direction: column; align-items: center; }
+.org-multi { display: flex; gap: 14px; flex-wrap: nowrap; justify-content: center; }
+.org-person-btn {
+  display: flex; flex-direction: column; align-items: center; cursor: pointer;
+  padding: 4px; border-radius: 50%; transition: var(--transition);
+}
+.org-person-btn:hover { transform: translateY(-3px); }
+.org-person-btn .avatar {
+  width: 88px; height: 88px; font-size: 1.3rem; border-color: var(--yellow);
+  background: var(--gray-800); color: var(--yellow); transition: var(--transition); margin: 0;
+}
+.org-person-btn:hover .avatar { box-shadow: 0 0 0 6px rgba(255,217,1,.2); }
+.org-caption {
+  position: absolute; left: 50%; transform: translateX(-50%); width: max-content; max-width: 150px; text-align: center;
+}
+.org-caption.caption-below { top: calc(100% + 12px); }
+.org-caption.caption-above { bottom: calc(100% + 12px); }
+.org-role-tag {
+  font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--yellow);
+}
+.org-name { font-weight: 800; font-size: .92rem; color: var(--white); margin-top: 3px; }
+@media (max-width: 640px) {
+  .org-person-btn .avatar { width: 72px; height: 72px; font-size: 1.1rem; }
+}
+
+/* ===== Modal de pessoa ===== */
+.pessoa-modal { text-align: center; }
+.pessoa-modal .avatar { width: 110px; height: 110px; font-size: 1.7rem; margin: 0 auto 18px; }
+.pessoa-modal h2 { font-family: var(--font-body); text-transform: none; font-size: 1.4rem; }
+.pessoa-modal .cargo {
+  display: inline-block; margin-top: 12px; padding: 6px 16px; border-radius: 999px;
+  background: var(--yellow); color: var(--black); font-weight: 800; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em;
+}
+.pessoa-modal .curso { margin-top: 18px; color: var(--gray-600); font-size: .95rem; }
 
 /* ===== Mascote flutuante ===== */
 .mascot-host { position: relative; }

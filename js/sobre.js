@@ -60,39 +60,57 @@ function avatarInitials(nome) {
   return nome.split(' ').filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase();
 }
 
-function renderDiretoria() {
-  const execMount = document.getElementById('exec-mount');
-  if (execMount) {
-    execMount.innerHTML = SITE_DATA.diretoriaExecutiva.map(p => `
-      <div class="exec-card" data-reveal>
-        <div class="avatar">
-          ${p.foto ? `<img src="${escapeHtml(p.foto)}" alt="${escapeHtml(p.nome)}" data-fallback-text="${avatarInitials(p.nome)}">` : avatarInitials(p.nome)}
-        </div>
-        <div class="exec-name">${escapeHtml(p.nome)}</div>
-        <div class="exec-role">${escapeHtml(p.cargo)}</div>
-      </div>`).join('');
+function renderRetrospectiva() {
+  const mount = document.getElementById('retrospectiva-mount');
+  if (!mount) return;
+
+  const gestoes = [...SITE_DATA.retrospectivaGestoes].sort((a, b) => a.ano - b.ano);
+
+  mount.innerHTML = `
+    <div class="retro-years" id="retro-years">
+      ${gestoes.map(g => `<button type="button" class="retro-year-btn" data-ano="${g.ano}">${g.ano}</button>`).join('')}
+    </div>
+    <div class="retro-detail" id="retro-detail"></div>`;
+
+  const yearButtons = mount.querySelectorAll('.retro-year-btn');
+
+  function selectYear(ano) {
+    yearButtons.forEach(b => b.classList.toggle('active', Number(b.dataset.ano) === ano));
+    renderRetroDetail(gestoes.find(g => g.ano === ano));
   }
 
-  const dirMount = document.getElementById('diretorias-mount');
-  if (dirMount) {
-    dirMount.innerHTML = SITE_DATA.diretorias.map(d => `
-      <div class="diretoria-card" data-reveal>
-        <div class="area">${escapeHtml(d.area)}</div>
-        <div class="diretoria-people">
-          ${d.pessoas.map(nome => `
-            <div class="diretoria-person">
-              <span class="avatar-mini">${avatarInitials(nome)}</span>
-              <span class="nome">${escapeHtml(nome)}</span>
-            </div>`).join('')}
-        </div>
-      </div>`).join('');
-  }
+  yearButtons.forEach(btn => {
+    btn.addEventListener('click', () => selectYear(Number(btn.dataset.ano)));
+  });
+
+  selectYear(gestoes[gestoes.length - 1].ano);
+}
+
+function renderRetroDetail(gestao) {
+  const detail = document.getElementById('retro-detail');
+  if (!detail || !gestao) return;
+
+  detail.innerHTML = `
+    <div class="retro-detail-year" data-reveal>${gestao.ano}</div>
+    <div class="retro-detail-grid">
+      ${gestao.pessoas.map(p => `
+        <div class="retro-detail-card" data-reveal>
+          <div class="avatar">
+            ${p.foto ? `<img src="${escapeHtml(p.foto)}" alt="${escapeHtml(p.nome)}" data-fallback-text="${avatarInitials(p.nome)}">` : avatarInitials(p.nome)}
+          </div>
+          <div class="name">${escapeHtml(p.nome)}</div>
+          <div class="role">${escapeHtml(p.cargo)}</div>
+        </div>`).join('')}
+    </div>`;
+
+  initReveal();
+  initImageFallback(detail);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   renderStats();
   renderTimeline();
-  renderDiretoria();
+  renderRetrospectiva();
   initReveal();
   initImageFallback();
 });
