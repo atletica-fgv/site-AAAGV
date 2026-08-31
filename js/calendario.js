@@ -165,12 +165,21 @@ function changeCalMonth(delta) {
 }
 
 /* ---------- Modalidades ---------- */
+function athleteInitials(nome) {
+  return nome.split(' ').filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase();
+}
+
 function generateAthletes(genero) {
   return Array.from({ length: 8 }, (_, i) => ({
     nome: 'Nome Sobrenome',
     numero: i + 1,
     genero
   }));
+}
+
+function getAthletes(slug, genero) {
+  const reais = SITE_DATA.atletas?.[slug]?.[genero];
+  return reais && reais.length ? reais : generateAthletes(genero);
 }
 
 function renderModalidades() {
@@ -219,13 +228,14 @@ function openAthletesPanel(modalidade) {
 
   function renderGrid(genero) {
     const grid = document.getElementById('athletes-grid');
-    const atletas = generateAthletes(genero);
+    const atletas = getAthletes(modalidade.slug, genero);
     grid.innerHTML = atletas.map(a => `
       <div class="athlete-card">
-        <div class="avatar">${a.numero}</div>
+        <div class="avatar">${a.foto ? `<img src="${escapeHtml(a.foto)}" alt="${escapeHtml(a.nome)}" data-fallback-text="${athleteInitials(a.nome)}">` : (a.numero ?? athleteInitials(a.nome))}</div>
         <div class="name">${escapeHtml(a.nome)}</div>
         <div class="number">${escapeHtml(genero)}</div>
       </div>`).join('');
+    initImageFallback(grid);
   }
 
   tabsMount.querySelectorAll('.filter-btn').forEach(btn => {

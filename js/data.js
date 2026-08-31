@@ -94,6 +94,16 @@ const SITE_DATA = {
     { slug: 'xadrez', nome: 'Xadrez', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/xadrez.jpg' }
   ],
 
+  // TODO: preencher com o elenco real de cada modalidade/gênero. Enquanto uma
+  // combinação modalidade+gênero não estiver aqui, o site mostra atletas de exemplo.
+  atletas: {
+    basquete: {
+      Feminino: [
+        { nome: 'Manu Abrão', foto: 'images/manu-abrao.jpg' }
+      ]
+    }
+  },
+
   // TODO: substituir pelos jogos e resultados reais do calendário da AAAGV
   // status: "agendado" ou "finalizado"
   jogos: [
