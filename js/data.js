@@ -11,7 +11,7 @@ const SITE_DATA = {
 
   // TODO: atualizar com os números reais da AAAGV
   stats: {
-    modalidades: 19,
+    modalidades: 15,
     atletas: 500,
     titulos: 40,
     eventos: 35
@@ -77,25 +77,21 @@ const SITE_DATA = {
 
   // TODO: conferir a lista completa e real de modalidades da AAAGV
   modalidades: [
-    { slug: 'futsal', nome: 'Futsal', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/futsal.jpg' },
+    { slug: 'atletismo', nome: 'Atletismo', generos: ['Misto'], foto: 'images/modalidades/atletismo.jpg' },
     { slug: 'basquete', nome: 'Basquete', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/basquete.jpg' },
-    { slug: 'volei', nome: 'Vôlei', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/volei.jpg' },
-    { slug: 'handebol', nome: 'Handebol', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/handebol.jpg' },
-    { slug: 'futebol-society', nome: 'Futebol Society', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/futebol-society.jpg' },
-    { slug: 'volei-de-praia', nome: 'Vôlei de Praia', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/volei-praia.jpg' },
-    { slug: 'handebol-de-areia', nome: 'Handebol de Areia', generos: ['Misto'], foto: 'images/modalidades/handebol-areia.jpg' },
-    { slug: 'rugby', nome: 'Rugby', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/rugby.jpg' },
-    { slug: 'judo', nome: 'Judô', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/judo.jpg' },
-    { slug: 'muay-thai', nome: 'Muay Thai', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/muay-thai.jpg' },
-    { slug: 'natacao', nome: 'Natação', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/natacao.jpg' },
-    { slug: 'atletismo', nome: 'Atletismo', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/atletismo.jpg' },
-    { slug: 'corrida-de-rua', nome: 'Corrida de Rua', generos: ['Misto'], foto: 'images/modalidades/corrida.jpg' },
-    { slug: 'tenis-de-mesa', nome: 'Tênis de Mesa', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/tenis-mesa.jpg' },
     { slug: 'beach-tennis', nome: 'Beach Tennis', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/beach-tennis.jpg' },
-    { slug: 'xadrez', nome: 'Xadrez', generos: ['Misto'], foto: 'images/modalidades/xadrez.jpg' },
-    { slug: 'ginastica', nome: 'Ginástica', generos: ['Feminino'], foto: 'images/modalidades/ginastica.jpg' },
-    { slug: 'e-sports', nome: 'E-Sports', generos: ['Misto'], foto: 'images/modalidades/esports.jpg' },
-    { slug: 'squash', nome: 'Squash', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/squash.jpg' }
+    { slug: 'futebol-de-campo', nome: 'Futebol de Campo', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/futebol-de-campo.jpg' },
+    { slug: 'futsal', nome: 'Futsal', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/futsal.jpg' },
+    { slug: 'handebol', nome: 'Handebol', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/handebol.jpg' },
+    { slug: 'jiu-jitsu', nome: 'Jiu-Jitsu', generos: ['Masculino'], foto: 'images/modalidades/jiu-jitsu.jpg' },
+    { slug: 'judo', nome: 'Judô', generos: ['Masculino'], foto: 'images/modalidades/judo.jpg' },
+    { slug: 'natacao', nome: 'Natação', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/natacao.jpg' },
+    { slug: 'rugby', nome: 'Rugby', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/rugby.jpg' },
+    { slug: 'tenis-de-campo', nome: 'Tênis de Campo', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/tenis-de-campo.jpg' },
+    { slug: 'tenis-de-mesa', nome: 'Tênis de Mesa', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/tenis-de-mesa.jpg' },
+    { slug: 'volei', nome: 'Vôlei', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/volei.jpg' },
+    { slug: 'volei-de-praia', nome: 'Vôlei de Praia', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/volei-praia.jpg' },
+    { slug: 'xadrez', nome: 'Xadrez', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/xadrez.jpg' }
   ],
 
   // TODO: substituir pelos jogos e resultados reais do calendário da AAAGV
