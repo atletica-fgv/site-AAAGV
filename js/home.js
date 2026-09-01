@@ -146,7 +146,12 @@ function initPartnerModal() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  if (typeof loadSiteDataFromSheets === 'function') {
+    try { await loadSiteDataFromSheets(); }
+    catch (err) { console.warn('[AAAGV] Erro ao carregar dados da planilha:', err); }
+  }
+
   initHeroSlides();
   renderNextGame();
   renderRecentResults();

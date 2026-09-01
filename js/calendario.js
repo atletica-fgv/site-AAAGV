@@ -249,7 +249,12 @@ function openAthletesPanel(modalidade) {
   panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  if (typeof loadSiteDataFromSheets === 'function') {
+    try { await loadSiteDataFromSheets(); }
+    catch (err) { console.warn('[AAAGV] Erro ao carregar dados da planilha:', err); }
+  }
+
   renderCalendarGrid();
   renderModalidades();
   initCalAddButtons(getGameById);
