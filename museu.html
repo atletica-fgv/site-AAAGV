@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calendário &amp; Modalidades — AAAGV</title>
-<meta name="description" content="Confira o calendário completo de jogos da AAAGV e conheça as mais de 15 modalidades esportivas da atlética da FGV São Paulo.">
+<title>Museu — AAAGV</title>
+<meta name="description" content="O Museu da AAAGV preserva a memória de quem construiu a atlética da FGV São Paulo — depoimentos e fotos das gestões que marcaram quase quatro décadas de história.">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -32,70 +32,59 @@
   </div>
 </header>
 
-<main>
+<main class="museu-main">
 
-  <section class="page-banner no-photo">
+  <div class="museu-grain" aria-hidden="true"></div>
+
+  <section class="page-banner museu-banner">
+    <img src="images/foto2.png" alt="">
     <div class="container page-banner-inner">
-      <span class="eyebrow">Agenda &amp; equipes</span>
-      <h1>Calendário &amp; Modalidades</h1>
+      <span class="eyebrow">Memória &amp; Legado</span>
+      <h1>Museu da AAAGV</h1>
+      <p class="museu-banner-sub">Quase quatro décadas construídas mão em mão.</p>
     </div>
   </section>
 
-  <section class="section-tight bg-yellow mascot-host">
-    <img src="images/foto8.png" alt="" class="mascot-float" aria-hidden="true">
+  <section class="museu-shell museu-intro-sec">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Calendário completo</span>
-        <h2 class="section-heading">Jogos e resultados</h2>
+      <div class="museu-intro">
+        <span class="museu-intro-mark">&#8220;</span>
+        <p>
+          O Museu da AAAGV reúne os rostos, as quadras e os bastidores que construíram a história
+          da atlética. Cada geração que passou por aqui deixou uma marca — e este é o espaço para
+          preservá-la. Se você viveu a AAAGV, você está nessas paredes.
+        </p>
       </div>
-      <div class="cal-grid-wrap">
-        <div class="cal-grid-header">
-          <button type="button" class="cal-nav" id="cal-prev" aria-label="Mês anterior">&lsaquo;</button>
-          <div class="cal-grid-title" id="cal-month-label"></div>
-          <button type="button" class="cal-nav" id="cal-next" aria-label="Próximo mês">&rsaquo;</button>
-        </div>
-        <div class="cal-weekdays">
-          <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
-        </div>
-        <div class="cal-days" id="cal-days"></div>
-      </div>
-
-      <div class="cal-day-detail" id="cal-day-detail" hidden></div>
     </div>
   </section>
 
-  <section>
+  <section class="museu-shell museu-gallery-sec">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">+15 modalidades</span>
-        <h2 class="section-heading">Vista a camisa. Viva o esporte.</h2>
-        <p class="section-lead">Clique em uma modalidade para ver as equipes e os atletas que representam a AAAGV.</p>
+        <span class="eyebrow">Acervo</span>
+        <h2 class="section-heading">Quem carregou o legado</h2>
+        <p class="section-lead">Depoimento de um lado, memórias do outro. A cada história, a ordem se inverte —
+          como quem caminha por uma galeria e vira para a próxima parede.</p>
       </div>
-      <div class="modality-grid" id="modalidades-grid"></div>
 
-      <div class="athletes-panel" id="athletes-panel" hidden>
-        <div class="athletes-panel-head">
-          <h3 id="athletes-title" style="font-family:var(--font-body);text-transform:none;font-size:1.3rem;"></h3>
-          <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
-            <div class="gender-tabs" id="gender-tabs"></div>
-            <button type="button" class="btn-link" id="athletes-close">Fechar ✕</button>
-          </div>
-        </div>
-        <div class="athletes-grid" id="athletes-grid"></div>
-      </div>
+      <div class="museu-galeria" id="museu-galeria"></div>
+    </div>
+  </section>
+
+  <section class="museu-shell museu-fim-sec">
+    <div class="container">
+      <p class="museu-fim">A história é escrita em preto e amarelo.</p>
     </div>
   </section>
 
 </main>
 
-<!-- MODAL: detalhe do atleta -->
-<div class="modal-overlay" id="modal-atleta">
-  <div class="modal-box pessoa-modal">
+<!-- MODAL: foto ampliada -->
+<div class="modal-overlay" id="modal-foto">
+  <div class="modal-box foto-modal">
     <button type="button" class="modal-close" aria-label="Fechar">✕</button>
-    <div class="avatar" id="atleta-avatar"></div>
-    <h2 id="atleta-nome"></h2>
-    <span class="cargo" id="atleta-genero"></span>
-    <p class="curso" id="atleta-extra"></p>
+    <div class="foto-modal-frame"></div>
+    <p class="foto-modal-legenda"></p>
   </div>
 </div>
 
@@ -144,8 +133,7 @@
 </footer>
 
 <script src="js/data.js"></script>
-<script src="js/sheets.js"></script>
 <script src="js/main.js"></script>
-<script src="js/calendario.js"></script>
+<script src="js/museu.js"></script>
 </body>
 </html>

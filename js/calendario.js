@@ -230,11 +230,14 @@ function openAthletesPanel(modalidade) {
     const grid = document.getElementById('athletes-grid');
     const atletas = getAthletes(modalidade.slug, genero);
     grid.innerHTML = atletas.map(a => `
-      <div class="athlete-card">
+      <button type="button" class="athlete-card"
+        data-nome="${escapeHtml(a.nome)}" data-genero="${escapeHtml(genero)}"
+        data-foto="${escapeHtml(a.foto || '')}" data-numero="${escapeHtml(a.numero != null ? String(a.numero) : '')}"
+        data-modalidade="${escapeHtml(modalidade.nome)}">
         <div class="avatar">${a.foto ? `<img src="${escapeHtml(a.foto)}" alt="${escapeHtml(a.nome)}" data-fallback-text="${athleteInitials(a.nome)}">` : (a.numero ?? athleteInitials(a.nome))}</div>
         <div class="name">${escapeHtml(a.nome)}</div>
         <div class="number">${escapeHtml(genero)}</div>
-      </div>`).join('');
+      </button>`).join('');
     initImageFallback(grid);
   }
 
@@ -249,15 +252,36 @@ function openAthletesPanel(modalidade) {
   panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-  if (typeof loadSiteDataFromSheets === 'function') {
-    try { await loadSiteDataFromSheets(); }
-    catch (err) { console.warn('[AAAGV] Erro ao carregar dados da planilha:', err); }
-  }
+/* ---------- Modal de detalhe do atleta ---------- */
+function initAtletaModal() {
+  const overlay = document.getElementById('modal-atleta');
+  if (!overlay) return;
 
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.athlete-card');
+    if (!card) return;
+
+    const { nome = '', genero = '', foto = '', numero = '', modalidade = '' } = card.dataset;
+    const initials = athleteInitials(nome);
+
+    overlay.querySelector('#atleta-avatar').innerHTML = foto
+      ? `<img src="${escapeHtml(foto)}" alt="${escapeHtml(nome)}" data-fallback-text="${initials}">`
+      : (numero || initials);
+    overlay.querySelector('#atleta-nome').textContent = nome;
+    overlay.querySelector('#atleta-genero').textContent = [modalidade, genero].filter(Boolean).join(' · ');
+    overlay.querySelector('#atleta-extra').textContent = numero ? `Camisa ${numero}` : '';
+
+    initImageFallback(overlay);
+    openModal(overlay);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Renderiza já com os dados locais — a página nunca fica em branco esperando a planilha
   renderCalendarGrid();
   renderModalidades();
   initCalAddButtons(getGameById);
+  initAtletaModal();
   initImageFallback();
 
   document.getElementById('cal-prev').addEventListener('click', () => changeCalMonth(-1));
@@ -269,5 +293,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       closeAthletesPanel();
       document.querySelectorAll('.modality-card.active').forEach(c => c.classList.remove('active'));
     });
+  }
+
+  // Se a planilha responder, atualiza o calendário com os jogos reais
+  if (typeof loadSiteDataFromSheets === 'function') {
+    loadSiteDataFromSheets()
+      .then(() => renderCalendarGrid())
+      .catch(err => console.warn('[AAAGV] Erro ao carregar dados da planilha:', err));
   }
 });

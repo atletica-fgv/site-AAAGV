@@ -76,18 +76,13 @@ function openArticleModal(id) {
   history.replaceState(null, '', `noticias.html?id=${id}`);
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-  if (typeof loadSiteDataFromSheets === 'function') {
-    try { await loadSiteDataFromSheets(); }
-    catch (err) { console.warn('[AAAGV] Erro ao carregar dados da planilha:', err); }
-  }
-
+document.addEventListener('DOMContentLoaded', () => {
+  // Renderiza já com os dados locais — a página nunca fica em branco esperando a planilha
   renderNewsFilters();
   renderNewsGrid();
 
-  const params = new URLSearchParams(location.search);
-  const id = params.get('id');
-  if (id) openArticleModal(Number(id));
+  const idParam = new URLSearchParams(location.search).get('id');
+  if (idParam) openArticleModal(Number(idParam));
 
   const overlay = document.getElementById('modal-article');
   overlay.addEventListener('click', (e) => {
@@ -95,4 +90,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       history.replaceState(null, '', 'noticias.html');
     }
   });
+
+  // Se a planilha responder, re-renderiza a lista com as notícias reais
+  if (typeof loadSiteDataFromSheets === 'function') {
+    loadSiteDataFromSheets()
+      .then(() => { renderNewsFilters(); renderNewsGrid(); })
+      .catch(err => console.warn('[AAAGV] Erro ao carregar dados da planilha:', err));
+  }
 });

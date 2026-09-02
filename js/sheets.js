@@ -169,11 +169,17 @@ function mapNoticiasRows(rows) {
     .filter(n => n.titulo);
 }
 
-/* ---------- Busca ---------- */
-async function fetchCSVRows(url) {
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return parseCSV(await res.text());
+/* ---------- Busca (com timeout — nunca pode travar a renderização da página) ---------- */
+async function fetchCSVRows(url, timeoutMs = 5000) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return parseCSV(await res.text());
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 /* ---------- API pública: chame no início do DOMContentLoaded de cada página ---------- */

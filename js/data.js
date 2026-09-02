@@ -26,21 +26,76 @@ const SITE_DATA = {
     { ano: 2026, texto: '[Adicionar marco histórico deste período]' }
   ],
 
-  // TODO: preencher com os nomes reais de cada gestão. Estrutura de exemplo,
-  // uma entrada por ano — edite "pessoas" mantendo o mesmo formato.
-  retrospectivaGestoes: [
-    { ano: 2015, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2016, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2017, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2018, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2019, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2020, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2021, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2022, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2023, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2024, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2025, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] },
-    { ano: 2026, pessoas: [{ nome: 'Nome Sobrenome', cargo: 'Presidente', foto: '' }, { nome: 'Nome Sobrenome', cargo: 'Vice-Presidente', foto: '' }] }
+  // ===================================================================
+  // MUSEU — memória viva da AAAGV (página museu.html)
+  // Cada item é um "bloco de memória": um depoimento de alguém que
+  // marcou a atlética + um conjunto de fotos de grupo. Na página os
+  // blocos se alternam: depoimento de um lado, fotos do outro, depois
+  // o inverso, e assim por diante. A ordem NÃO precisa ser cronológica —
+  // pode ser por tema, por marco, por pessoa. É só a ordem desta lista.
+  //
+  // TODO (conteúdo real):
+  //   - era        : rótulo curto do bloco (um tema ou um marco; 1–3 palavras)
+  //   - titulo     : frase que resume aquela memória
+  //   - depoimento : texto na íntegra da pessoa homenageada
+  //   - autor/cargo: quem falou e em que gestão
+  //   - fotoAutor  : caminho para um retrato (opcional; sem isso usa as iniciais)
+  //   - fotos      : 2 ou 3 por bloco. "legenda" é a descrição que aparece
+  //                  embaixo da foto e no zoom (clique na foto para ampliar).
+  //   Coloque os arquivos em images/museu/ com os nomes usados abaixo.
+  // ===================================================================
+  museu: [
+    {
+      era: 'A origem',
+      titulo: 'Quando tudo começou',
+      depoimento: 'Quando a gente começou, não existia estrutura nenhuma. Era um grupo de estudantes que queria representar a FGV nas quadras e topou construir algo que durasse. A AAAGV nasceu dessa teimosia — e da certeza de que o esporte une gente que a sala de aula separa.',
+      autor: 'Nome Sobrenome',
+      cargo: 'Presidência — gestão de fundação',
+      fotoAutor: '',
+      fotos: [
+        { src: 'images/museu/origem-1.jpg', legenda: 'Primeira diretoria da AAAGV' },
+        { src: 'images/museu/origem-2.jpg', legenda: 'Time que estreou representando a FGV' },
+        { src: 'images/museu/origem-3.jpg', legenda: 'Confraternização dos fundadores' }
+      ]
+    },
+    {
+      era: 'A consolidação',
+      titulo: 'De time de amigos a instituição',
+      depoimento: 'Foi nessa época que a atlética deixou de ser só um time de amigos e virou instituição. Criamos processo seletivo, calendário de treinos, uniforme de verdade. A convivência continuou sendo o coração de tudo, mas passamos a ganhar tanto dentro quanto fora de quadra.',
+      autor: 'Nome Sobrenome',
+      cargo: 'Diretoria de Esportes',
+      fotoAutor: '',
+      fotos: [
+        { src: 'images/museu/consolidacao-1.jpg', legenda: 'Diretoria reunida na FGV' },
+        { src: 'images/museu/consolidacao-2.jpg', legenda: 'Aniversário da atlética' },
+        { src: 'images/museu/consolidacao-3.jpg', legenda: 'Bastidores de uma competição universitária' }
+      ]
+    },
+    {
+      era: 'Dentro e fora de quadra',
+      titulo: 'As conquistas que viraram história',
+      depoimento: 'Ninguém esquece a final que a gente virou nos últimos dois minutos, com a arquibancada toda de preto e amarelo. Mas o que fica mesmo são as pessoas: caloura que virou capitã, capitão que virou presidente. A AAAGV forma gente.',
+      autor: 'Nome Sobrenome',
+      cargo: 'Presidência',
+      fotoAutor: '',
+      fotos: [
+        { src: 'images/museu/conquistas-1.jpg', legenda: 'Torcida da AAAGV em final universitária' },
+        { src: 'images/museu/conquistas-2.jpg', legenda: 'Elenco reunido após o título' },
+        { src: 'images/museu/conquistas-3.jpg', legenda: 'Comemoração com a comunidade GV' }
+      ]
+    },
+    {
+      era: 'O legado hoje',
+      titulo: 'Entregar melhor do que recebemos',
+      depoimento: 'Recebemos a atlética de mão em mão, com quase quarenta anos de história nas costas. Nosso trabalho é entregar para a próxima gestão algo melhor do que recebemos — e manter viva a memória de todo mundo que chegou aqui antes da gente.',
+      autor: 'Nome Sobrenome',
+      cargo: 'Presidência — gestão atual',
+      fotoAutor: '',
+      fotos: [
+        { src: 'images/museu/hoje-1.jpg', legenda: 'A diretoria atual da AAAGV' },
+        { src: 'images/museu/hoje-2.jpg', legenda: 'Atletas das modalidades de hoje' }
+      ]
+    }
   ],
 
   // TODO: colar o texto definitivo de cada área (aba Governança da planilha EAP)

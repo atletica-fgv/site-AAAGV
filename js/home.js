@@ -146,18 +146,29 @@ function initPartnerModal() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-  if (typeof loadSiteDataFromSheets === 'function') {
-    try { await loadSiteDataFromSheets(); }
-    catch (err) { console.warn('[AAAGV] Erro ao carregar dados da planilha:', err); }
-  }
-
-  initHeroSlides();
+/* Conteúdo que depende dos dados (jogos/notícias) — pode ser re-renderizado
+   quando a planilha chega, sem re-atachar os inits de uma vez só. */
+function renderHomeDynamic() {
   renderNextGame();
   renderRecentResults();
   renderPartners();
-  initPartnerModal();
-  initCalAddButtons(getGameById);
   initReveal();
   initImageFallback();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Inits que rodam uma vez só
+  initHeroSlides();
+  initPartnerModal();
+  initCalAddButtons(getGameById);
+
+  // Renderiza já com os dados locais (data.js) — a página nunca fica em branco
+  renderHomeDynamic();
+
+  // Se a planilha responder, atualiza o que mudou
+  if (typeof loadSiteDataFromSheets === 'function') {
+    loadSiteDataFromSheets()
+      .then(() => renderHomeDynamic())
+      .catch(err => console.warn('[AAAGV] Erro ao carregar dados da planilha:', err));
+  }
 });
