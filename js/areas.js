@@ -15,7 +15,7 @@ function renderAreasDescricao() {
     <div class="area-item" data-reveal>
       <span class="num">${String(i + 1).padStart(2, '0')}</span>
       <h3>${escapeHtml(a.area)}</h3>
-      <p>${escapeHtml(a.texto)}</p>
+      ${a.texto.split('\n\n').map(par => `<p>${escapeHtml(par)}</p>`).join('')}
     </div>`).join('');
 
   initReveal();

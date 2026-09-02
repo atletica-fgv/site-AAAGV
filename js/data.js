@@ -104,7 +104,7 @@ const SITE_DATA = {
     { area: 'Diretoria de Marketing', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Marketing]' },
     { area: 'Diretoria de Eventos', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Eventos]' },
     { area: 'Diretoria de Produtos', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Produtos]' },
-    { area: 'Diretoria de Parcerias / Captação de Recursos', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Parcerias / Captação de Recursos]' },
+    { area: 'Diretoria de Parcerias / Captação de Recursos', texto: 'A área de Captação de Recursos e Parcerias tem como principal objetivo buscar, desenvolver e proporcionar novas parcerias para a AAAGV, contribuindo diretamente para o desenvolvimento dos nossos atletas e para o fortalecimento da entidade.\n\nAs parcerias podem assumir diferentes formatos, desde apoio financeiro e patrocínios até o fornecimento de produtos, serviços, descontos, benefícios e outras formas de colaboração. As possibilidades são amplas e podem ser adaptadas de acordo com os interesses e objetivos tanto da AAAGV quanto de cada parceiro.' },
     { area: 'Diretoria de Projetos Sociais', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Projetos Sociais]' }
   ],
 
