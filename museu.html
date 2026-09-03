@@ -50,9 +50,9 @@
       <div class="museu-intro">
         <span class="museu-intro-mark">&#8220;</span>
         <p>
-          O Museu da AAAGV reúne os rostos, as quadras e os bastidores que construíram a história
-          da atlética. Cada geração que passou por aqui deixou uma marca — e este é o espaço para
-          preservá-la. Se você viveu a AAAGV, você está nessas paredes.
+          O Museu não conta a história em ordem — isso é a linha do tempo. Aqui ficam os momentos que a
+          AAAGV escolheu não esquecer, os papéis que sobreviveram às trocas de gestão e as fotos que
+          cada turma deixou para a próxima. Se você viveu a atlética, você está aqui.
         </p>
       </div>
     </div>
@@ -61,13 +61,50 @@
   <section class="museu-shell museu-gallery-sec">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">Acervo</span>
-        <h2 class="section-heading">Quem carregou o legado</h2>
-        <p class="section-lead">Depoimento de um lado, memórias do outro. A cada história, a ordem se inverte —
-          como quem caminha por uma galeria e vira para a próxima parede.</p>
+        <span class="eyebrow">Melhores momentos</span>
+        <h2 class="section-heading">Momentos que a gente não esquece</h2>
+        <p class="section-lead">Não é linha do tempo. É uma seleção — um instante de cada vez, com o
+          depoimento de quem estava lá. De um lado a fala, do outro as fotos; e a cada momento a ordem se inverte.</p>
       </div>
 
       <div class="museu-galeria" id="museu-galeria"></div>
+    </div>
+  </section>
+
+  <section class="museu-shell museu-acervo-sec">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Do arquivo</span>
+        <h2 class="section-heading">O acervo em papel</h2>
+        <p class="section-lead">Jornais, grades de treino da semana, cartazes — o que a atlética imprimia
+          e distribuía antes de tudo virar story. Arraste para o lado; clique para ampliar.</p>
+      </div>
+
+      <div class="acervo-scroller">
+        <button type="button" class="acervo-arrow acervo-prev" aria-label="Documentos anteriores">&#8249;</button>
+        <div class="museu-acervo" id="museu-acervo"></div>
+        <button type="button" class="acervo-arrow acervo-next" aria-label="Próximos documentos">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="museu-shell museu-gestoes-sec">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Álbuns</span>
+        <h2 class="section-heading">A galeria de cada gestão</h2>
+        <p class="section-lead">Cada gestão deixou sua pasta de fotos. Abra uma e percorra o ano por dentro.</p>
+      </div>
+
+      <div class="museu-gestoes" id="museu-gestoes"></div>
+
+      <div class="gestao-panel" id="gestao-panel" hidden>
+        <div class="gestao-panel-head">
+          <h3 class="gestao-panel-title"></h3>
+          <button type="button" class="btn-link on-dark" id="gestao-close">Fechar &#10005;</button>
+        </div>
+        <div class="gestao-grid" id="gestao-grid"></div>
+      </div>
     </div>
   </section>
 
@@ -79,12 +116,15 @@
 
 </main>
 
-<!-- MODAL: foto ampliada -->
+<!-- MODAL: visualizador de fotos / documentos (navega para os lados) -->
 <div class="modal-overlay" id="modal-foto">
   <div class="modal-box foto-modal">
     <button type="button" class="modal-close" aria-label="Fechar">✕</button>
+    <button type="button" class="lb-nav lb-prev" aria-label="Anterior">&#8249;</button>
+    <button type="button" class="lb-nav lb-next" aria-label="Próxima">&#8250;</button>
     <div class="foto-modal-frame"></div>
     <p class="foto-modal-legenda"></p>
+    <div class="foto-modal-count" aria-hidden="true"></div>
   </div>
 </div>
 

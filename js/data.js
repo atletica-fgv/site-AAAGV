@@ -27,75 +27,111 @@ const SITE_DATA = {
   ],
 
   // ===================================================================
-  // MUSEU — memória viva da AAAGV (página museu.html)
-  // Cada item é um "bloco de memória": um depoimento de alguém que
-  // marcou a atlética + um conjunto de fotos de grupo. Na página os
-  // blocos se alternam: depoimento de um lado, fotos do outro, depois
-  // o inverso, e assim por diante. A ordem NÃO precisa ser cronológica —
-  // pode ser por tema, por marco, por pessoa. É só a ordem desta lista.
+  // MUSEU (museu.html) — NÃO é uma linha do tempo (isso já existe no
+  // "Sobre"). Aqui a atlética escolhe o que quer lembrar. Três partes:
   //
-  // TODO (conteúdo real):
-  //   - era        : rótulo curto do bloco (um tema ou um marco; 1–3 palavras)
-  //   - titulo     : frase que resume aquela memória
-  //   - depoimento : texto na íntegra da pessoa homenageada
-  //   - autor/cargo: quem falou e em que gestão
-  //   - fotoAutor  : caminho para um retrato (opcional; sem isso usa as iniciais)
-  //   - fotos      : 2 ou 3 por bloco. "legenda" é a descrição que aparece
-  //                  embaixo da foto e no zoom (clique na foto para ampliar).
-  //   Coloque os arquivos em images/museu/ com os nomes usados abaixo.
+  //   1) museu   — MOMENTOS: um instante marcante + o depoimento de quem
+  //                viveu. Ordem livre, por tema — nunca por ano.
+  //   2) acervo  — PAPÉIS: jornais, grades de treino, cartazes que a
+  //                atlética imprimiu. Recortes de arquivo; clique amplia.
+  //   3) gestoes — ÁLBUNS: uma "pasta" por gestão (G11...G25). Ao clicar,
+  //                abre a grade de fotos daquela gestão.
+  //
+  // MOMENTOS — campos:
+  //   momento    : rótulo curto do instante (ex.: "A virada"); vira a
+  //                marca-d'água atrás do bloco
+  //   titulo     : frase que resume o momento
+  //   depoimento : fala completa de quem viveu
+  //   autor/cargo: quem falou e o papel dele na época
+  //   fotoAutor  : retrato (opcional; sem isso usa as iniciais)
+  //   fotos      : 2 a 6 por momento; "legenda" aparece embaixo e no zoom
+  //   Arquivos em images/museu/ com os nomes abaixo.
   // ===================================================================
   museu: [
     {
-      era: 'A origem',
-      titulo: 'Quando tudo começou',
-      depoimento: 'Quando a gente começou, não existia estrutura nenhuma. Era um grupo de estudantes que queria representar a FGV nas quadras e topou construir algo que durasse. A AAAGV nasceu dessa teimosia — e da certeza de que o esporte une gente que a sala de aula separa.',
+      momento: 'A virada',
+      titulo: 'O jogo que ninguém dava pela gente',
+      depoimento: 'Estávamos perdendo o jogo inteiro. Nos últimos dois minutos a arquibancada levantou e a equipe virou. Ninguém que estava naquele ginásio esqueceu — e muita gente que entrou na atlética depois entrou por causa daquela noite.',
       autor: 'Nome Sobrenome',
-      cargo: 'Presidência — gestão de fundação',
+      cargo: 'Capitã de basquete',
       fotoAutor: '',
       fotos: [
-        { src: 'images/museu/origem-1.jpg', legenda: 'Primeira diretoria da AAAGV' },
-        { src: 'images/museu/origem-2.jpg', legenda: 'Time que estreou representando a FGV' },
-        { src: 'images/museu/origem-3.jpg', legenda: 'Confraternização dos fundadores' }
+        { src: 'images/museu/momento-1-a.jpg', legenda: 'A arquibancada da AAAGV na final' },
+        { src: 'images/museu/momento-1-b.jpg', legenda: 'O time comemorando a virada' },
+        { src: 'images/museu/momento-1-c.jpg', legenda: 'Volta olímpica com a torcida' }
       ]
     },
     {
-      era: 'A consolidação',
-      titulo: 'De time de amigos a instituição',
-      depoimento: 'Foi nessa época que a atlética deixou de ser só um time de amigos e virou instituição. Criamos processo seletivo, calendário de treinos, uniforme de verdade. A convivência continuou sendo o coração de tudo, mas passamos a ganhar tanto dentro quanto fora de quadra.',
+      momento: 'A travessia',
+      titulo: 'Da seletiva ao pódio no mesmo ano',
+      depoimento: 'Entrei numa seletiva sem nunca ter competido. No fim do ano estava subindo no pódio universitário. A atlética não pergunta de onde você vem — te dá o time, o treino e a camisa, e o resto é com você.',
+      autor: 'Nome Sobrenome',
+      cargo: 'Atleta de atletismo',
+      fotoAutor: '',
+      fotos: [
+        { src: 'images/museu/momento-2-a.jpg', legenda: 'Primeiro treino da seletiva' },
+        { src: 'images/museu/momento-2-b.jpg', legenda: 'Delegação da AAAGV na competição' }
+      ]
+    },
+    {
+      momento: 'A casa cheia',
+      titulo: 'O CA lotado numa quarta qualquer',
+      depoimento: 'Não era jogo, não era festa. Era um treino aberto numa quarta à noite, e o CA estava cheio. É isso que a gente tenta preservar: o lugar onde as pessoas simplesmente querem estar.',
       autor: 'Nome Sobrenome',
       cargo: 'Diretoria de Esportes',
       fotoAutor: '',
       fotos: [
-        { src: 'images/museu/consolidacao-1.jpg', legenda: 'Diretoria reunida na FGV' },
-        { src: 'images/museu/consolidacao-2.jpg', legenda: 'Aniversário da atlética' },
-        { src: 'images/museu/consolidacao-3.jpg', legenda: 'Bastidores de uma competição universitária' }
-      ]
-    },
-    {
-      era: 'Dentro e fora de quadra',
-      titulo: 'As conquistas que viraram história',
-      depoimento: 'Ninguém esquece a final que a gente virou nos últimos dois minutos, com a arquibancada toda de preto e amarelo. Mas o que fica mesmo são as pessoas: caloura que virou capitã, capitão que virou presidente. A AAAGV forma gente.',
-      autor: 'Nome Sobrenome',
-      cargo: 'Presidência',
-      fotoAutor: '',
-      fotos: [
-        { src: 'images/museu/conquistas-1.jpg', legenda: 'Torcida da AAAGV em final universitária' },
-        { src: 'images/museu/conquistas-2.jpg', legenda: 'Elenco reunido após o título' },
-        { src: 'images/museu/conquistas-3.jpg', legenda: 'Comemoração com a comunidade GV' }
-      ]
-    },
-    {
-      era: 'O legado hoje',
-      titulo: 'Entregar melhor do que recebemos',
-      depoimento: 'Recebemos a atlética de mão em mão, com quase quarenta anos de história nas costas. Nosso trabalho é entregar para a próxima gestão algo melhor do que recebemos — e manter viva a memória de todo mundo que chegou aqui antes da gente.',
-      autor: 'Nome Sobrenome',
-      cargo: 'Presidência — gestão atual',
-      fotoAutor: '',
-      fotos: [
-        { src: 'images/museu/hoje-1.jpg', legenda: 'A diretoria atual da AAAGV' },
-        { src: 'images/museu/hoje-2.jpg', legenda: 'Atletas das modalidades de hoje' }
+        { src: 'images/museu/momento-3-a.jpg', legenda: 'Treino aberto no CA' },
+        { src: 'images/museu/momento-3-b.jpg', legenda: 'Bastidores antes do treino' },
+        { src: 'images/museu/momento-3-c.jpg', legenda: 'Confraternização depois' }
       ]
     }
+  ],
+
+  // ACERVO — materiais impressos que a atlética publicou.
+  //   tipo      : Jornal / Grade de treinos / Cartaz / Convite / Ata...
+  //   titulo    : nome do material
+  //   referencia: gestão, ano ou "sem data" (livre)
+  //   descricao : contexto — aparece no zoom
+  //   imagem    : scan em images/museu/acervo/
+  //   formato   : 'retrato' (jornal alto) | 'paisagem' (grade/cartaz deitado) | 'quadrado'
+  acervo: [
+    { tipo: 'Jornal', titulo: 'Informativo dos calouros', referencia: 'Gestão 16', descricao: 'Distribuído no primeiro dia de aula. Trazia a grade de treinos da semana de todas as modalidades e a agenda de eventos do semestre.', imagem: 'images/museu/acervo/jornal-calouros.jpg', formato: 'retrato' },
+    { tipo: 'Grade de treinos', titulo: 'Semana de treinos', referencia: 'Gestão 19', descricao: 'Quadro fixado no mural do CA com dia, horário e local de cada equipe.', imagem: 'images/museu/acervo/grade-treinos.jpg', formato: 'paisagem' },
+    { tipo: 'Cartaz', titulo: 'Convocação para a seletiva', referencia: 'Gestão 21', descricao: 'Divulgação da seletiva anual das modalidades, colada pelos corredores da FGV.', imagem: 'images/museu/acervo/cartaz-seletiva.jpg', formato: 'retrato' },
+    { tipo: 'Jornal', titulo: 'Edição de aniversário', referencia: 'Gestão 23', descricao: 'Número especial com a história da atlética, os títulos do ano e entrevistas com ex-atletas.', imagem: 'images/museu/acervo/jornal-aniversario.jpg', formato: 'retrato' },
+    { tipo: 'Cartaz', titulo: 'Chamada para a torcida', referencia: 'Gestão 18', descricao: 'Cartaz de mobilização para a final do campeonato universitário — ponto de encontro, horário e ônibus da torcida.', imagem: 'images/museu/acervo/cartaz-torcida.jpg', formato: 'retrato' },
+    { tipo: 'Grade de treinos', titulo: 'Tabela de horários — 2º semestre', referencia: 'Gestão 20', descricao: 'Versão revisada da grade, com os treinos da natação e do atletismo remanejados para o período da manhã.', imagem: 'images/museu/acervo/grade-2sem.jpg', formato: 'paisagem' },
+    { tipo: 'Convite', titulo: 'Convite do jantar de encerramento', referencia: 'Gestão 17', descricao: 'Convite impresso do jantar de fim de ano da atlética, entregue em mãos para atletas e ex-gestões.', imagem: 'images/museu/acervo/convite-jantar.jpg', formato: 'quadrado' },
+    { tipo: 'Jornal', titulo: 'Especial de calouros — 2ª edição', referencia: 'Gestão 22', descricao: 'Segunda tiragem do informativo, com entrevistas dos capitães de cada modalidade e o calendário de amistosos.', imagem: 'images/museu/acervo/jornal-calouros-2.jpg', formato: 'retrato' },
+    { tipo: 'Cartaz', titulo: 'Seletiva de vôlei e basquete', referencia: 'Gestão 24', descricao: 'Cartaz específico das seletivas de quadra, com data, local e o que levar.', imagem: 'images/museu/acervo/cartaz-quadra.jpg', formato: 'retrato' },
+    { tipo: 'Ata', titulo: 'Ata de fundação (cópia)', referencia: '1987', descricao: 'Cópia digitalizada do documento de fundação da AAAGV, com as assinaturas da primeira diretoria.', imagem: 'images/museu/acervo/ata-fundacao.jpg', formato: 'retrato' },
+    { tipo: 'Grade de treinos', titulo: 'Primeira grade organizada', referencia: 'Gestão 14', descricao: 'A grade de treinos mais antiga que a atlética conseguiu recuperar — feita à mão e depois datilografada.', imagem: 'images/museu/acervo/grade-antiga.jpg', formato: 'paisagem' },
+    { tipo: 'Cartaz', titulo: 'Festa de aniversário da AAAGV', referencia: 'Gestão 23', descricao: 'Cartaz de divulgação da festa de aniversário, com line-up e ponto de venda de ingressos.', imagem: 'images/museu/acervo/cartaz-festa.jpg', formato: 'retrato' }
+  ],
+
+  // GESTÕES — uma pasta por gestão (G11 a G25).
+  //   id      : "G25" etc.
+  //   periodo : ano/intervalo (opcional; ex.: "2025")
+  //   capa    : miniatura da pasta (opcional)
+  //   qtd     : nº de espaços ilustrativos ENQUANTO não há fotos reais.
+  //             Quando tiver as fotos, troque por:  fotos: [{ src, legenda }, ...]
+  gestoes: [
+    { id: 'G25', periodo: '', capa: '', qtd: 20 },
+    { id: 'G24', periodo: '', capa: '', qtd: 18 },
+    { id: 'G23', periodo: '', capa: '', qtd: 16 },
+    { id: 'G22', periodo: '', capa: '', qtd: 15 },
+    { id: 'G21', periodo: '', capa: '', qtd: 13 },
+    { id: 'G20', periodo: '', capa: '', qtd: 12 },
+    { id: 'G19', periodo: '', capa: '', qtd: 11 },
+    { id: 'G18', periodo: '', capa: '', qtd: 10 },
+    { id: 'G17', periodo: '', capa: '', qtd: 9 },
+    { id: 'G16', periodo: '', capa: '', qtd: 8 },
+    { id: 'G15', periodo: '', capa: '', qtd: 7 },
+    { id: 'G14', periodo: '', capa: '', qtd: 6 },
+    { id: 'G13', periodo: '', capa: '', qtd: 6 },
+    { id: 'G12', periodo: '', capa: '', qtd: 5 },
+    { id: 'G11', periodo: '', capa: '', qtd: 4 }
   ],
 
   // TODO: colar o texto definitivo de cada área (aba Governança da planilha EAP)
