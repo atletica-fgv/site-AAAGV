@@ -156,7 +156,7 @@ function mapNoticiasRows(rows) {
         .map(p => p.trim())
         .filter(Boolean);
 
-      return {
+      const noticia = {
         id: csvToNumber(read(r, 'ID', 0)),
         categoria: read(r, 'CATEGORIA', 1) || 'Institucional',
         titulo: read(r, 'TITULO', 2),
@@ -165,6 +165,12 @@ function mapNoticiasRows(rows) {
         resumo: resumo,
         corpo: corpo.length ? corpo : (resumo ? [resumo] : [])
       };
+
+      // coluna opcional "AUTOR" / "ESCRITO POR" -> assinatura no fim da matéria
+      const autor = read(r, ['AUTOR', 'ESCRITO POR', 'ESCRITO POR:']);
+      if (autor) noticia.autor = autor;
+
+      return noticia;
     })
     .filter(n => n.titulo);
 }

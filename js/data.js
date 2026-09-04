@@ -270,6 +270,7 @@ const SITE_DATA = {
   ],
 
   // TODO: substituir por notícias reais (institucional, esporte, parcerias, social...)
+  // "autor" aparece no fim da matéria como "Escrito por: Nome Sobrenome".
   noticias: [
     {
       id: 1,
@@ -282,8 +283,37 @@ const SITE_DATA = {
         'Em uma partida disputada ponto a ponto, a equipe masculina de basquete da AAAGV venceu por 68 a 62 na semifinal das Economíadas e garantiu vaga na grande final da competição.',
         'O time começou o jogo pressionando forte e abriu vantagem ainda no primeiro tempo, mas viu o adversário reagir no terceiro quarto. Nos minutos finais, a AAAGV manteve a frieza nos lances livres e fechou a conta a seu favor.',
         'A final acontece em breve — fique de olho no calendário completo para não perder o próximo jogo.'
-      ]
+      ],
+      autor: 'Nome Sobrenome'
     },
+    {
+      id: 2,
+      categoria: 'Eventos',
+      titulo: 'Recepção dos calouros reúne mais de 300 estudantes no CA',
+      data: '2026-08-28',
+      imagem: '',
+      resumo: 'A recepção da AAAGV apresentou as modalidades, abriu as inscrições para as seletivas e marcou a chegada da nova turma à atlética.',
+      corpo: [
+        'A AAAGV recebeu a nova turma de calouros em uma tarde no Centro Acadêmico, com apresentação de todas as modalidades, contato direto com capitães e atletas e a abertura oficial das inscrições para as seletivas do semestre.',
+        'Além da parte esportiva, houve espaço para integração entre veteranos e calouros, distribuição do informativo com a grade de treinos e a agenda de eventos até o fim do ano.',
+        'As seletivas começam na próxima semana. Quem não conseguiu se inscrever no dia pode procurar a Diretoria de Esportes pelas redes da atlética.'
+      ],
+      autor: 'Nome Sobrenome'
+    },
+    {
+      id: 3,
+      categoria: 'Parcerias',
+      titulo: 'AAAGV firma nova parceria para o transporte das equipes',
+      data: '2026-09-01',
+      imagem: '',
+      resumo: 'O acordo garante o deslocamento das equipes para jogos e competições fora de São Paulo durante toda a temporada.',
+      corpo: [
+        'A AAAGV anunciou uma nova parceria que passa a cobrir o transporte das equipes para jogos e competições universitárias fora da capital — uma das principais demandas dos atletas nos últimos anos.',
+        'Com o acordo, a atlética reduz o custo que antes era dividido entre os próprios estudantes e ganha previsibilidade para montar o calendário da temporada.',
+        'A Diretoria de Captação segue em conversas com outras marcas interessadas em apoiar o esporte universitário na FGV. Empresas que queiram conhecer as possibilidades podem falar com a área de parcerias.'
+      ],
+      autor: 'Nome Sobrenome'
+    }
   ],
 
   // TODO: substituir por logos e contato reais da diretoria de parcerias
