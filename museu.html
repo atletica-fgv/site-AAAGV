@@ -71,39 +71,27 @@
     </div>
   </section>
 
-  <section class="museu-shell museu-acervo-sec">
+  <section class="museu-shell museu-galeria-sec">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">Do arquivo</span>
-        <h2 class="section-heading">O acervo em papel</h2>
-        <p class="section-lead">Jornais, grades de treino da semana, cartazes — o que a atlética imprimia
-          e distribuía antes de tudo virar story. Arraste para o lado; clique para ampliar.</p>
+        <span class="eyebrow">Gestões passadas</span>
+        <h2 class="section-heading">A galeria da AAAGV</h2>
+        <p class="section-lead">Fotos soltas de quem passou por aqui. Arraste para o lado; algumas têm o
+          momento identificado embaixo, outras são só a lembrança. Clique para ampliar.</p>
       </div>
 
-      <div class="acervo-scroller">
-        <button type="button" class="acervo-arrow acervo-prev" aria-label="Documentos anteriores">&#8249;</button>
-        <div class="museu-acervo" id="museu-acervo"></div>
-        <button type="button" class="acervo-arrow acervo-next" aria-label="Próximos documentos">&#8250;</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="museu-shell museu-gestoes-sec">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Álbuns</span>
-        <h2 class="section-heading">A galeria de cada gestão</h2>
-        <p class="section-lead">Cada gestão deixou sua pasta de fotos. Abra uma e percorra o ano por dentro.</p>
+      <div class="galeria-scroller">
+        <button type="button" class="galeria-arrow galeria-prev" aria-label="Fotos anteriores">&#8249;</button>
+        <div class="galeria-strip" id="galeria-strip"></div>
+        <button type="button" class="galeria-arrow galeria-next" aria-label="Próximas fotos">&#8250;</button>
       </div>
 
-      <div class="museu-gestoes" id="museu-gestoes"></div>
+      <div class="galeria-mais-wrap">
+        <button type="button" class="btn btn-primary galeria-mais" id="galeria-mais" hidden>Ver mais fotos</button>
+      </div>
 
-      <div class="gestao-panel" id="gestao-panel" hidden>
-        <div class="gestao-panel-head">
-          <h3 class="gestao-panel-title"></h3>
-          <button type="button" class="btn-link on-dark" id="gestao-close">Fechar &#10005;</button>
-        </div>
-        <div class="gestao-grid" id="gestao-grid"></div>
+      <div class="galeria-panel" id="galeria-panel" hidden>
+        <div class="galeria-grid" id="galeria-grid"></div>
       </div>
     </div>
   </section>
@@ -133,41 +121,35 @@
     <div class="footer-brand">
       <img src="images/logo.png" alt="AAAGV" class="logo-img" data-fallback-text="AAAGV" style="height:58px;margin-bottom:16px;">
       <p><strong>AAAGV</strong></p>
-      <p>Carregamos o legado.<br>Marcamos gerações.</p>
+      <p>A história é escrita em preto e amarelo.</p>
     </div>
     <div class="footer-col">
       <h4>Navegação</h4>
       <ul>
         <li><a href="sobre.html">Sobre</a></li>
         <li><a href="nossas-areas.html">Nossas Áreas</a></li>
-        <li><a href="calendario.html">Modalidades</a></li>
-        <li><a href="calendario.html">Atletas</a></li>
+        <li><a href="calendario.html">Calendário &amp; Modalidades</a></li>
         <li><a href="noticias.html">Notícias</a></li>
         <li><a href="museu.html">Museu</a></li>
-        <li><a href="calendario.html">Calendário</a></li>
-        <li><a href="index.html#resultados">Resultados</a></li>
-        <li><a href="index.html#parceiros">Parceiros</a></li>
+        <li><a href="index.html#parceiros">Seja nosso parceiro</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Redes</h4>
       <ul>
         <li><a href="https://www.instagram.com/jacarefgv/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="#" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.tiktok.com/@jacarefgv" target="_blank" rel="noopener">TikTok</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contato</h4>
       <ul>
-        <li><a href="mailto:contato@aaagv.com.br">contato@aaagv.com.br</a></li>
-        <li>[Inserir endereço da sede / FGV São Paulo]</li>
-        <li>[Inserir contato institucional]</li>
+        <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=atleticafgv@gmail.com" target="_blank" rel="noopener">atleticafgv@gmail.com</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Itapeva%2C%20432%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP" target="_blank" rel="noopener">Rua Itapeva, 432 - Bela Vista, São Paulo - SP</a></li>
       </ul>
     </div>
   </div>
   <div class="container footer-bottom">
-    <span class="motto">A história é escrita em preto e amarelo.</span>
     <span>&copy; <span id="year"></span> AAAGV — Associação Atlética Acadêmica Getúlio Vargas</span>
   </div>
 </footer>

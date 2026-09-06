@@ -2,7 +2,7 @@
    AAAGV — lógica específica da página Notícias
    ===================================================================== */
 
-const CATEGORIAS_FILTRO = ['Todos', 'Esportes', 'Eventos', 'Parcerias', 'Institucional', 'Social', 'Conquistas'];
+const CATEGORIAS_FILTRO = ['Todos', 'Esportes', 'Eventos', 'Parcerias', 'Social'];
 let noticiasFiltroAtual = 'Todos';
 
 function renderNewsFilters() {

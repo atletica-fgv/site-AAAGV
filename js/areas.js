@@ -6,17 +6,61 @@ function avatarInitials(nome) {
   return nome.split(' ').filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase();
 }
 
-/* ---------- Seção "Nossas Áreas" ---------- */
+/* ---------- Seção "Nossas Áreas" (lista + detalhe) ---------- */
 function renderAreasDescricao() {
   const mount = document.getElementById('areas-mount');
   if (!mount) return;
 
-  mount.innerHTML = SITE_DATA.areasDescricao.map((a, i) => `
-    <div class="area-item" data-reveal>
-      <span class="num">${String(i + 1).padStart(2, '0')}</span>
-      <h3>${escapeHtml(a.area)}</h3>
-      ${a.texto.split('\n\n').map(par => `<p>${escapeHtml(par)}</p>`).join('')}
-    </div>`).join('');
+  const lista = SITE_DATA.areasDescricao || [];
+  if (!lista.length) return;
+
+  mount.innerHTML = `
+    <div class="areas-nav" role="tablist" aria-label="Diretorias">
+      ${lista.map((a, i) => `
+        <button type="button" class="areas-nav-btn" role="tab" aria-selected="false" data-i="${i}">
+          <span class="areas-nav-num">${String(i + 1).padStart(2, '0')}</span>
+          <span class="areas-nav-nome">${escapeHtml(a.area)}</span>
+        </button>`).join('')}
+    </div>
+    <div class="areas-detalhe" id="areas-detalhe" role="tabpanel" hidden>
+      <div class="areas-detalhe-head"><h3></h3></div>
+      <div class="areas-detalhe-corpo"></div>
+    </div>`;
+
+  const nav = mount.querySelector('.areas-nav');
+  const det = mount.querySelector('#areas-detalhe');
+  const detTitulo = det.querySelector('.areas-detalhe-head h3');
+  const detCorpo = det.querySelector('.areas-detalhe-corpo');
+
+  function abrir(i) {
+    const a = lista[i];
+    if (!a) return;
+
+    mount.classList.add('com-selecao');
+    nav.querySelectorAll('.areas-nav-btn').forEach(b => {
+      const ativo = Number(b.dataset.i) === i;
+      b.classList.toggle('ativo', ativo);
+      b.setAttribute('aria-selected', ativo ? 'true' : 'false');
+    });
+
+    detTitulo.textContent = a.area;
+    const paras = String(a.texto || '').split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+    detCorpo.innerHTML = paras.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    det.hidden = false;
+
+    // Re-dispara a animação de entrada a cada troca de diretoria
+    det.classList.remove('entrando');
+    void det.offsetWidth;
+    det.classList.add('entrando');
+
+    if (window.matchMedia('(max-width: 820px)').matches) {
+      det.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  nav.querySelectorAll('.areas-nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => abrir(Number(btn.dataset.i)));
+  });
 
   initReveal();
 }

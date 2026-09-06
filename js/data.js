@@ -11,7 +11,7 @@ const SITE_DATA = {
 
   // TODO: atualizar com os números reais da AAAGV
   stats: {
-    modalidades: 15,
+    modalidades: 13,
     atletas: 500,
     titulos: 40,
     eventos: 35
@@ -88,60 +88,50 @@ const SITE_DATA = {
     }
   ],
 
-  // ACERVO — materiais impressos que a atlética publicou.
-  //   tipo      : Jornal / Grade de treinos / Cartaz / Convite / Ata...
-  //   titulo    : nome do material
-  //   referencia: gestão, ano ou "sem data" (livre)
-  //   descricao : contexto — aparece no zoom
-  //   imagem    : scan em images/museu/acervo/
-  //   formato   : 'retrato' (jornal alto) | 'paisagem' (grade/cartaz deitado) | 'quadrado'
-  acervo: [
-    { tipo: 'Jornal', titulo: 'Informativo dos calouros', referencia: 'Gestão 16', descricao: 'Distribuído no primeiro dia de aula. Trazia a grade de treinos da semana de todas as modalidades e a agenda de eventos do semestre.', imagem: 'images/museu/acervo/jornal-calouros.jpg', formato: 'retrato' },
-    { tipo: 'Grade de treinos', titulo: 'Semana de treinos', referencia: 'Gestão 19', descricao: 'Quadro fixado no mural do CA com dia, horário e local de cada equipe.', imagem: 'images/museu/acervo/grade-treinos.jpg', formato: 'paisagem' },
-    { tipo: 'Cartaz', titulo: 'Convocação para a seletiva', referencia: 'Gestão 21', descricao: 'Divulgação da seletiva anual das modalidades, colada pelos corredores da FGV.', imagem: 'images/museu/acervo/cartaz-seletiva.jpg', formato: 'retrato' },
-    { tipo: 'Jornal', titulo: 'Edição de aniversário', referencia: 'Gestão 23', descricao: 'Número especial com a história da atlética, os títulos do ano e entrevistas com ex-atletas.', imagem: 'images/museu/acervo/jornal-aniversario.jpg', formato: 'retrato' },
-    { tipo: 'Cartaz', titulo: 'Chamada para a torcida', referencia: 'Gestão 18', descricao: 'Cartaz de mobilização para a final do campeonato universitário — ponto de encontro, horário e ônibus da torcida.', imagem: 'images/museu/acervo/cartaz-torcida.jpg', formato: 'retrato' },
-    { tipo: 'Grade de treinos', titulo: 'Tabela de horários — 2º semestre', referencia: 'Gestão 20', descricao: 'Versão revisada da grade, com os treinos da natação e do atletismo remanejados para o período da manhã.', imagem: 'images/museu/acervo/grade-2sem.jpg', formato: 'paisagem' },
-    { tipo: 'Convite', titulo: 'Convite do jantar de encerramento', referencia: 'Gestão 17', descricao: 'Convite impresso do jantar de fim de ano da atlética, entregue em mãos para atletas e ex-gestões.', imagem: 'images/museu/acervo/convite-jantar.jpg', formato: 'quadrado' },
-    { tipo: 'Jornal', titulo: 'Especial de calouros — 2ª edição', referencia: 'Gestão 22', descricao: 'Segunda tiragem do informativo, com entrevistas dos capitães de cada modalidade e o calendário de amistosos.', imagem: 'images/museu/acervo/jornal-calouros-2.jpg', formato: 'retrato' },
-    { tipo: 'Cartaz', titulo: 'Seletiva de vôlei e basquete', referencia: 'Gestão 24', descricao: 'Cartaz específico das seletivas de quadra, com data, local e o que levar.', imagem: 'images/museu/acervo/cartaz-quadra.jpg', formato: 'retrato' },
-    { tipo: 'Ata', titulo: 'Ata de fundação (cópia)', referencia: '1987', descricao: 'Cópia digitalizada do documento de fundação da AAAGV, com as assinaturas da primeira diretoria.', imagem: 'images/museu/acervo/ata-fundacao.jpg', formato: 'retrato' },
-    { tipo: 'Grade de treinos', titulo: 'Primeira grade organizada', referencia: 'Gestão 14', descricao: 'A grade de treinos mais antiga que a atlética conseguiu recuperar — feita à mão e depois datilografada.', imagem: 'images/museu/acervo/grade-antiga.jpg', formato: 'paisagem' },
-    { tipo: 'Cartaz', titulo: 'Festa de aniversário da AAAGV', referencia: 'Gestão 23', descricao: 'Cartaz de divulgação da festa de aniversário, com line-up e ponto de venda de ingressos.', imagem: 'images/museu/acervo/cartaz-festa.jpg', formato: 'retrato' }
+  // GALERIA — fotos soltas de gestões passadas (museu.html).
+  // Mesma estrutura da tira que se arrasta para o lado: fotos de vários
+  // formatos, algumas com legenda embaixo, outras só a foto. Sem separar
+  // por gestão. As primeiras entram na tira (até GALERIA_STRIP_MAX, hoje 15,
+  // em js/museu.js); o resto abre no botão "Ver mais fotos".
+  //   src     : caminho da foto em images/museu/galeria/  (vazio = placeholder)
+  //   formato : 'retrato' | 'paisagem' | 'quadrado'  (largura do card na tira)
+  //   legenda : identificação do momento (OPCIONAL). Sem legenda = só a foto.
+  galeria: [
+    { src: 'images/museu/galeria/01.jpg', formato: 'paisagem', legenda: 'Título do universitário de vôlei' },
+    { src: 'images/museu/galeria/02.jpg', formato: 'retrato' },
+    { src: 'images/museu/galeria/03.jpg', formato: 'paisagem', legenda: 'Recepção dos calouros no CA' },
+    { src: 'images/museu/galeria/04.jpg', formato: 'quadrado' },
+    { src: 'images/museu/galeria/05.jpg', formato: 'retrato', legenda: 'Delegação da AAAGV em viagem' },
+    { src: 'images/museu/galeria/06.jpg', formato: 'paisagem' },
+    { src: 'images/museu/galeria/07.jpg', formato: 'retrato' },
+    { src: 'images/museu/galeria/08.jpg', formato: 'quadrado', legenda: 'Treino aberto de basquete' },
+    { src: 'images/museu/galeria/09.jpg', formato: 'paisagem' },
+    { src: 'images/museu/galeria/10.jpg', formato: 'retrato', legenda: 'Festa de aniversário da atlética' },
+    { src: 'images/museu/galeria/11.jpg', formato: 'paisagem' },
+    { src: 'images/museu/galeria/12.jpg', formato: 'quadrado' },
+    { src: 'images/museu/galeria/13.jpg', formato: 'paisagem', legenda: 'Final do campeonato universitário' },
+    { src: 'images/museu/galeria/14.jpg', formato: 'retrato' },
+    { src: 'images/museu/galeria/15.jpg', formato: 'paisagem' },
+    { src: 'images/museu/galeria/16.jpg', formato: 'retrato', legenda: 'Confraternização de fim de ano' },
+    { src: 'images/museu/galeria/17.jpg', formato: 'quadrado' },
+    { src: 'images/museu/galeria/18.jpg', formato: 'paisagem' },
+    { src: 'images/museu/galeria/19.jpg', formato: 'retrato', legenda: 'Seletiva das modalidades de quadra' },
+    { src: 'images/museu/galeria/20.jpg', formato: 'paisagem' },
+    { src: 'images/museu/galeria/21.jpg', formato: 'quadrado' },
+    { src: 'images/museu/galeria/22.jpg', formato: 'paisagem', legenda: 'Torcida da AAAGV na arquibancada' },
+    { src: 'images/museu/galeria/23.jpg', formato: 'retrato' },
+    { src: 'images/museu/galeria/24.jpg', formato: 'paisagem' }
   ],
 
-  // GESTÕES — uma pasta por gestão (G11 a G25).
-  //   id      : "G25" etc.
-  //   periodo : ano/intervalo (opcional; ex.: "2025")
-  //   capa    : miniatura da pasta (opcional)
-  //   qtd     : nº de espaços ilustrativos ENQUANTO não há fotos reais.
-  //             Quando tiver as fotos, troque por:  fotos: [{ src, legenda }, ...]
-  gestoes: [
-    { id: 'G25', periodo: '', capa: '', qtd: 20 },
-    { id: 'G24', periodo: '', capa: '', qtd: 18 },
-    { id: 'G23', periodo: '', capa: '', qtd: 16 },
-    { id: 'G22', periodo: '', capa: '', qtd: 15 },
-    { id: 'G21', periodo: '', capa: '', qtd: 13 },
-    { id: 'G20', periodo: '', capa: '', qtd: 12 },
-    { id: 'G19', periodo: '', capa: '', qtd: 11 },
-    { id: 'G18', periodo: '', capa: '', qtd: 10 },
-    { id: 'G17', periodo: '', capa: '', qtd: 9 },
-    { id: 'G16', periodo: '', capa: '', qtd: 8 },
-    { id: 'G15', periodo: '', capa: '', qtd: 7 },
-    { id: 'G14', periodo: '', capa: '', qtd: 6 },
-    { id: 'G13', periodo: '', capa: '', qtd: 6 },
-    { id: 'G12', periodo: '', capa: '', qtd: 5 },
-    { id: 'G11', periodo: '', capa: '', qtd: 4 }
-  ],
-
-  // TODO: colar o texto definitivo de cada área (aba Governança da planilha EAP)
+  // Texto de cada área (parágrafos separados por \n — o site quebra em <p>).
   areasDescricao: [
-    { area: 'Diretoria de Esportes', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Esportes]' },
-    { area: 'Diretoria de Marketing', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Marketing]' },
-    { area: 'Diretoria de Eventos', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Eventos]' },
-    { area: 'Diretoria de Produtos', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Produtos]' },
+    { area: 'Diretoria de Esportes', texto: 'A Diretoria de Esportes tem como principal objetivo fomentar e fortalecer o esporte universitário, desenvolvendo projetos e atividades tanto dentro quanto fora da faculdade. Atuamos no suporte aos atletas para que possam participar de forma efetiva de campeonatos e competições, por meio do planejamento e organização das modalidades, gestão de quadras, contratação de técnicos e demais necessidades relacionadas à prática esportiva.\n\nAlém disso, promovemos iniciativas que valorizam e fortalecem a presença do esporte no ambiente universitário, incentivando a integração entre os alunos e, muitas vezes, criando oportunidades de interação e competição com outras instituições de ensino.' },
+    { area: 'Diretoria Financeira', texto: 'A Diretoria Financeira tem como principal objetivo garantir a saúde e a sustentabilidade financeira da AAAGV, planejando e viabilizando os recursos necessários para o dia a dia e o crescimento da entidade. Atuamos diretamente na gestão do orçamento, no controle de fluxo de caixa e na viabilização dos investimentos essenciais para as modalidades esportivas, desde a compra de materiais e locação de espaços até a gestão de contratos de técnicos e prestadores de serviço.\n\nAlém disso, somos responsáveis pelo planejamento financeiro e operacional de grandes projetos e megaeventos, como a GVJADA e o Economíadas. Nosso trabalho conecta a estratégia à execução, negociando diretamente com fornecedores e parceiros para otimizar custos, fechar bons acordos e assegurar que a atlética tenha toda a estrutura necessária para competir em alto nível e integrar a comunidade universitária.' },
+    { area: 'Diretoria de Marketing', texto: 'A área de Marketing tem como principal objetivo fortalecer a imagem e a identidade da AAAGV, aproximando a Atlética da comunidade estudantil. Somos responsáveis por planejar e produzir conteúdos que divulguem eventos, campeonatos, produtos, parcerias e todos os demais projetos desenvolvidos pela entidade. Por meio das redes sociais, buscamos dar visibilidade ao trabalho das diferentes áreas, valorizar nossos atletas e estimular a participação dos alunos. Assim, contribuímos para ampliar o alcance da AAAGV e consolidar sua imagem dentro e fora da FGV.' },
+    { area: 'Diretoria de Eventos', texto: 'A área de Eventos tem como propósito criar experiências que aproximem os alunos e fortaleçam a vida universitária. Somos responsáveis pelo planejamento e execução de eventos, festas e ações da Atlética, como a GVJADA, acompanhando todas as etapas necessárias para a realização de cada projeto. Dessa forma, buscamos promover integração, conexão e experiências marcantes que façam parte da trajetória dos alunos na FGV.' },
+    { area: 'Diretoria de Produtos', texto: 'A área de Produtos tem como propósito desenvolver e comercializar produtos que traduzam a identidade e a essência da Atlética. Atuamos em todo o processo, desde o desenvolvimento do design até a produção e comercialização, buscando fortalecer a presença da marca no dia a dia dos alunos. Dessa forma, a área contribui para aproximar a comunidade da AAAGV e para viabilizar novos projetos, iniciativas e experiências.' },
     { area: 'Diretoria de Parcerias / Captação de Recursos', texto: 'A área de Captação de Recursos e Parcerias tem como principal objetivo buscar, desenvolver e proporcionar novas parcerias para a AAAGV, contribuindo diretamente para o desenvolvimento dos nossos atletas e para o fortalecimento da entidade.\n\nAs parcerias podem assumir diferentes formatos, desde apoio financeiro e patrocínios até o fornecimento de produtos, serviços, descontos, benefícios e outras formas de colaboração. As possibilidades são amplas e podem ser adaptadas de acordo com os interesses e objetivos tanto da AAAGV quanto de cada parceiro.' },
-    { area: 'Diretoria de Projetos Sociais', texto: '[Colar aqui o texto da aba Governança da planilha EAP — Diretoria de Projetos Sociais]' }
+    { area: 'Diretoria de Projetos Sociais', texto: 'A área de Responsabilidade Social tem como propósito promover iniciativas que gerem impacto positivo tanto dentro quanto fora da Atlética. Buscamos desenvolver projetos que fomentem o senso de comunidade, solidariedade e participação com a comunidade estudantil, além de estabelecer e ampliar parcerias com instituições externas. Dessa forma, procuramos utilizar o alcance da Atlética como instrumento para incentivar o engajamento social e contribuir, de maneira concreta, para a sociedade.' }
   ],
 
   // Estrutura da Gestão 2026 vigente. Ainda sem fotos — os avatares usam
@@ -170,7 +160,6 @@ const SITE_DATA = {
   modalidades: [
     { slug: 'atletismo', nome: 'Atletismo', generos: ['Misto'], foto: 'images/modalidades/atletismo.jpg' },
     { slug: 'basquete', nome: 'Basquete', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/basquete.jpg' },
-    { slug: 'beach-tennis', nome: 'Beach Tennis', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/beach-tennis.jpg' },
     { slug: 'futebol-de-campo', nome: 'Futebol de Campo', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/futebol-de-campo.jpg' },
     { slug: 'futsal', nome: 'Futsal', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/futsal.jpg' },
     { slug: 'handebol', nome: 'Handebol', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/handebol.jpg' },
@@ -181,7 +170,6 @@ const SITE_DATA = {
     { slug: 'tenis-de-campo', nome: 'Tênis de Campo', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/tenis-de-campo.jpg' },
     { slug: 'tenis-de-mesa', nome: 'Tênis de Mesa', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/tenis-de-mesa.jpg' },
     { slug: 'volei', nome: 'Vôlei', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/volei.jpg' },
-    { slug: 'volei-de-praia', nome: 'Vôlei de Praia', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/volei-praia.jpg' },
     { slug: 'xadrez', nome: 'Xadrez', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/xadrez.jpg' }
   ],
 
@@ -335,20 +323,17 @@ const SITE_DATA = {
       { icone: 'graduation', titulo: 'Comunidade', desc: 'Acesso a uma das maiores comunidades universitárias de São Paulo.' }
     ],
     contato: {
-      nome: 'Nome Sobrenome',
-      cargo: 'Diretor(a) de Captação de Recursos',
+      nome: 'José Eduardo',
+      cargo: 'Diretor de Captação de Recursos',
       email: 'captacao@aaagv.com.br',
-      whatsapp: '5579999608780'
+      whatsapp: '5511987666852'
     }
   },
 
-  // TODO: confirmar dados institucionais de contato e endereço
   institucional: {
-    email: 'contato@aaagv.com.br',
-    endereco: '[Inserir endereço da sede / FGV São Paulo]',
-    telefone: '[Inserir telefone institucional]',
-    instagram: '#',
-    linkedin: '#',
-    tiktok: '#'
+    email: 'atleticafgv@gmail.com',
+    endereco: 'Rua Itapeva, 432 - Bela Vista, São Paulo - SP',
+    instagram: 'https://www.instagram.com/jacarefgv/',
+    tiktok: 'https://www.tiktok.com/@jacarefgv'
   }
 };

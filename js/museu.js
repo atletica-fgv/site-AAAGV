@@ -1,22 +1,27 @@
 /* =====================================================================
    AAAGV — lógica da página Museu (museu.html)
 
-   3 partes, todas alimentadas por SITE_DATA:
-     - museu    -> MOMENTOS  (#museu-galeria)  : depoimento + fotos, alternando
-     - acervo   -> PAPÉIS    (#museu-acervo)   : tira horizontal arrastável
-     - gestoes  -> ÁLBUNS    (#museu-gestoes)  : pasta por gestão -> grade de fotos
+   Duas partes, alimentadas por SITE_DATA:
+     - museu    -> MOMENTOS (#museu-galeria) : depoimento + fotos, alternando
+     - galeria  -> GALERIA  (#galeria-strip) : fotos soltas de gestões passadas,
+                   tira arrastável; passando do limite, botão "Ver mais fotos"
+                   abre o resto numa grade embaixo (#galeria-panel)
 
-   Clicar em qualquer foto/documento abre o visualizador (#modal-foto),
-   que navega para os lados (setas / teclado / swipe) dentro do conjunto.
+   Clicar em qualquer foto abre o visualizador (#modal-foto), que navega
+   para os lados (setas / teclado / swipe) dentro do conjunto.
    ===================================================================== */
+
+// Quantas fotos ficam na tira arrastável antes do "Ver mais fotos".
+// Faixa confortável: 12–18. Mais que isso, arrastar cansa — o resto vai
+// para a grade que abre embaixo.
+const GALERIA_STRIP_MAX = 15;
 
 function museuIniciais(nome) {
   if (!nome) return 'AAAGV';
   return nome.split(' ').filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase();
 }
 
-/* Peça reutilizada: uma foto clicável (momentos e álbuns de gestão).
-   reveal=false para conteúdo que já aparece visível (painel de gestão). */
+/* ---------- 1) MOMENTOS ---------- */
 function fotoTile(foto, extraClass, reveal = true) {
   const legenda = foto.legenda || '';
   return `
@@ -30,7 +35,6 @@ function fotoTile(foto, extraClass, reveal = true) {
     </figure>`;
 }
 
-/* ---------- 1) MOMENTOS ---------- */
 function renderMuseuBloco(bloco, index) {
   const reverse = index % 2 === 1;
   const rotulo = bloco.momento || bloco.era || '';
@@ -69,40 +73,65 @@ function renderMuseu() {
     : `<p class="museu-vazio">Os momentos estão sendo selecionados.</p>`;
 }
 
-/* ---------- 2) ACERVO ---------- */
-function renderAcervoItem(doc) {
-  const meta = [doc.tipo, doc.referencia].filter(Boolean).join(' · ');
-  const legendaZoom = [doc.titulo, meta, doc.descricao].filter(Boolean).join(' — ');
-  const formato = (doc.formato || 'retrato').toLowerCase();
-
+/* ---------- 2) GALERIA (gestões passadas) ---------- */
+function galeriaCard(foto, index, { grade = false } = {}) {
+  const legenda = foto.legenda || '';
+  const formato = (foto.formato || 'paisagem').toLowerCase();
+  const cls = ['galeria-foto', `fmt-${formato}`];
+  if (legenda) cls.push('com-legenda');
+  if (grade) cls.push('na-grade');
   return `
-    <figure class="acervo-item fmt-${escapeHtml(formato)}" tabindex="0" role="button" data-reveal
-            aria-label="Ampliar documento: ${escapeHtml(doc.titulo || doc.tipo || '')}"
-            data-doc="1" data-src="${escapeHtml(doc.imagem || '')}"
-            data-legenda="${escapeHtml(legendaZoom)}">
+    <figure class="${cls.join(' ')}" tabindex="0" role="button"${grade ? '' : ' data-reveal'}
+            data-index="${index}"
+            aria-label="Ampliar${legenda ? ': ' + escapeHtml(legenda) : ' foto'}">
       <div class="frame">
-        <img src="${escapeHtml(doc.imagem || '')}" alt="${escapeHtml(doc.titulo || '')}" data-fallback-text="" draggable="false">
+        <img src="${escapeHtml(foto.src || '')}" alt="${escapeHtml(legenda)}" data-fallback-text="" draggable="false">
       </div>
-      <figcaption class="acervo-plate">
-        ${meta ? `<span class="acervo-tipo">${escapeHtml(meta)}</span>` : ''}
-        <span class="acervo-titulo">${escapeHtml(doc.titulo || '')}</span>
-      </figcaption>
+      ${legenda ? `<figcaption class="legenda">${escapeHtml(legenda)}</figcaption>` : ''}
     </figure>`;
 }
 
-function renderAcervo() {
-  const mount = document.getElementById('museu-acervo');
-  if (!mount) return;
-  const docs = SITE_DATA.acervo || [];
-  mount.innerHTML = docs.length
-    ? docs.map(renderAcervoItem).join('')
-    : `<p class="museu-vazio">O arquivo em papel está sendo digitalizado.</p>`;
+let galeriaAberta = false;
+
+function renderGaleria() {
+  const strip = document.getElementById('galeria-strip');
+  if (!strip) return;
+  const fotos = SITE_DATA.galeria || [];
+
+  strip.innerHTML = fotos.length
+    ? fotos.slice(0, GALERIA_STRIP_MAX).map((f, i) => galeriaCard(f, i)).join('')
+    : `<p class="museu-vazio">As fotos das gestões passadas estão sendo reunidas.</p>`;
+  initImageFallback(strip);
+
+  const btn = document.getElementById('galeria-mais');
+  if (btn) btn.hidden = fotos.length <= GALERIA_STRIP_MAX;
 }
 
-/* tira arrastável do acervo */
-function initAcervoScroller() {
-  const strip = document.getElementById('museu-acervo');
-  const scroller = strip && strip.closest('.acervo-scroller');
+function toggleGaleriaMais() {
+  const panel = document.getElementById('galeria-panel');
+  const grid = document.getElementById('galeria-grid');
+  const btn = document.getElementById('galeria-mais');
+  if (!panel || !grid || !btn) return;
+
+  galeriaAberta = !galeriaAberta;
+
+  if (galeriaAberta) {
+    const fotos = SITE_DATA.galeria || [];
+    grid.innerHTML = fotos.map((f, i) => galeriaCard(f, i, { grade: true })).join('');
+    initImageFallback(grid);
+    panel.hidden = false;
+    btn.textContent = 'Ver menos';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    panel.hidden = true;
+    btn.textContent = 'Ver mais fotos';
+  }
+}
+
+/* tira arrastável (mouse / touch) + setas + dica de "tem mais" */
+function initGaleriaScroller() {
+  const strip = document.getElementById('galeria-strip');
+  const scroller = strip && strip.closest('.galeria-scroller');
   if (!strip || !scroller) return;
 
   let down = false, startX = 0, startLeft = 0, moved = false;
@@ -128,8 +157,8 @@ function initAcervoScroller() {
   }, true);
 
   const step = () => Math.max(260, strip.clientWidth * 0.82);
-  const prev = scroller.querySelector('.acervo-prev');
-  const next = scroller.querySelector('.acervo-next');
+  const prev = scroller.querySelector('.galeria-prev');
+  const next = scroller.querySelector('.galeria-next');
   if (prev) prev.addEventListener('click', () => strip.scrollBy({ left: -step(), behavior: 'smooth' }));
   if (next) next.addEventListener('click', () => strip.scrollBy({ left: step(), behavior: 'smooth' }));
 
@@ -144,83 +173,6 @@ function initAcervoScroller() {
   update();
 }
 
-/* ---------- 3) ÁLBUNS DAS GESTÕES ---------- */
-function gestaoNumero(id) {
-  return String(id || '').replace(/\D/g, '');
-}
-
-function gestaoFotos(g) {
-  if (g.fotos && g.fotos.length) return g.fotos;
-  return Array.from({ length: g.qtd || 8 }, () => ({ src: '', legenda: '' }));
-}
-
-function renderGestaoFolder(g) {
-  const num = gestaoNumero(g.id);
-  const fotos = (g.fotos && g.fotos.length) ? g.fotos : [];
-  const total = fotos.length || g.qtd || 0;
-
-  const peekSrcs = [g.capa, fotos[0] && fotos[0].src, fotos[1] && fotos[1].src].filter(Boolean).slice(0, 3);
-  const peekList = peekSrcs.length ? peekSrcs : ['', '', ''];
-  const peek = peekList.map(s =>
-    `<span class="peek-card">${s ? `<img src="${escapeHtml(s)}" alt="" loading="lazy" draggable="false">` : ''}</span>`
-  ).join('');
-
-  return `
-    <button type="button" class="gestao-folder" data-reveal data-gestao="${escapeHtml(g.id)}">
-      <span class="gestao-peek" aria-hidden="true">${peek}</span>
-      <span class="gestao-body">
-        <span class="gestao-tab">G${escapeHtml(num)}</span>
-        <span class="gestao-nome">Gestão ${escapeHtml(num)}${g.periodo ? ' &middot; ' + escapeHtml(g.periodo) : ''}</span>
-        <span class="gestao-count">${total} foto${total === 1 ? '' : 's'}</span>
-      </span>
-    </button>`;
-}
-
-let gestaoAberta = null;
-
-function openGestao(id) {
-  const panel = document.getElementById('gestao-panel');
-  const grid = document.getElementById('gestao-grid');
-  const g = (SITE_DATA.gestoes || []).find(x => x.id === id);
-  if (!panel || !grid || !g) return;
-
-  document.querySelectorAll('.gestao-folder').forEach(b =>
-    b.classList.toggle('active', b.dataset.gestao === id));
-
-  const num = gestaoNumero(g.id);
-  panel.querySelector('.gestao-panel-title').textContent =
-    `Gestão ${num}${g.periodo ? ' · ' + g.periodo : ''}`;
-  grid.innerHTML = gestaoFotos(g).map(f => fotoTile(f, 'gestao-foto', false)).join('');
-
-  panel.hidden = false;
-  initImageFallback(grid);
-  gestaoAberta = id;
-  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-function closeGestao() {
-  const panel = document.getElementById('gestao-panel');
-  if (panel) panel.hidden = true;
-  document.querySelectorAll('.gestao-folder.active').forEach(b => b.classList.remove('active'));
-  gestaoAberta = null;
-}
-
-function renderGestoes() {
-  const mount = document.getElementById('museu-gestoes');
-  if (!mount) return;
-  const list = SITE_DATA.gestoes || [];
-  mount.innerHTML = list.length
-    ? list.map(renderGestaoFolder).join('')
-    : `<p class="museu-vazio">Os álbuns das gestões estão sendo organizados.</p>`;
-
-  mount.querySelectorAll('.gestao-folder').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (gestaoAberta === btn.dataset.gestao) closeGestao();
-      else openGestao(btn.dataset.gestao);
-    });
-  });
-}
-
 /* ---------- Visualizador (lightbox) com navegação lateral ---------- */
 let lbItems = [];
 let lbIndex = 0;
@@ -233,9 +185,15 @@ function lbRender() {
   overlay.querySelector('.modal-box').classList.toggle('is-doc', item.doc === '1');
 
   const frame = overlay.querySelector('.foto-modal-frame');
-  frame.innerHTML = item.loaded
-    ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.legenda)}">`
-    : `<div class="foto-modal-ph" aria-hidden="true"></div>`;
+  const placeholder = '<div class="foto-modal-ph" aria-hidden="true"></div>';
+  if (item.src) {
+    frame.innerHTML = `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.legenda)}">`;
+    const img = frame.querySelector('img');
+    // se a foto ainda não existe (placeholder), cai no ícone em vez de imagem quebrada
+    img.addEventListener('error', () => { frame.innerHTML = placeholder; }, { once: true });
+  } else {
+    frame.innerHTML = placeholder;
+  }
 
   const legendaEl = overlay.querySelector('.foto-modal-legenda');
   legendaEl.textContent = item.legenda || '';
@@ -254,32 +212,46 @@ function lbStep(dir) {
   lbRender();
 }
 
-function openLightboxFromCard(card) {
-  let set;
-  if (card.matches('.gestao-foto')) set = document.querySelectorAll('#gestao-grid .gestao-foto');
-  else if (card.matches('.acervo-item')) set = document.querySelectorAll('#museu-acervo .acervo-item');
-  else set = (card.closest('.museu-fotos') || document).querySelectorAll('.museu-foto');
-
-  const cards = Array.from(set).length ? Array.from(set) : [card];
-  lbItems = cards.map(c => {
-    const img = c.querySelector('.frame img');
-    return {
-      src: c.dataset.src || '',
-      legenda: c.dataset.legenda || '',
-      doc: c.dataset.doc || '',
-      loaded: !!(img && img.complete && img.naturalWidth > 0)
-    };
-  });
-  lbIndex = Math.max(0, cards.indexOf(card));
+function openLightbox(items, index) {
+  lbItems = items;
+  lbIndex = Math.max(0, Math.min(index, items.length - 1));
   lbRender();
   openModal(document.getElementById('modal-foto'));
+}
+
+function openLightboxFromCard(card) {
+  // Galeria: navega a lista inteira (mesmo as fotos que ainda não estão na tela)
+  if (card.matches('.galeria-foto')) {
+    const fotos = SITE_DATA.galeria || [];
+    openLightbox(
+      fotos.map(f => ({ src: f.src || '', legenda: f.legenda || '', doc: '', loaded: !!f.src })),
+      Number(card.dataset.index) || 0
+    );
+    return;
+  }
+
+  // Momentos: navega as fotos daquele bloco
+  const set = (card.closest('.museu-fotos') || document).querySelectorAll('.museu-foto');
+  const cards = Array.from(set).length ? Array.from(set) : [card];
+  openLightbox(
+    cards.map(c => {
+      const img = c.querySelector('.frame img');
+      return {
+        src: c.dataset.src || '',
+        legenda: c.dataset.legenda || '',
+        doc: c.dataset.doc || '',
+        loaded: !!(img && img.complete && img.naturalWidth > 0)
+      };
+    }),
+    cards.indexOf(card)
+  );
 }
 
 function initMuseuLightbox() {
   const main = document.querySelector('.museu-main');
   const overlay = document.getElementById('modal-foto');
   if (!main || !overlay) return;
-  const SEL = '.museu-foto, .acervo-item, .gestao-foto';
+  const SEL = '.museu-foto, .galeria-foto';
 
   main.addEventListener('click', (e) => {
     const card = e.target.closest(SEL);
@@ -316,13 +288,12 @@ function initMuseuLightbox() {
 
 document.addEventListener('DOMContentLoaded', () => {
   renderMuseu();
-  renderAcervo();
-  renderGestoes();
-  initAcervoScroller();
+  renderGaleria();
+  initGaleriaScroller();
   initMuseuLightbox();
 
-  const gc = document.getElementById('gestao-close');
-  if (gc) gc.addEventListener('click', closeGestao);
+  const mais = document.getElementById('galeria-mais');
+  if (mais) mais.addEventListener('click', toggleGaleriaMais);
 
   initReveal();
   initImageFallback();
