@@ -307,12 +307,9 @@ const SITE_DATA = {
   // TODO: substituir por logos e contato reais da diretoria de parcerias
   parceiros: {
     logos: [
-      { nome: 'Parceiro 1', logo: '' },
-      { nome: 'Parceiro 2', logo: '' },
-      { nome: 'Parceiro 3', logo: '' },
-      { nome: 'Parceiro 4', logo: '' },
-      { nome: 'Parceiro 5', logo: '' },
-      { nome: 'Parceiro 6', logo: '' }
+      { nome: 'Rockafe', logo: 'images/Logo Rockafe 2.png', semFundo: true },
+      { nome: 'XP', logo: 'images/Logo XP.png', semFundo: true },
+      { nome: 'Araxás', logo: 'images/Logo Araxás.png', semFundo: true }
     ],
     beneficios: [
       { icone: 'eye', titulo: 'Visibilidade', desc: 'Sua marca presente nos canais e espaços da AAAGV.' },

@@ -111,7 +111,8 @@ function renderPartners() {
   if (strip) {
     strip.innerHTML = SITE_DATA.parceiros.logos.map(p => {
       if (p.logo) {
-        return `<img src="${escapeHtml(p.logo)}" alt="${escapeHtml(p.nome)}" data-fallback-text="${escapeHtml(p.nome)}">`;
+        const cls = p.semFundo ? 'partner-logo partner-logo--plain' : 'partner-logo';
+        return `<div class="${cls}"><img src="${escapeHtml(p.logo)}" alt="${escapeHtml(p.nome)}" data-fallback-text="${escapeHtml(p.nome)}"></div>`;
       }
       return `<div class="logo-slot">${escapeHtml(p.nome)}</div>`;
     }).join('');
