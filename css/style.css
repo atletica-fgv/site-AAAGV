@@ -137,8 +137,8 @@ section { padding: 96px 0; }
   height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .logo-link { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.logo-img { height: 80px; width: auto; transition: height var(--transition); }
-.site-header.scrolled .logo-img { height: 60px; }
+.logo-img { height: 68px; width: auto; transition: height var(--transition); }
+.site-header.scrolled .logo-img { height: 52px; }
 .logo-fallback {
   display: none; font-family: var(--font-heading); color: var(--yellow); font-size: 1.5rem; letter-spacing: .03em;
 }
