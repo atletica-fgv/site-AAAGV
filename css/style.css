@@ -204,7 +204,7 @@ section { padding: 96px 0; }
   font-size: clamp(2.6rem, 7vw, 5.6rem);
   color: var(--white);
 }
-.hero-title .accent { color: var(--yellow); }
+.hero-title .accent { color: var(--yellow); text-shadow: 0 6px 30px rgba(0,0,0,.4), 0 2px 10px rgba(0,0,0,.35); }
 @supports (-webkit-text-stroke: 1px black) or (text-stroke: 1px black) {
   .hero-title .accent {
     color: transparent;
