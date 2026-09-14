@@ -71,7 +71,7 @@ function openArticleModal(id) {
   initImageFallback(thumb);
 
   overlay.querySelector('.body-text').innerHTML =
-    noticia.corpo.map(p => `<p>${escapeHtml(p)}</p>`).join('') +
+    noticia.corpo.map(p => `<p>${linkifyHtml(p)}</p>`).join('') +
     (noticia.autor ? `<p class="news-author">Escrito por: <span class="news-author-name">${escapeHtml(noticia.autor)}</span></p>` : '');
 
   openModal(overlay);

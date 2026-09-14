@@ -34,6 +34,10 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+function linkifyHtml(str) {
+  return escapeHtml(str).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+
 /* ---------- Cabeçalho / navegação ---------- */
 function initHeader() {
   const header = document.querySelector('.site-header');

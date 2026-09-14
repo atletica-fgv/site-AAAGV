@@ -270,6 +270,21 @@ const SITE_DATA = {
         'E, mais uma vez, a GVJADA se destacou pela dimensão e pela atmosfera de celebração que já fazem parte da identidade da festa.'
       ],
       autor: 'Mateus Cinelli'
+    },
+    {
+      id: 2,
+      categoria: 'Parcerias',
+      titulo: 'Réveillon Araxás',
+      data: '2026-09-14',
+      imagem: '',
+      resumo: 'AAAGV firma parceria com o Réveillon Araxás e garante 5% de desconto para alunos da FGV na compra de ingressos.',
+      corpo: [
+        'A Atlética da Fundação Getulio Vargas firmou parceria com o Réveillon Araxás, festa que acontece do dia 27 de dezembro ao dia 2 de janeiro, no Litoral Norte. O Réveillon Araxás foi nosso patrocinador oficial nesse ano. Como parte desse apoio, a marca esteve presente nos abadás e sacochilas produzidos para as Economíadas.',
+        'Além da parceria, os alunos da FGV que acessam o link da AAAGV, têm 5% de desconto na compra de ingressos para o evento.',
+        'Para garantir o benefício, basta acessar o link abaixo.',
+        'https://cart.ingresse.com/f95a273a-5c4c-4591-abe5-9444b196ac6a/tickets?coupon=AAAGV'
+      ],
+      autor: 'José Eduardo Sanz'
     }
   ],
 
