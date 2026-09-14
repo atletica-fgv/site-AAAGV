@@ -314,7 +314,7 @@ const SITE_DATA = {
         'Conhecida por reunir estudantes em um dos principais eventos do calendário universitário, a festa contou com mais de 4000 universitários dispostos a curtir uma noite animada e inesquecível.',
         'E, mais uma vez, a GVJADA se destacou pela dimensão e pela atmosfera de celebração que já fazem parte da identidade da festa.'
       ],
-      autor: 'Nome Sobrenome'
+      autor: 'Mateus Cinelli'
     }
   ],
 
