@@ -309,7 +309,8 @@ const SITE_DATA = {
     logos: [
       { nome: 'Rockafe', logo: 'images/Logo Rockafe 2.png', semFundo: true },
       { nome: 'XP', logo: 'images/Logo XP.png', semFundo: true },
-      { nome: 'Araxás', logo: 'images/Logo Araxás.png', semFundo: true }
+      { nome: 'Araxás', logo: 'images/Logo Araxás.png', semFundo: true },
+      { nome: 'Tatu Bola', logo: 'images/Logo Tatubola.png', semFundo: true }
     ],
     beneficios: [
       { icone: 'eye', titulo: 'Visibilidade', desc: 'Sua marca presente nos canais e espaços da AAAGV.' },
