@@ -301,6 +301,20 @@ const SITE_DATA = {
         'A Diretoria de Captação segue em conversas com outras marcas interessadas em apoiar o esporte universitário na FGV. Empresas que queiram conhecer as possibilidades podem falar com a área de parcerias.'
       ],
       autor: 'Nome Sobrenome'
+    },
+    {
+      id: 4,
+      categoria: 'Eventos',
+      titulo: 'GVJADA: Hoje tem…',
+      data: '2026-08-15',
+      imagem: 'images/gvjada-26-2.jpg',
+      resumo: 'A festa GVJADA reuniu mais de 4000 universitários em sua edição "Hoje tem…", com Japa NK, Keynan e Kel, pagode e DJ\'s residentes.',
+      corpo: [
+        'A famosa festa GVJADA, da AAAGV e DAGV, ocorreu dia 15 de agosto, em sua edição: "Hoje tem…". O evento contou com artistas como Japa NK, Keynan e Kel, grupo de pagode e DJ\'s residentes.',
+        'Conhecida por reunir estudantes em um dos principais eventos do calendário universitário, a festa contou com mais de 4000 universitários dispostos a curtir uma noite animada e inesquecível.',
+        'E, mais uma vez, a GVJADA se destacou pela dimensão e pela atmosfera de celebração que já fazem parte da identidade da festa.'
+      ],
+      autor: 'Nome Sobrenome'
     }
   ],
 
