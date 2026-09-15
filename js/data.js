@@ -314,7 +314,7 @@ const SITE_DATA = {
 
   institucional: {
     email: 'atleticafgv@gmail.com',
-    endereco: 'Rua Itapeva, 432 - Bela Vista, São Paulo - SP',
+    endereco: 'Edifício John F. Kennedy - Av. Nove de Julho, 2029 - Bela Vista, São Paulo - SP, 01313-902',
     instagram: 'https://www.instagram.com/jacarefgv/',
     tiktok: 'https://www.tiktok.com/@jacarefgv'
   }
