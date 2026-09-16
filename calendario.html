@@ -34,7 +34,8 @@
 
 <main>
 
-  <section class="page-banner no-photo">
+  <section class="page-banner page-banner-light">
+    <img src="images/banner-calendario.jpg" alt="" class="page-banner-img-up">
     <div class="container page-banner-inner">
       <span class="eyebrow">Agenda &amp; equipes</span>
       <h1>Calendário &amp; Modalidades</h1>
@@ -42,7 +43,7 @@
   </section>
 
   <section class="section-tight bg-yellow mascot-host">
-    <img src="images/foto8.png" alt="" class="mascot-float" aria-hidden="true">
+    <img src="images/mascote-brandbook.png" alt="" class="mascot-float" aria-hidden="true">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Calendário completo</span>
@@ -75,7 +76,10 @@
 
       <div class="athletes-panel" id="athletes-panel" hidden>
         <div class="athletes-panel-head">
-          <h3 id="athletes-title" style="font-family:var(--font-body);text-transform:none;font-size:1.3rem;"></h3>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <h3 id="athletes-title" style="font-family:var(--font-body);text-transform:none;font-size:1.3rem;"></h3>
+            <a id="athletes-instagram" class="modality-instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram da modalidade" hidden></a>
+          </div>
           <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
             <div class="gender-tabs" id="gender-tabs"></div>
             <button type="button" class="btn-link" id="athletes-close">Fechar ✕</button>

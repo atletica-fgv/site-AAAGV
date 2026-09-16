@@ -11,8 +11,7 @@ function renderStats() {
     { valor: SITE_DATA.stats.modalidades, prefixo: '+', label: 'Modalidades' },
     { valor: SITE_DATA.stats.atletas, prefixo: '+', label: 'Atletas' },
     { valor: anos, prefixo: '', label: 'Anos de história' },
-    { valor: SITE_DATA.stats.titulos, prefixo: '+', label: 'Títulos' },
-    { valor: SITE_DATA.stats.eventos, prefixo: '+', label: 'Eventos realizados' }
+    { valor: SITE_DATA.stats.titulos, prefixo: '+', label: 'Títulos' }
   ];
 
   mount.innerHTML = stats.map((s, i) => `

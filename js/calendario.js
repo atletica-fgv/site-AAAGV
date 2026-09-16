@@ -217,16 +217,29 @@ function closeAthletesPanel() {
   panel.hidden = true;
 }
 
+function getModalidadeInstagram(modalidade, genero) {
+  const ig = modalidade.instagram;
+  if (!ig) return null;
+  return typeof ig === 'string' ? ig : (ig[genero] || null);
+}
+
 function openAthletesPanel(modalidade) {
   const panel = document.getElementById('athletes-panel');
   panel.hidden = false;
   document.getElementById('athletes-title').textContent = `Atletas — ${modalidade.nome}`;
+
+  const igLink = document.getElementById('athletes-instagram');
+  igLink.innerHTML = `${icon('instagram', 16)}Instagram`;
 
   const tabsMount = document.getElementById('gender-tabs');
   tabsMount.innerHTML = modalidade.generos.map((g, i) => `
     <button type="button" class="filter-btn ${i === 0 ? 'active' : ''}" data-genero="${escapeHtml(g)}">${escapeHtml(g)}</button>`).join('');
 
   function renderGrid(genero) {
+    const url = getModalidadeInstagram(modalidade, genero);
+    igLink.href = url || '#';
+    igLink.hidden = !url;
+
     const grid = document.getElementById('athletes-grid');
     const atletas = getAthletes(modalidade.slug, genero);
     grid.innerHTML = atletas.map(a => `

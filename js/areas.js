@@ -95,9 +95,10 @@ function renderOrgNodeContent(item, key, captionAbove) {
       <div class="org-name">${escapeHtml(nome)}</div>
     </div>`;
 
+  const cargoCompleto = item.cargoCompleto || item.cargo;
   const photosHtml = item.pessoas.length === 1
-    ? renderOrgAvatarBtn(item.pessoas[0], item.cargo)
-    : `<div class="org-multi">${item.pessoas.map(p => renderOrgAvatarBtn(p, item.cargo)).join('')}</div>`;
+    ? renderOrgAvatarBtn(item.pessoas[0], cargoCompleto)
+    : `<div class="org-multi">${item.pessoas.map(p => renderOrgAvatarBtn(p, cargoCompleto)).join('')}</div>`;
 
   return `
     <div class="org-node"${keyAttr}>
@@ -204,7 +205,7 @@ function initPessoaModal() {
 
     overlay.querySelector('#pessoa-nome').textContent = nome;
     overlay.querySelector('#pessoa-cargo').textContent = cargo;
-    overlay.querySelector('#pessoa-curso').textContent = curso ? `Curso: ${curso}` : '';
+    overlay.querySelector('#pessoa-curso').textContent = curso || '';
 
     initImageFallback(overlay);
     openModal(overlay);
