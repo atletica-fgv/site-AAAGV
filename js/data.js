@@ -16,13 +16,14 @@ const SITE_DATA = {
     titulos: 40
   },
 
-  // TODO: preencher a linha do tempo com marcos reais da história da AAAGV
+  // TODO: continuar a linha do tempo até os dias atuais
   timeline: [
-    { ano: 1987, texto: 'Fundação da AAAGV, para representar os estudantes da FGV através do esporte.' },
-    { ano: 1990, texto: '[Adicionar marco histórico deste período]' },
-    { ano: 2000, texto: '[Adicionar marco histórico deste período]' },
-    { ano: 2017, texto: '[Adicionar marco histórico deste período]' },
-    { ano: 2026, texto: '[Adicionar marco histórico deste período]' }
+    { ano: '1987', titulo: 'O começo', texto: 'Antes da atlética, o esporte na FGV era descentralizado e, a partir de 1987, com o Eduardo Quilici essa história mudou. A AAAGV foi fundada e os atletas da FGV passaram a ter um nome próprio para vestir e defender. Os primeiros anos foram os mais duros: montar times, desenhar uniformes e correr atrás de dinheiro para conseguir competir. É onde a maioria das histórias como essa morre. A nossa não morreu.' },
+    { ano: '1989', titulo: 'AAAGV prova do que é capaz', texto: 'A atlética tinha dois anos e estava quebrada. Um aluno de 19 anos assumiu as finanças, colocou tudo em ordem, e a AAAGV seguiu para enfrentar a FEA-USP: três dias de disputa, 27 modalidades, organização inteiramente feita por alunos. Vitória por 14 a 13. No mesmo ano encaramos o Mackenzie e o jacaré ganhou vida, com as cores que se tornaram nossas: preto e amarelo.' },
+    { ano: '1991', titulo: 'O nascimento das Economíadas', texto: 'Duas faculdades já não bastavam mais. Em 1991, a AAAGV se juntou com o Mackenzie e a FEA USP dando início a primeira edição das Economíadas, em Bauru: uma semana inteira de jogos e festas. Uma ideia que surgiu de atleticanos virou o maior evento universitário do estado, que até hoje é organizado pelas atléticas.' },
+    { ano: 'Anos 90', titulo: 'Na raça', texto: 'Foram nove edições, em nove cidades do interior. Apesar das dificuldades com a falta de infraestrutura e logística, nenhum ano faltou. Foi assim, no esforço de geração em geração, que o Econo virou tradição.' },
+    { ano: 'Anos 2000', titulo: 'O que a AAAGV criou virou padrão', texto: 'Criamos festas que entraram para a história das economíadas. Sem dúvida a jacatenda, a cervejada e a giabólica marcaram uma época. Simultaneamente o esportivo da AAAGV vinha crescendo e se estruturando cada vez mais, dando início a uma nova era…' },
+    { ano: '2016', titulo: 'Perto de mais', texto: 'AAAGV já tinha nome, já tinha festa, já tinha o evento inteiro. Só faltava a taça. A atlética que fundou as economíadas seguia na espera do título, e não foi por falta de tentativa. Em 2016, terminamos a quatro pontos da vitória inédita. Nas palavras de um atleta da época: "Eu não aceitava que a GV não tivesse nenhum economíadas, e foi por isso que entrei para competir e para organizar."' }
   ],
 
   // ===================================================================
@@ -142,16 +143,16 @@ const SITE_DATA = {
       { cargo: 'SG', cargoCompleto: 'Secretário Geral', pessoas: [{ nome: 'Arthur Passos', curso: 'Administração de Empresas, 5° semestre', foto: '' }] },
       { cargo: 'Presidente', cargoCompleto: 'Presidente', pessoas: [{ nome: 'Matheus Papa', curso: 'Administração de Empresas, 5° semestre', foto: '' }] },
       { cargo: 'Financeiro', cargoCompleto: 'Financeiro', pessoas: [{ nome: 'Gustavo Teles', curso: 'Administração de Empresas, 6° semestre', foto: '' }] },
-      { cargo: 'VPA', cargoCompleto: 'Vice-presidente Administrativo', pessoas: [{ nome: 'Marina Correa', curso: 'Administração de Empresas, 4° semestre', foto: '' }], filhos: 'vpa' }
+      { cargo: 'VPA', cargoCompleto: 'Vice-presidente Administrativa', pessoas: [{ nome: 'Marina Correa', curso: 'Administração de Empresas, 4° semestre', foto: '' }], filhos: 'vpa' }
     ],
     vpe: [
-      { cargo: 'DGE', cargoCompleto: 'Diretor Geral de Esportes', pessoas: [{ nome: 'Aisha Francisco', curso: 'Administração de Empresas, 4° semestre', foto: '' }, { nome: 'Patrick Girard', curso: 'Administração de Empresas, 4° semestre', foto: '' }] }
+      { cargo: 'DGE', cargoCompleto: 'Diretor Geral de Esportes', pessoas: [{ nome: 'Aisha Francisco', cargo: 'Diretora Geral de Esportes', curso: 'Administração de Empresas, 4° semestre', foto: '' }, { nome: 'Patrick Girard', curso: 'Administração de Empresas, 4° semestre', foto: '' }] }
     ],
     vpa: [
       { cargo: 'Captação', cargoCompleto: 'Diretor de Captação', pessoas: [{ nome: 'José Eduardo Sanz', curso: 'Administração de Empresas, 5° semestre', foto: '' }] },
-      { cargo: 'Marketing', cargoCompleto: 'Diretor de Marketing', pessoas: [{ nome: 'Nayure Lin', curso: 'Administração de Empresas, 4° semestre', foto: '' }] },
-      { cargo: 'Social', cargoCompleto: 'Diretor Social', pessoas: [{ nome: 'Aisha Francisco', curso: 'Administração de Empresas, 4° semestre', foto: '' }] },
-      { cargo: 'Produtos & Eventos', cargoCompleto: 'Diretor de Produtos e Eventos', pessoas: [{ nome: 'Giovana Lois', curso: 'Administração de Empresas, 4° semestre', foto: '' }] }
+      { cargo: 'Marketing', cargoCompleto: 'Diretora de Marketing', pessoas: [{ nome: 'Nayure Lin', curso: 'Administração de Empresas, 4° semestre', foto: '' }] },
+      { cargo: 'Social', cargoCompleto: 'Diretora Social', pessoas: [{ nome: 'Aisha Francisco', curso: 'Administração de Empresas, 4° semestre', foto: '' }] },
+      { cargo: 'Produtos & Eventos', cargoCompleto: 'Diretora de Produtos e Eventos', pessoas: [{ nome: 'Giovana Lois', curso: 'Administração de Empresas, 4° semestre', foto: '' }] }
     ]
   },
 

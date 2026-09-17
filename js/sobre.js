@@ -50,7 +50,8 @@ function renderTimeline() {
   if (!mount) return;
   mount.innerHTML = SITE_DATA.timeline.map(item => `
     <div class="timeline-item" data-reveal>
-      <div class="timeline-year">${item.ano}</div>
+      <div class="timeline-year">${escapeHtml(String(item.ano))}</div>
+      ${item.titulo ? `<div class="timeline-title">${escapeHtml(item.titulo)}</div>` : ''}
       <div class="timeline-text">${escapeHtml(item.texto)}</div>
     </div>`).join('');
 }

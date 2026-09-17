@@ -97,8 +97,8 @@ function renderOrgNodeContent(item, key, captionAbove) {
 
   const cargoCompleto = item.cargoCompleto || item.cargo;
   const photosHtml = item.pessoas.length === 1
-    ? renderOrgAvatarBtn(item.pessoas[0], cargoCompleto)
-    : `<div class="org-multi">${item.pessoas.map(p => renderOrgAvatarBtn(p, cargoCompleto)).join('')}</div>`;
+    ? renderOrgAvatarBtn(item.pessoas[0], item.pessoas[0].cargo || cargoCompleto)
+    : `<div class="org-multi">${item.pessoas.map(p => renderOrgAvatarBtn(p, p.cargo || cargoCompleto)).join('')}</div>`;
 
   return `
     <div class="org-node"${keyAttr}>

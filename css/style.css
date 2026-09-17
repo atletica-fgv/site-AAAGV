@@ -447,6 +447,7 @@ section { padding: 96px 0; }
   background: var(--yellow); border: 3px solid var(--black);
 }
 .timeline-year { font-family: var(--font-heading); font-size: 1.5rem; }
+.timeline-title { margin-top: 4px; font-weight: 800; font-size: 1.05rem; color: var(--yellow); }
 .timeline-text { margin-top: 6px; color: var(--gray-600); }
 .bg-black .timeline-text { color: var(--gray-300); }
 .bg-black .timeline::before { background: linear-gradient(var(--yellow), rgba(255,255,255,.15)); }
