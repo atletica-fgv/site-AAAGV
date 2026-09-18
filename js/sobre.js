@@ -8,10 +8,10 @@ function renderStats() {
 
   const anos = new Date().getFullYear() - SITE_DATA.fundacao;
   const stats = [
+    { valor: anos, prefixo: '', label: 'Anos de história' },
     { valor: SITE_DATA.stats.modalidades, prefixo: '+', label: 'Modalidades' },
     { valor: SITE_DATA.stats.atletas, prefixo: '+', label: 'Atletas' },
-    { valor: anos, prefixo: '', label: 'Anos de história' },
-    { valor: SITE_DATA.stats.titulos, prefixo: '+', label: 'Títulos' }
+    { valor: SITE_DATA.stats.economiadas, prefixo: '', label: 'Economíadas' }
   ];
 
   mount.innerHTML = stats.map((s, i) => `
@@ -50,9 +50,11 @@ function renderTimeline() {
   if (!mount) return;
   mount.innerHTML = SITE_DATA.timeline.map(item => `
     <div class="timeline-item" data-reveal>
-      <div class="timeline-year">${escapeHtml(String(item.ano))}</div>
+      <div class="timeline-year">${item.campeao
+        ? `<span class="timeline-year-highlight">${escapeHtml(String(item.ano))}</span>`
+        : escapeHtml(String(item.ano))}</div>
       ${item.titulo ? `<div class="timeline-title">${escapeHtml(item.titulo)}</div>` : ''}
-      <div class="timeline-text">${escapeHtml(item.texto)}</div>
+      <div class="timeline-text">${italicizeQuotes(item.texto)}</div>
     </div>`).join('');
 }
 
@@ -61,4 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTimeline();
   initReveal();
   initImageFallback();
+
+  const btnCampeonatos = document.getElementById('btn-campeonatos');
+  if (btnCampeonatos) {
+    btnCampeonatos.addEventListener('click', () => openModal(document.getElementById('modal-campeonatos')));
+  }
 });

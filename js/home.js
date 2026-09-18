@@ -118,16 +118,6 @@ function renderPartners() {
     }).join('');
   }
 
-  const benefitsMount = document.getElementById('benefits-mount');
-  if (benefitsMount) {
-    benefitsMount.innerHTML = SITE_DATA.parceiros.beneficios.map(b => `
-      <div class="benefit-item">
-        <span class="icon-badge">${icon(b.icone, 22)}</span>
-        <h4>${escapeHtml(b.titulo)}</h4>
-        <p>${escapeHtml(b.desc)}</p>
-      </div>`).join('');
-  }
-
   const contatoMount = document.getElementById('partner-contact-mount');
   if (contatoMount) {
     const c = SITE_DATA.parceiros.contato;

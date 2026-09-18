@@ -9,21 +9,22 @@ const SITE_DATA = {
 
   fundacao: 1987,
 
-  // TODO: atualizar com os números reais da AAAGV
   stats: {
-    modalidades: 13,
-    atletas: 500,
-    titulos: 40
+    modalidades: 15,
+    atletas: 450,
+    economiadas: 2
   },
 
-  // TODO: continuar a linha do tempo até os dias atuais
   timeline: [
-    { ano: '1987', titulo: 'O começo', texto: 'Antes da atlética, o esporte na FGV era descentralizado e, a partir de 1987, com o Eduardo Quilici essa história mudou. A AAAGV foi fundada e os atletas da FGV passaram a ter um nome próprio para vestir e defender. Os primeiros anos foram os mais duros: montar times, desenhar uniformes e correr atrás de dinheiro para conseguir competir. É onde a maioria das histórias como essa morre. A nossa não morreu.' },
-    { ano: '1989', titulo: 'AAAGV prova do que é capaz', texto: 'A atlética tinha dois anos e estava quebrada. Um aluno de 19 anos assumiu as finanças, colocou tudo em ordem, e a AAAGV seguiu para enfrentar a FEA-USP: três dias de disputa, 27 modalidades, organização inteiramente feita por alunos. Vitória por 14 a 13. No mesmo ano encaramos o Mackenzie e o jacaré ganhou vida, com as cores que se tornaram nossas: preto e amarelo.' },
-    { ano: '1991', titulo: 'O nascimento das Economíadas', texto: 'Duas faculdades já não bastavam mais. Em 1991, a AAAGV se juntou com o Mackenzie e a FEA USP dando início a primeira edição das Economíadas, em Bauru: uma semana inteira de jogos e festas. Uma ideia que surgiu de atleticanos virou o maior evento universitário do estado, que até hoje é organizado pelas atléticas.' },
+    { ano: '1987', titulo: 'O começo', texto: 'Antes da atlética, o esporte na FGV era descentralizado e, a partir de 1987, com o Eduardo Quilici, essa história mudou. A AAAGV foi fundada e os atletas da FGV passaram a ter um nome próprio para vestir e defender. Os primeiros anos foram os mais duros: montar times, desenhar uniformes e correr atrás de dinheiro para conseguir competir. É onde a maioria das histórias como essa morre. A nossa não morreu.' },
+    { ano: '1989', titulo: 'AAAGV prova do que é capaz', texto: 'A atlética tinha dois anos e estava quebrada. Um aluno de 19 anos assumiu as finanças, colocou tudo em ordem e a AAAGV seguiu para enfrentar a FEA-USP: três dias de disputa, 27 modalidades, organização inteiramente feita por alunos. No mesmo ano, encaramos o Mackenzie e o Jacaré ganhou vida, com as cores que se tornaram nossas: preto e amarelo.' },
+    { ano: '1991', titulo: 'O nascimento das Economíadas', texto: 'Duas faculdades já não bastavam mais. Em 1991, a AAAGV se juntou com o Mackenzie e a FEA USP dando início à primeira edição das Economíadas, em Bauru: uma semana inteira de jogos e festas. Uma ideia que surgiu entre atleticanos virou o maior evento universitário do estado, que até hoje é organizado pelas atléticas.' },
     { ano: 'Anos 90', titulo: 'Na raça', texto: 'Foram nove edições, em nove cidades do interior. Apesar das dificuldades com a falta de infraestrutura e logística, nenhum ano faltou. Foi assim, no esforço de geração em geração, que o Econo virou tradição.' },
-    { ano: 'Anos 2000', titulo: 'O que a AAAGV criou virou padrão', texto: 'Criamos festas que entraram para a história das economíadas. Sem dúvida a jacatenda, a cervejada e a giabólica marcaram uma época. Simultaneamente o esportivo da AAAGV vinha crescendo e se estruturando cada vez mais, dando início a uma nova era…' },
-    { ano: '2016', titulo: 'Perto de mais', texto: 'AAAGV já tinha nome, já tinha festa, já tinha o evento inteiro. Só faltava a taça. A atlética que fundou as economíadas seguia na espera do título, e não foi por falta de tentativa. Em 2016, terminamos a quatro pontos da vitória inédita. Nas palavras de um atleta da época: "Eu não aceitava que a GV não tivesse nenhum economíadas, e foi por isso que entrei para competir e para organizar."' }
+    { ano: 'Anos 2000', titulo: 'O início de uma nova era', texto: 'Criamos festas que entraram para a história das economíadas. Sem dúvida, a Jacatenda, a Cervejada e a Giabólica marcaram uma época. Simultaneamente, o esportivo da AAAGV vinha crescendo e se estruturando cada vez mais, dando início a uma nova era…' },
+    { ano: '2016', titulo: 'A um passo da glória', texto: 'AAAGV já tinha nome, estrutura e o evento. Só faltava a taça. A atlética que fundou as Economíadas seguia à espera do título, e não foi por falta de tentativa. Em 2016, terminamos a quatro pontos da vitória inédita. Nas palavras de um atleta da época: “Eu não aceitava que a GV não tivesse nenhum Economíadas, e foi por isso que entrei para competir e para organizar.”' },
+    { ano: '2017', titulo: 'O primeiro título', campeao: true, texto: 'Faltando 1 mês para o evento, veio uma notícia inesperada. A então cidade-sede não estaria mais disponível para a realização dos jogos. Foi preciso escolher São Carlos e refazer tudo do zero em tempo recorde. E foi ali que, depois de quase 30 anos de espera, a Bela Vista entrou em festa. Nunca foi sorte; sempre foi garra e determinação. Desde o primeiro momento em que a atlética acreditou, os atletas se entregaram e a torcida e a bateria abraçaram, não tinha quem tirasse aquela taça da GV, reafirmando o lema do ano: “Respeita a nossa história”.' },
+    { ano: '2022-2023', titulo: 'A reconstrução', texto: 'O pós-pandemia não foi fácil. Era preciso reconstruir a atlética com uma geração que nunca tinha ido aos jogos e restaurar o sentimento de paixão pelas cores preto e amarelo. Remontar time por time, treinos e o sentimento que estava adormecido. A AAAGV já tinha passado por momentos nos quais foi colocada à prova. A diferença é que agora havia uma taça no armário, e ninguém aceitava que ela fosse a única. Não foi a estrutura que voltou. Foi a gente.' },
+    { ano: '2025', titulo: 'Segundo título', campeao: true, texto: 'Oito anos depois, a taça voltou para a Bela Vista. A FGV foi a campeã geral das Economíadas 2025, e o título não saiu apenas de uma modalidade. Veio de todos os times que, chegando ou não à final, honraram o manto preto e amarelo. Também veio de fora das quadras: a FGV levou a maior torcida dos Jogos, passando nomes tradicionais, como Fecap e ESPM, com mais de 1500 gvnianos. Em 2017, provamos que era possível. Em 2025, provamos que não foi sorte, com diversos veteranos voltando a São Carlos para honrar a história da nossa faculdade.' }
   ],
 
   // ===================================================================
@@ -295,14 +296,6 @@ const SITE_DATA = {
       { nome: 'XP', logo: 'images/Logo XP.png', semFundo: true },
       { nome: 'Araxás', logo: 'images/Logo Araxás.png', semFundo: true },
       { nome: 'Tatu Bola', logo: 'images/LOGO TATU BOLA.png', semFundo: true }
-    ],
-    beneficios: [
-      { icone: 'eye', titulo: 'Visibilidade', desc: 'Sua marca presente nos canais e espaços da AAAGV.' },
-      { icone: 'megaphone', titulo: 'Eventos', desc: 'Ativação e presença em eventos universitários.' },
-      { icone: 'share', titulo: 'Redes Sociais', desc: 'Conteúdo e comunicação para a comunidade GV.' },
-      { icone: 'trophy', titulo: 'Competições', desc: 'Presença junto às equipes e torcidas.' },
-      { icone: 'users', titulo: 'Atletas', desc: 'Conexão direta com atletas e estudantes.' },
-      { icone: 'graduation', titulo: 'Comunidade', desc: 'Acesso a uma das maiores comunidades universitárias de São Paulo.' }
     ],
     contato: {
       nome: 'José Eduardo',
