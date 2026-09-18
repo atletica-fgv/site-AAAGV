@@ -272,10 +272,19 @@ function initCalAddButtons(getGameById) {
   });
 }
 
+function initMascoteModal() {
+  const overlay = document.getElementById('modal-mascote');
+  if (!overlay) return;
+  document.querySelectorAll('[data-open="mascote"]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(overlay));
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initFooterYear();
   initReveal();
   initModalDismiss();
   initImageFallback();
+  initMascoteModal();
 });
