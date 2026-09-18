@@ -11,7 +11,7 @@ const SITE_DATA = {
 
   stats: {
     modalidades: 15,
-    atletas: 450,
+    atletas: 400,
     economiadas: 2
   },
 
