@@ -262,7 +262,7 @@ const SITE_DATA = {
       id: 1,
       categoria: 'Eventos',
       titulo: 'GVJADA: Hoje tem…',
-      data: '2026-08-15',
+      data: '2026-09-14',
       imagem: 'images/gvjada-26-2.jpg',
       resumo: 'A festa GVJADA reuniu mais de 4000 universitários em sua edição "Hoje tem…", com Japa NK, Keynan e Kel, pagode e DJ\'s residentes.',
       corpo: [
@@ -286,6 +286,20 @@ const SITE_DATA = {
         'https://cart.ingresse.com/f95a273a-5c4c-4591-abe5-9444b196ac6a/tickets?coupon=AAAGV'
       ],
       autor: 'José Eduardo Sanz'
+    },
+    {
+      id: 3,
+      categoria: 'Esportes',
+      titulo: 'FutFamous campeão da SuperLiga Universitária!',
+      data: '2026-09-18',
+      imagem: 'images/Superliga ff.jpg',
+      imagemPosicao: 'center 82%',
+      resumo: 'O nosso time de Futsal Feminino conquistou mais um título em cima da ECA USP na SuperLiga Universitária, organizada pela Gruppo em parceria com a Drinkiss.',
+      corpo: [
+        'O nosso time de Futsal Feminino acaba de conquistar mais um título em cima da ECA USP no campeonato da SuperLiga Universitária, organizada pela Gruppo em parceria com a Drinkiss! A atlética, torcida e bateria marcaram presença, dando ainda mais emoção nesta final.',
+        'No primeiro tempo, houveram algumas dificuldades, mas no segundo o Fut Fem voou! Com gols de Alice Schalka e Luiza Ferreira, a GV ganha de 2x0 e garante mais uma vitória!'
+      ],
+      autor: 'João Henrique Viana'
     }
   ],
 

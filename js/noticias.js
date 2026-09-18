@@ -37,7 +37,7 @@ function renderNewsGrid() {
     <button type="button" class="news-card" data-reveal data-id="${n.id}">
       <div class="thumb">
         ${n.imagem
-          ? `<img src="${escapeHtml(n.imagem)}" alt="${escapeHtml(n.titulo)}" data-fallback-text="${escapeHtml(n.categoria)}">`
+          ? `<img src="${escapeHtml(n.imagem)}" alt="${escapeHtml(n.titulo)}" data-fallback-text="${escapeHtml(n.categoria)}" style="object-position:${escapeHtml(n.imagemPosicao || 'center')}">`
           : `<div class="fallback">${escapeHtml(n.categoria)}</div>`}
       </div>
       <div class="body">
@@ -66,7 +66,7 @@ function openArticleModal(id) {
 
   const thumb = overlay.querySelector('.thumb');
   thumb.innerHTML = noticia.imagem
-    ? `<img src="${escapeHtml(noticia.imagem)}" alt="${escapeHtml(noticia.titulo)}" data-fallback-text="${escapeHtml(noticia.categoria)}">`
+    ? `<img src="${escapeHtml(noticia.imagem)}" alt="${escapeHtml(noticia.titulo)}" data-fallback-text="${escapeHtml(noticia.categoria)}" style="object-position:${escapeHtml(noticia.imagemPosicao || 'center')}">`
     : `<div class="fallback" style="height:100%">${escapeHtml(noticia.categoria)}</div>`;
   initImageFallback(thumb);
 
