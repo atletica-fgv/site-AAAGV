@@ -89,13 +89,13 @@ function renderOrgNodeContent(item, key, captionAbove) {
   const keyAttr = key ? ` data-key="${key}"` : '';
   const captionClass = captionAbove ? 'org-caption caption-above' : 'org-caption caption-below';
   const nome = item.pessoas.length === 1 ? item.pessoas[0].nome : joinNomes(item.pessoas.map(p => p.nome));
-  const cargoCompleto = item.cargoCompleto || item.cargo;
   const captionHtml = `
     <div class="${captionClass}">
-      <div class="org-role-tag">${escapeHtml(cargoCompleto)}</div>
+      <div class="org-role-tag">${escapeHtml(item.cargo)}</div>
       <div class="org-name">${escapeHtml(nome)}</div>
     </div>`;
 
+  const cargoCompleto = item.cargoCompleto || item.cargo;
   const photosHtml = item.pessoas.length === 1
     ? renderOrgAvatarBtn(item.pessoas[0], item.pessoas[0].cargo || cargoCompleto)
     : `<div class="org-multi">${item.pessoas.map(p => renderOrgAvatarBtn(p, p.cargo || cargoCompleto)).join('')}</div>`;
