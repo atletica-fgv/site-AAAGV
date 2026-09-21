@@ -314,7 +314,7 @@ const SITE_DATA = {
     contato: {
       nome: 'José Eduardo',
       cargo: 'Diretor de Captação de Recursos',
-      email: 'captacao@aaagv.com.br',
+      email: 'captaaagv@gmail.com',
       whatsapp: '5511987666852'
     }
   },
