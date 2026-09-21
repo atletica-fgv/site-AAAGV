@@ -123,44 +123,11 @@ function selectCalDay(btn) {
     ${jogosDoDia.map(renderGameRow).join('')}`;
   initReveal();
   panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  perchMascotAtCard();
-}
-
-/* ---------- Jacaré: desce até o card de resultado ao selecionar um dia ---------- */
-function perchMascotAtCard() {
-  const mascotEl = document.querySelector('.mascot-float');
-  const host = document.querySelector('.mascot-host');
-  const panel = document.getElementById('cal-day-detail');
-  const card = panel.querySelector('.game-row');
-  if (!mascotEl || !host || !card) return;
-
-  const hostRect = host.getBoundingClientRect();
-  const cardRect = card.getBoundingClientRect();
-
-  const top = (cardRect.top - hostRect.top) - mascotEl.offsetHeight + 10;
-  const right = (hostRect.right - cardRect.right) - mascotEl.offsetWidth * 0.1;
-
-  mascotEl.style.animation = 'none';
-  mascotEl.style.transform = 'none';
-  mascotEl.style.top = `${Math.max(top, 8)}px`;
-  mascotEl.style.right = `${Math.max(right, 8)}px`;
-  mascotEl.classList.add('at-detail');
-}
-
-function resetMascotIdle() {
-  const mascotEl = document.querySelector('.mascot-float');
-  if (!mascotEl || !mascotEl.classList.contains('at-detail')) return;
-  mascotEl.classList.remove('at-detail');
-  mascotEl.style.top = '';
-  mascotEl.style.right = '';
-  mascotEl.style.transform = '';
-  mascotEl.style.animation = 'mascotFloat 5s ease-in-out infinite';
 }
 
 function changeCalMonth(delta) {
   calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + delta, 1);
   document.getElementById('cal-day-detail').hidden = true;
-  resetMascotIdle();
   renderCalendarGrid();
 }
 
