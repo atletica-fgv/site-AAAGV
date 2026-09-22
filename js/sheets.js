@@ -73,7 +73,7 @@ function parseCSV(text) {
 function normalizeHeader(h) {
   return String(h == null ? '' : h)
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
-    .trim().toUpperCase().replace(/\s+/g, ' ');
+    .toUpperCase().replace(/[^A-Z0-9]/g, '');
 }
 
 function csvToNumber(v) {
@@ -123,8 +123,8 @@ function mapJogosRows(rows) {
       const dataHora = read(r, ['DATA E HORA', 'DATA/HORA', 'DATA'], 4);
       if (dataHora) jogo.data = dataHora;
 
-      const placarAAAGV = csvToNumber(read(r, ['PLACARAAAGV', 'PLACAR AAAGV'], 7));
-      const placarAdv = csvToNumber(read(r, ['PLACARADVERSARIO', 'PLACAR ADVERSARIO'], 8));
+      const placarAAAGV = csvToNumber(read(r, ['PLACARAAAGV', 'PLACAR AAAGV', 'PLACAR DA AAAGV', 'GOLS AAAGV', 'PONTOS AAAGV'], 7));
+      const placarAdv = csvToNumber(read(r, ['PLACARADVERSARIO', 'PLACAR ADVERSARIO', 'PLACAR DO ADVERSARIO', 'GOLS ADVERSARIO', 'PONTOS ADVERSARIO'], 8));
       if (placarAAAGV !== undefined) jogo.placarAAAGV = placarAAAGV;
       if (placarAdv !== undefined) jogo.placarAdversario = placarAdv;
 

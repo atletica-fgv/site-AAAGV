@@ -6,11 +6,20 @@ function getGameById(id) {
   return SITE_DATA.jogos.find(j => j.id === id);
 }
 
+function getResultadoJogo(jogo) {
+  if (jogo.status !== 'finalizado') return null;
+  if (jogo.placarAAAGV > jogo.placarAdversario) return 'win';
+  if (jogo.placarAAAGV < jogo.placarAdversario) return 'loss';
+  return 'draw';
+}
+
+const RESULTADO_LABEL = { win: 'Vitória', loss: 'Derrota', draw: 'Empate' };
+
 function renderGameRow(jogo) {
   const data = new Date(jogo.data);
   const finalizado = jogo.status === 'finalizado';
   const passado = !finalizado && data < new Date();
-  const venceu = finalizado && jogo.placarAAAGV > jogo.placarAdversario;
+  const resultado = getResultadoJogo(jogo);
 
   let resultBlock;
   if (finalizado) {
@@ -22,7 +31,7 @@ function renderGameRow(jogo) {
   }
 
   const statusTag = finalizado
-    ? `<span class="tag ${venceu ? 'win' : ''}">${venceu ? 'Vitória' : 'Resultado'}</span>`
+    ? `<span class="tag ${resultado}">${RESULTADO_LABEL[resultado]}</span>`
     : passado
       ? `<span class="tag">Encerrado</span>`
       : `<span class="tag">Agendado</span>`;
@@ -94,8 +103,8 @@ function renderCalendarGrid() {
     if (hasGame) classes.push('has-game');
 
     const dots = jogosDoDia.slice(0, 4).map(j => {
-      const venceu = j.status === 'finalizado' && j.placarAAAGV > j.placarAdversario;
-      return `<span class="dot ${venceu ? 'win' : ''}"></span>`;
+      const resultado = getResultadoJogo(j);
+      return `<span class="dot ${resultado || ''}"></span>`;
     }).join('');
 
     return `
