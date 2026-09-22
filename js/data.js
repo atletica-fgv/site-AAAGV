@@ -263,7 +263,7 @@ const SITE_DATA = {
       categoria: 'Eventos',
       titulo: 'GVJADA: Hoje tem…',
       data: '2026-09-14',
-      imagem: 'images/FOTOS NOTÍCIAS/gvjada-26-2.jpg',
+      imagem: 'images/FOTOS NOTÍCIAS/N-ID3.jpg',
       resumo: 'A festa GVJADA reuniu mais de 4000 universitários em sua edição "Hoje tem…", com Japa NK, Keynan e Kel, pagode e DJ\'s residentes.',
       corpo: [
         'A famosa festa GVJADA, da AAAGV e DAGV, ocorreu dia 15 de agosto, em sua edição: "Hoje tem…". O evento contou com artistas como Japa NK, Keynan e Kel, grupo de pagode e DJ\'s residentes.',
