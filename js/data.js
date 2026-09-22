@@ -179,7 +179,7 @@ const SITE_DATA = {
   atletas: {
     basquete: {
       Feminino: [
-        { nome: 'Manu Abrão', foto: 'images/manu-abrao.jpg' }
+        { nome: 'Manu Abrão', foto: 'images/FOTOS INDIVIDUAIS/ATLETAS/manu-abrao.jpg' }
       ]
     }
   },
@@ -263,7 +263,7 @@ const SITE_DATA = {
       categoria: 'Eventos',
       titulo: 'GVJADA: Hoje tem…',
       data: '2026-09-14',
-      imagem: 'images/gvjada-26-2.jpg',
+      imagem: 'images/FOTOS NOTÍCIAS/gvjada-26-2.jpg',
       resumo: 'A festa GVJADA reuniu mais de 4000 universitários em sua edição "Hoje tem…", com Japa NK, Keynan e Kel, pagode e DJ\'s residentes.',
       corpo: [
         'A famosa festa GVJADA, da AAAGV e DAGV, ocorreu dia 15 de agosto, em sua edição: "Hoje tem…". O evento contou com artistas como Japa NK, Keynan e Kel, grupo de pagode e DJ\'s residentes.',
@@ -292,7 +292,7 @@ const SITE_DATA = {
       categoria: 'Esportes',
       titulo: 'FutFamous campeão da SuperLiga Universitária!',
       data: '2026-09-18',
-      imagem: 'images/Superliga ff.jpg',
+      imagem: 'images/FOTOS NOTÍCIAS/Superliga ff.jpg',
       imagemPosicao: 'center 82%',
       resumo: 'O nosso time de Futsal Feminino conquistou mais um título em cima da ECA USP na SuperLiga Universitária, organizada pela Gruppo em parceria com a Drinkiss.',
       corpo: [
