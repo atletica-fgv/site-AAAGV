@@ -286,7 +286,7 @@ section { padding: 96px 0; }
 }
 .partners-highlight {
   position: absolute; inset: 0; border-radius: var(--radius);
-  background: radial-gradient(circle at 50% 0%, rgba(255,214,0,.22), transparent 60%), var(--black);
+  background: radial-gradient(circle at 50% 100%, rgba(255,214,0,.22), transparent 60%), var(--black);
   box-shadow: 0 30px 60px rgba(0,0,0,.22), 0 8px 20px rgba(0,0,0,.1); z-index: 0;
 }
 .partners-logos-wrap .section-head { position: relative; z-index: 1; margin-bottom: 48px; }
