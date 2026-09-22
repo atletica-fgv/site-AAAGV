@@ -15,6 +15,10 @@
              STATUS | PlacarAAAGV | PlacarADVERSÁRIO | COMPETIÇÃO | NEWSID
    noticias: ID | CATEGORIA | TÍTULO | DATA | IMAGEM | RESUMO | CORPO DO TEXTO
              (parágrafos do corpo separados por "||" ou quebra de linha)
+
+   Coluna IMAGEM é opcional: se vier vazia na planilha, a foto é puxada de
+   js/data.js pela notícia de mesmo ID (assim as fotos continuam
+   controladas por aqui, sem depender de link público no Drive/planilha).
    ===================================================================== */
 
 const SHEETS_CSV = {
@@ -212,11 +216,24 @@ async function loadSiteDataFromSheets() {
   }
 
   if (SHEETS_CSV.noticias && /^https?:\/\//.test(SHEETS_CSV.noticias)) {
+    // Fotos das notícias continuam controladas aqui no projeto (js/data.js), não na planilha:
+    // se a coluna IMAGEM vier vazia, usamos a foto local da notícia de mesmo ID.
+    const noticiasLocaisPorId = new Map(SITE_DATA.noticias.map(n => [n.id, n]));
+
     jobs.push(
       fetchCSVRows(SHEETS_CSV.noticias)
         .then(rows => {
           const noticias = mapNoticiasRows(rows);
           if (noticias.length) {
+            noticias.forEach(n => {
+              if (!n.imagem) {
+                const local = noticiasLocaisPorId.get(n.id);
+                if (local && local.imagem) {
+                  n.imagem = local.imagem;
+                  if (local.imagemPosicao) n.imagemPosicao = local.imagemPosicao;
+                }
+              }
+            });
             SITE_DATA.noticias = noticias;
             console.info(`[AAAGV] ${noticias.length} notícia(s) carregada(s) da planilha.`);
           }

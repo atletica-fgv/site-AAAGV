@@ -255,11 +255,13 @@ const SITE_DATA = {
     }
   ],
 
-  // TODO: substituir por notícias reais (institucional, esporte, parcerias, social...)
   // "autor" aparece no fim da matéria como "Escrito por: Nome Sobrenome".
+  // "id" tem que ser o MESMO id da linha na planilha (coluna ID) — é por ele que
+  // a foto ("imagem") daqui é associada à notícia certa quando a coluna IMAGEM
+  // da planilha vier vazia (ver js/sheets.js).
   noticias: [
     {
-      id: 1,
+      id: 3,
       categoria: 'Eventos',
       titulo: 'GVJADA: Hoje tem…',
       data: '2026-09-14',
@@ -273,7 +275,7 @@ const SITE_DATA = {
       autor: 'Mateus Cinelli'
     },
     {
-      id: 2,
+      id: 4,
       categoria: 'Parcerias',
       titulo: 'Réveillon Araxás',
       data: '2026-09-14',
@@ -288,7 +290,7 @@ const SITE_DATA = {
       autor: 'José Eduardo Sanz'
     },
     {
-      id: 3,
+      id: 2,
       categoria: 'Esportes',
       titulo: 'FutFamous campeão da SuperLiga Universitária!',
       data: '2026-09-18',
