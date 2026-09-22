@@ -187,8 +187,11 @@ function mapNoticiasRows(rows) {
 async function fetchCSVRows(url, timeoutMs = 5000) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  // Anti-cache: garante que sempre buscamos a versão mais recente da planilha,
+  // e não uma cópia guardada pelo navegador ou por algum proxy/CDN no caminho.
+  const bustedUrl = url + (url.includes('?') ? '&' : '?') + 't=' + Date.now();
   try {
-    const res = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+    const res = await fetch(bustedUrl, { cache: 'no-store', signal: ctrl.signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return parseCSV(await res.text());
   } finally {
