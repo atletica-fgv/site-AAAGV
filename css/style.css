@@ -854,6 +854,7 @@ section { padding: 96px 0; }
 }
 .campeonatos-modal h3:first-of-type { margin-top: 0; }
 .campeonatos-modal p { color: rgba(255,255,255,.82); font-size: 1rem; line-height: 1.8; margin: 14px 0 0; }
+.campeonatos-modal p strong { color: var(--yellow); font-weight: 700; }
 @media (max-width: 520px) {
   .campeonatos-modal.modal-box { padding: 28px 22px 28px; }
 }
