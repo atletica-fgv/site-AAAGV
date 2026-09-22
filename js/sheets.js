@@ -13,12 +13,15 @@
    -----------------
    jogos:    ID | ADVERSÁRIO | MODALIDADE | GÊNERO | DATA E HORA | LOCAL |
              STATUS | PlacarAAAGV | PlacarADVERSÁRIO | COMPETIÇÃO | NEWSID
-   noticias: ID | CATEGORIA | TÍTULO | DATA | IMAGEM | RESUMO | CORPO DO TEXTO
-             (parágrafos do corpo separados por "||" ou quebra de linha)
+   noticias: ID | CATEGORIA | TÍTULO | DATA | CORPO DO TEXTO
+             (parágrafos do corpo separados por "||" ou quebra de linha;
+             o último parágrafo pode ser a assinatura, ver "Escrito por"
+             em js/noticias.js)
 
-   Coluna IMAGEM é opcional: se vier vazia na planilha, a foto é puxada de
-   js/data.js pela notícia de mesmo ID (assim as fotos continuam
-   controladas por aqui, sem depender de link público no Drive/planilha).
+   A planilha NÃO tem mais coluna de imagem (removida de propósito). As
+   fotos das notícias são controladas só aqui no projeto, em js/data.js,
+   e associadas pelo ID: sempre que a notícia vier da planilha sem
+   "imagem", usamos a foto da notícia de mesmo ID no data.js local.
    ===================================================================== */
 
 const SHEETS_CSV = {
@@ -165,7 +168,8 @@ function mapNoticiasRows(rows) {
         categoria: read(r, 'CATEGORIA', 1) || 'Institucional',
         titulo: read(r, 'TITULO', 2),
         data: read(r, 'DATA', 3),
-        imagem: read(r, 'IMAGEM', 4),
+        // Sem coluna IMAGEM na planilha (removida de propósito) — a foto vem
+        // sempre de js/data.js, pela notícia de mesmo ID (ver merge logo abaixo).
         resumo: resumo,
         corpo: corpo.length ? corpo : (resumo ? [resumo] : [])
       };
@@ -216,8 +220,8 @@ async function loadSiteDataFromSheets() {
   }
 
   if (SHEETS_CSV.noticias && /^https?:\/\//.test(SHEETS_CSV.noticias)) {
-    // Fotos das notícias continuam controladas aqui no projeto (js/data.js), não na planilha:
-    // se a coluna IMAGEM vier vazia, usamos a foto local da notícia de mesmo ID.
+    // A planilha não tem mais coluna de imagem: a foto de cada notícia vem
+    // sempre daqui (js/data.js), puxada pela notícia local de mesmo ID.
     const noticiasLocaisPorId = new Map(SITE_DATA.noticias.map(n => [n.id, n]));
 
     jobs.push(
