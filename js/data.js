@@ -306,10 +306,10 @@ const SITE_DATA = {
   // TODO: substituir por logos e contato reais da diretoria de parcerias
   parceiros: {
     logos: [
-      { nome: 'Rockafe', logo: 'images/Logo Rockafe 2.png', semFundo: true },
-      { nome: 'XP', logo: 'images/Logo XP.png', semFundo: true },
-      { nome: 'Araxás', logo: 'images/Logo Araxás.png', semFundo: true },
-      { nome: 'Tatu Bola', logo: 'images/LOGO TATU BOLA.png', semFundo: true }
+      { nome: 'Rockafe', logo: 'images/LOGOS/Logo Rockafe 2.png', semFundo: true },
+      { nome: 'XP', logo: 'images/LOGOS/Logo XP.png', semFundo: true },
+      { nome: 'Araxás', logo: 'images/LOGOS/Logo Araxás.png', semFundo: true },
+      { nome: 'Tatu Bola', logo: 'images/LOGOS/Logo Tatu Bola.png', semFundo: true }
     ],
     contato: {
       nome: 'José Eduardo',
