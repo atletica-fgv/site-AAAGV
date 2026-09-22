@@ -404,6 +404,14 @@ section { padding: 96px 0; }
 .page-banner-img-up {
   object-position: 60% 50% !important;
 }
+.page-banner-contain .page-banner-img-up {
+  object-fit: contain !important;
+  object-position: center !important;
+}
+.page-banner img.page-banner-bg-blur {
+  filter: blur(40px) brightness(.35) saturate(1.1) !important;
+  transform: scale(1.15);
+}
 .page-banner-light img { filter: grayscale(30%) brightness(.78) !important; }
 .page-banner-tall { min-height: 64vh; }
 .page-banner-light::after { background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.15) 25%, rgba(0,0,0,.82)) !important; }
