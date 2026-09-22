@@ -338,6 +338,10 @@ section { padding: 96px 0; }
   transform: scale(.95); transition: transform var(--transition);
 }
 .modal-overlay.open .modal-box { transform: scale(1); }
+@media (max-width: 520px) {
+  .modal-overlay { padding: 14px; }
+  .modal-box { padding: 26px 20px; }
+}
 .modal-close {
   position: absolute; top: 18px; right: 18px; width: 38px; height: 38px; border-radius: 50%;
   background: var(--gray-100); font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
@@ -694,6 +698,11 @@ section { padding: 96px 0; }
 }
 @media (max-width: 640px) {
   .mascot-float { width: 175px; }
+}
+@media (max-width: 860px) {
+  /* Nessa largura o conteúdo (ex.: grade do calendário) ocupa a linha toda
+     e o mascote, antes solto do lado, passa a cair em cima do conteúdo. */
+  .mascot-float { display: none; }
 }
 
 /* ===== Calendário (visão mensal) ===== */
