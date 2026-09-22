@@ -192,7 +192,7 @@ function getModalidadeInstagram(modalidade, genero) {
 
 function instagramHandle(url) {
   const match = url && url.match(/instagram\.com\/([^/?]+)/i);
-  return match ? `@${match[1]}` : 'Instagram';
+  return match ? match[1] : 'Instagram';
 }
 
 function openAthletesPanel(modalidade) {
