@@ -190,13 +190,17 @@ function getModalidadeInstagram(modalidade, genero) {
   return typeof ig === 'string' ? ig : (ig[genero] || null);
 }
 
+function instagramHandle(url) {
+  const match = url && url.match(/instagram\.com\/([^/?]+)/i);
+  return match ? `@${match[1]}` : 'Instagram';
+}
+
 function openAthletesPanel(modalidade) {
   const panel = document.getElementById('athletes-panel');
   panel.hidden = false;
   document.getElementById('athletes-title').textContent = `Atletas — ${modalidade.nome}`;
 
   const igLink = document.getElementById('athletes-instagram');
-  igLink.innerHTML = `${icon('instagram', 16)}Instagram`;
 
   const tabsMount = document.getElementById('gender-tabs');
   tabsMount.innerHTML = modalidade.generos.map((g, i) => `
@@ -206,6 +210,7 @@ function openAthletesPanel(modalidade) {
     const url = getModalidadeInstagram(modalidade, genero);
     igLink.href = url || '#';
     igLink.hidden = !url;
+    igLink.innerHTML = `${icon('instagram', 16)}${instagramHandle(url)}`;
 
     const grid = document.getElementById('athletes-grid');
     const atletas = getAthletes(modalidade.slug, genero);
