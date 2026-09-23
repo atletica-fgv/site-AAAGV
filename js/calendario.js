@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Renderiza já com os dados locais — a página nunca fica em branco esperando a planilha
   renderCalendarGrid();
   renderModalidades();
-  initCalAddButtons(getGameById);
+  initCalAddButtons();
   initAtletaModal();
   initImageFallback();
 

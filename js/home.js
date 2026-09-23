@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inits que rodam uma vez só
   initHeroSlides();
   initPartnerModal();
-  initCalAddButtons(getGameById);
+  initCalAddButtons();
 
   // Renderiza já com os dados locais (data.js) — a página nunca fica em branco
   renderHomeDynamic();
