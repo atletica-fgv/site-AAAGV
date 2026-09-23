@@ -722,9 +722,12 @@ section { padding: 96px 0; }
 @media (max-width: 860px) {
   /* Nessa largura o conteúdo (ex.: grade do calendário) ocupa a linha toda,
      então o mascote sai de "solto ao lado, centralizado" pra um selo
-     pequeno no canto superior, sem sobrepor a grade abaixo. */
+     pequeno no canto superior. Reserva espaço de verdade no topo da seção
+     (padding-top) pra ele nunca encostar no título/card logo abaixo,
+     independente da altura do texto. */
+  .mascot-host { padding-top: 120px; }
   .mascot-float {
-    top: 16px; right: 16px; width: 100px;
+    top: 16px; right: 16px; width: 90px;
     transform: none;
     animation: mascotSlideInMobile .8s cubic-bezier(.16,.84,.44,1) both;
   }
