@@ -383,7 +383,7 @@ section { padding: 96px 0; }
 }
 /* Setinha curva "clique aqui" (preto e amarelo, sem fundo), aponta pro mascote */
 .mascote-arrow {
-  display: flex; margin-bottom: -10px; position: relative; z-index: 1;
+  display: flex; margin-bottom: -10px; position: relative; left: 14px; z-index: 1;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,.35));
   animation: mascoteArrowNudge 1.8s ease-in-out infinite;
 }
@@ -402,7 +402,7 @@ section { padding: 96px 0; }
   .mascote-float { right: 16px; bottom: 16px; }
   .mascote-float-btn { width: 88px; height: 88px; }
   .mascote-float-label { font-size: .68rem; padding: 5px 12px; }
-  .mascote-arrow { margin-bottom: -8px; }
+  .mascote-arrow { margin-bottom: -8px; left: 10px; }
   .mascote-arrow svg { width: 50px; height: 32px; }
 }
 
