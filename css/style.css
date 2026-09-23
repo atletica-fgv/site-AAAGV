@@ -380,11 +380,7 @@ section { padding: 96px 0; }
   background: var(--yellow); color: var(--black); font-size: .74rem; font-weight: 800;
   padding: 6px 14px; border-radius: 999px; white-space: nowrap;
   box-shadow: 0 8px 20px -8px rgba(0,0,0,.35);
-}
-/* Setinha "clique aqui" solta (sem fundo/pílula), aponta pro mascote */
-.mascote-arrow {
-  display: flex; margin-bottom: -16px; position: relative; z-index: 1;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,.45));
+  position: relative; z-index: 1; margin-bottom: -8px;
   animation: mascoteArrowNudge 1.8s ease-in-out infinite;
 }
 @keyframes mascoteArrowNudge {
@@ -401,9 +397,7 @@ section { padding: 96px 0; }
 @media (max-width: 520px) {
   .mascote-float { right: 16px; bottom: 16px; }
   .mascote-float-btn { width: 88px; height: 88px; }
-  .mascote-float-label { font-size: .68rem; padding: 5px 12px; }
-  .mascote-arrow { margin-bottom: -12px; }
-  .mascote-arrow svg { width: 40px; height: 44px; }
+  .mascote-float-label { font-size: .68rem; padding: 5px 12px; margin-bottom: -6px; }
 }
 
 /* Result modal content */
