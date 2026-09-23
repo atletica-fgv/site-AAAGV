@@ -753,9 +753,9 @@ section { padding: 96px 0; }
 .cal-weekdays span {
   text-align: center; font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; color: var(--gray-600);
 }
-.cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.cal-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
 .cal-day {
-  aspect-ratio: 1; border-radius: var(--radius-sm); background: var(--gray-100); color: var(--gray-600);
+  min-width: 0; aspect-ratio: 1; border-radius: var(--radius-sm); background: var(--gray-100); color: var(--gray-600);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
   font-weight: 700; font-size: .92rem; border: 2px solid transparent; padding: 4px; transition: var(--transition);
 }
@@ -768,7 +768,7 @@ section { padding: 96px 0; }
 .cal-day.has-game:hover { border-color: var(--black); transform: translateY(-2px); }
 .cal-day.today.has-game { border-color: var(--black); }
 .cal-day.selected { background: var(--black); color: var(--white); border-color: var(--yellow); box-shadow: var(--shadow); }
-.cal-day .dots { display: flex; gap: 3px; }
+.cal-day .dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; max-width: 100%; }
 .cal-day .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--black); }
 .cal-day .dot.win { background: var(--green); }
 .cal-day .dot.loss { background: var(--red); }
