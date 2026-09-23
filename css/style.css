@@ -788,7 +788,7 @@ section { padding: 96px 0; }
 .cal-day .dot.win { background: var(--green); }
 .cal-day .dot.loss { background: var(--red); }
 .cal-day .dot.draw { background: var(--black); }
-.cal-day .dot.scheduled { background: transparent; border: 1.5px solid var(--black); }
+.cal-day .dot.scheduled { background: transparent; border: 2.2px solid var(--black); }
 .cal-day.selected .dot { background: var(--yellow); }
 .cal-day.selected .dot.win { background: var(--green); }
 .cal-day.selected .dot.loss { background: var(--red); }
