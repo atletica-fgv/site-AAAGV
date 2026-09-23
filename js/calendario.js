@@ -104,7 +104,9 @@ function renderCalendarGrid() {
 
     const dots = jogosDoDia.slice(0, 4).map(j => {
       const resultado = getResultadoJogo(j);
-      return `<span class="dot ${resultado || ''}"></span>`;
+      // Jogo que ainda vai acontecer: bolinha aberta (contorno), pra
+      // diferenciar visualmente de um resultado (bolinha cheia).
+      return `<span class="dot ${resultado || 'scheduled'}"></span>`;
     }).join('');
 
     return `

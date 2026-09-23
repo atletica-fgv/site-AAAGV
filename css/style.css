@@ -458,7 +458,7 @@ section { padding: 96px 0; }
 }
 .stat-card:hover { transform: translateY(-8px); box-shadow: 0 38px 60px -20px rgba(0,0,0,.65), 0 14px 26px -10px rgba(0,0,0,.45); }
 .stat-number { font-family: var(--font-heading); font-size: clamp(1.9rem, 3.2vw, 2.7rem); color: var(--yellow); }
-.stat-number .plus { color: var(--white); }
+.stat-number .plus { color: var(--yellow); }
 .stat-label { margin-top: 8px; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: rgba(255,255,255,.68); }
 @media (max-width: 920px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .stats-bar { grid-template-columns: 1fr; } }
@@ -776,10 +776,12 @@ section { padding: 96px 0; }
 .cal-day .dot.win { background: var(--green); }
 .cal-day .dot.loss { background: var(--red); }
 .cal-day .dot.draw { background: var(--black); }
+.cal-day .dot.scheduled { background: transparent; border: 1.5px solid var(--black); }
 .cal-day.selected .dot { background: var(--yellow); }
 .cal-day.selected .dot.win { background: var(--green); }
 .cal-day.selected .dot.loss { background: var(--red); }
 .cal-day.selected .dot.draw { background: var(--black); }
+.cal-day.selected .dot.scheduled { background: transparent; border-color: var(--yellow); }
 @media (max-width: 640px) {
   .cal-day { font-size: .74rem; }
   .cal-grid-title { font-size: 1.1rem; }
