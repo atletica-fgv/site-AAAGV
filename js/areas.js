@@ -125,7 +125,16 @@ function renderOrganograma() {
     </div>`;
 
   initImageFallback(mount);
+
+  // requestAnimationFrame não dispara se a aba carregar em segundo plano
+  // (ex.: aberta numa aba nova sem foco) — nesses casos as linhas do
+  // organograma ficavam faltando. Redesenha também ao carregar de vez
+  // (imagens podem mudar o layout) e quando a aba volta a ficar visível.
   requestAnimationFrame(() => drawOrgLines(mount));
+  window.addEventListener('load', () => drawOrgLines(mount), { once: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') drawOrgLines(mount);
+  });
 }
 
 function drawOrgLines(mount) {
