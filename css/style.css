@@ -690,16 +690,19 @@ section { padding: 96px 0; }
 .org-name { font-weight: 800; font-size: .92rem; color: var(--white); margin-top: 3px; }
 @media (max-width: 640px) {
   .org-person-btn .avatar { width: 72px; height: 72px; font-size: 1.1rem; }
-  .org-tree { overflow-x: auto; padding-left: 16px; padding-right: 16px; }
+  .org-tree { overflow-x: auto; overflow-y: hidden; padding-left: 16px; padding-right: 16px; }
   .org-top-row, .org-children-row { min-width: 0; gap: 8px; }
   .org-group { gap: 8px; }
   .org-multi { gap: 6px; }
+  .org-caption { max-width: 96px; }
+  .org-role-tag { font-size: .62rem; }
+  .org-name { font-size: .76rem; }
 }
 @media (max-width: 420px) {
   .org-person-btn .avatar { width: 54px; height: 54px; font-size: .85rem; }
-  .org-caption { max-width: 90px; }
-  .org-role-tag { font-size: .6rem; }
-  .org-name { font-size: .74rem; }
+  .org-caption { max-width: 78px; }
+  .org-role-tag { font-size: .58rem; }
+  .org-name { font-size: .7rem; }
 }
 
 /* ===== Modal de pessoa ===== */
