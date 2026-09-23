@@ -704,13 +704,22 @@ section { padding: 96px 0; }
   0%, 100% { transform: translateY(-50%) rotate(-3deg); }
   50% { transform: translateY(calc(-50% - 16px)) rotate(3deg); }
 }
-@media (max-width: 640px) {
-  .mascot-float { width: 175px; }
-}
 @media (max-width: 860px) {
-  /* Nessa largura o conteúdo (ex.: grade do calendário) ocupa a linha toda
-     e o mascote, antes solto do lado, passa a cair em cima do conteúdo. */
-  .mascot-float { display: none; }
+  /* Nessa largura o conteúdo (ex.: grade do calendário) ocupa a linha toda,
+     então o mascote sai de "solto ao lado, centralizado" pra um selo
+     pequeno no canto superior, sem sobrepor a grade abaixo. */
+  .mascot-float {
+    top: 16px; right: 16px; width: 100px;
+    transform: none;
+    animation: mascotSlideInMobile .8s cubic-bezier(.16,.84,.44,1) both;
+  }
+}
+@keyframes mascotSlideInMobile {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (max-width: 420px) {
+  .mascot-float { width: 76px; top: 12px; right: 12px; }
 }
 
 /* ===== Calendário (visão mensal) ===== */
