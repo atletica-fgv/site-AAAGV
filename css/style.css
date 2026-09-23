@@ -124,12 +124,20 @@ section { padding: 96px 0; }
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 900;
   height: var(--header-h);
-  background: rgba(0,0,0,.78);
-  backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255,255,255,.08);
-  transition: height var(--transition), background var(--transition);
+  transition: height var(--transition);
 }
-.site-header.scrolled { height: 68px; background: rgba(0,0,0,.85); }
+/* O blur fica num pseudo-elemento, não no .site-header: backdrop-filter no
+   próprio header cria um novo "containing block" para os filhos fixed (o
+   .main-nav mobile), fazendo o menu encolher pra dentro dos 88px do header
+   em vez de cobrir a tela toda. */
+.site-header::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: rgba(0,0,0,.78); backdrop-filter: blur(8px);
+  transition: background var(--transition);
+}
+.site-header.scrolled { height: 68px; }
+.site-header.scrolled::before { background: rgba(0,0,0,.85); }
 .header-inner {
   height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
