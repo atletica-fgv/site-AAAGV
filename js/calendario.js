@@ -6,11 +6,20 @@ function getGameById(id) {
   return SITE_DATA.jogos.find(j => j.id === id);
 }
 
+function getResultadoJogo(jogo) {
+  if (jogo.status !== 'finalizado') return null;
+  if (jogo.placarAAAGV > jogo.placarAdversario) return 'win';
+  if (jogo.placarAAAGV < jogo.placarAdversario) return 'loss';
+  return 'draw';
+}
+
+const RESULTADO_LABEL = { win: 'Vitória', loss: 'Derrota', draw: 'Empate' };
+
 function renderGameRow(jogo) {
   const data = new Date(jogo.data);
   const finalizado = jogo.status === 'finalizado';
   const passado = !finalizado && data < new Date();
-  const venceu = finalizado && jogo.placarAAAGV > jogo.placarAdversario;
+  const resultado = getResultadoJogo(jogo);
 
   let resultBlock;
   if (finalizado) {
@@ -22,7 +31,7 @@ function renderGameRow(jogo) {
   }
 
   const statusTag = finalizado
-    ? `<span class="tag ${venceu ? 'win' : ''}">${venceu ? 'Vitória' : 'Resultado'}</span>`
+    ? `<span class="tag ${resultado}">${RESULTADO_LABEL[resultado]}</span>`
     : passado
       ? `<span class="tag">Encerrado</span>`
       : `<span class="tag">Agendado</span>`;
@@ -94,8 +103,10 @@ function renderCalendarGrid() {
     if (hasGame) classes.push('has-game');
 
     const dots = jogosDoDia.slice(0, 4).map(j => {
-      const venceu = j.status === 'finalizado' && j.placarAAAGV > j.placarAdversario;
-      return `<span class="dot ${venceu ? 'win' : ''}"></span>`;
+      const resultado = getResultadoJogo(j);
+      // Jogo que ainda vai acontecer: bolinha aberta (contorno), pra
+      // diferenciar visualmente de um resultado (bolinha cheia).
+      return `<span class="dot ${resultado || 'scheduled'}"></span>`;
     }).join('');
 
     return `
@@ -123,44 +134,11 @@ function selectCalDay(btn) {
     ${jogosDoDia.map(renderGameRow).join('')}`;
   initReveal();
   panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  perchMascotAtCard();
-}
-
-/* ---------- Jacaré: desce até o card de resultado ao selecionar um dia ---------- */
-function perchMascotAtCard() {
-  const mascotEl = document.querySelector('.mascot-float');
-  const host = document.querySelector('.mascot-host');
-  const panel = document.getElementById('cal-day-detail');
-  const card = panel.querySelector('.game-row');
-  if (!mascotEl || !host || !card) return;
-
-  const hostRect = host.getBoundingClientRect();
-  const cardRect = card.getBoundingClientRect();
-
-  const top = (cardRect.top - hostRect.top) - mascotEl.offsetHeight + 10;
-  const right = (hostRect.right - cardRect.right) - mascotEl.offsetWidth * 0.1;
-
-  mascotEl.style.animation = 'none';
-  mascotEl.style.transform = 'none';
-  mascotEl.style.top = `${Math.max(top, 8)}px`;
-  mascotEl.style.right = `${Math.max(right, 8)}px`;
-  mascotEl.classList.add('at-detail');
-}
-
-function resetMascotIdle() {
-  const mascotEl = document.querySelector('.mascot-float');
-  if (!mascotEl || !mascotEl.classList.contains('at-detail')) return;
-  mascotEl.classList.remove('at-detail');
-  mascotEl.style.top = '';
-  mascotEl.style.right = '';
-  mascotEl.style.transform = '';
-  mascotEl.style.animation = 'mascotFloat 5s ease-in-out infinite';
 }
 
 function changeCalMonth(delta) {
   calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + delta, 1);
   document.getElementById('cal-day-detail').hidden = true;
-  resetMascotIdle();
   renderCalendarGrid();
 }
 
@@ -223,13 +201,17 @@ function getModalidadeInstagram(modalidade, genero) {
   return typeof ig === 'string' ? ig : (ig[genero] || null);
 }
 
+function instagramHandle(url) {
+  const match = url && url.match(/instagram\.com\/([^/?]+)/i);
+  return match ? match[1] : 'Instagram';
+}
+
 function openAthletesPanel(modalidade) {
   const panel = document.getElementById('athletes-panel');
   panel.hidden = false;
   document.getElementById('athletes-title').textContent = `Atletas — ${modalidade.nome}`;
 
   const igLink = document.getElementById('athletes-instagram');
-  igLink.innerHTML = `${icon('instagram', 16)}Instagram`;
 
   const tabsMount = document.getElementById('gender-tabs');
   tabsMount.innerHTML = modalidade.generos.map((g, i) => `
@@ -239,6 +221,7 @@ function openAthletesPanel(modalidade) {
     const url = getModalidadeInstagram(modalidade, genero);
     igLink.href = url || '#';
     igLink.hidden = !url;
+    igLink.innerHTML = `${icon('instagram', 16)}${instagramHandle(url)}`;
 
     const grid = document.getElementById('athletes-grid');
     const atletas = getAthletes(modalidade.slug, genero);
@@ -293,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Renderiza já com os dados locais — a página nunca fica em branco esperando a planilha
   renderCalendarGrid();
   renderModalidades();
-  initCalAddButtons(getGameById);
+  initCalAddButtons();
   initAtletaModal();
   initImageFallback();
 

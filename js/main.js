@@ -205,36 +205,49 @@ function buildICS(event) {
   ].join('\r\n');
 }
 
-function downloadICS(event) {
-  const ics = buildICS(event);
-  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${event.title.replace(/[^\w-]+/g, '-')}.ics`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
+function icsDataUrl(event) {
+  // Link direto (sem Blob + <a download>) porque Blob-download não é confiável em
+  // navegadores in-app no mobile (Safari/WebView do WhatsApp, Instagram etc.) —
+  // um data: URI com o .ics é o que o iOS reconhece pra abrir a tela "Adicionar
+  // ao Calendário" de verdade.
+  return `data:text/calendar;charset=utf-8,${encodeURIComponent(buildICS(event))}`;
 }
 
-/* Monta o HTML do botão + menu "Adicionar ao calendário" para um jogo */
+function eventoDoJogo(jogo) {
+  const start = new Date(jogo.data);
+  const end = new Date(start.getTime() + 90 * 60000);
+  return {
+    title: `AAAGV x ${jogo.adversario} — ${jogo.modalidade} ${jogo.genero}`,
+    description: `Jogo de ${jogo.modalidade} (${jogo.genero}) da AAAGV.`,
+    location: jogo.local,
+    start, end
+  };
+}
+
+/* Monta o HTML do botão + menu "Adicionar ao calendário" para um jogo.
+   Todas as opções são <a> normais com o link já pronto (nada de
+   window.open/Blob via JS no clique), pra funcionar em qualquer navegador
+   in-app do mobile (WhatsApp, Instagram etc.), que costuma bloquear isso. */
 function renderCalAdd(jogo, idSuffix) {
   const id = `caladd-${jogo.id}-${idSuffix}`;
+  const event = eventoDoJogo(jogo);
+  const ics = icsDataUrl(event);
+  const nomeArquivo = `${event.title.replace(/[^\w-]+/g, '-')}.ics`;
   return `
     <div class="cal-add" id="${id}" data-game-id="${jogo.id}">
       <button type="button" class="btn btn-primary cal-add-btn cal-add-toggle">Adicionar ao calendário</button>
       <div class="cal-add-menu" role="menu">
-        <button type="button" data-action="google">Google Calendar</button>
-        <button type="button" data-action="apple">Apple Calendar</button>
-        <a href="#" data-action="outlook" target="_blank" rel="noopener">Outlook</a>
-        <button type="button" data-action="ics">${icon('download', 16)} Baixar arquivo .ics</button>
+        <a href="${buildGoogleCalendarUrl(event)}" target="_blank" rel="noopener">Google Calendar</a>
+        <a href="${ics}" download="${nomeArquivo}">Apple Calendar</a>
+        <a href="${buildOutlookUrl(event)}" target="_blank" rel="noopener">Outlook</a>
+        <a href="${ics}" download="${nomeArquivo}">${icon('download', 16)} Baixar arquivo .ics</a>
       </div>
     </div>`;
 }
 
-/* Ativa todos os componentes .cal-add presentes na página */
-function initCalAddButtons(getGameById) {
+/* Ativa todos os componentes .cal-add presentes na página: só abre/fecha o
+   menu — cada link já sabe pra onde ir, não precisa de lógica extra no clique. */
+function initCalAddButtons() {
   document.addEventListener('click', (e) => {
     const toggleBtn = e.target.closest('.cal-add-toggle');
     if (toggleBtn) {
@@ -245,24 +258,8 @@ function initCalAddButtons(getGameById) {
       return;
     }
 
-    const actionEl = e.target.closest('[data-action]');
-    if (actionEl) {
-      const wrap = actionEl.closest('.cal-add');
-      const jogo = getGameById(Number(wrap.dataset.gameId));
-      if (!jogo) return;
-      const start = new Date(jogo.data);
-      const end = new Date(start.getTime() + 90 * 60000);
-      const event = {
-        title: `AAAGV x ${jogo.adversario} — ${jogo.modalidade} ${jogo.genero}`,
-        description: `Jogo de ${jogo.modalidade} (${jogo.genero}) da AAAGV.`,
-        location: jogo.local,
-        start, end
-      };
-      const action = actionEl.dataset.action;
-      if (action === 'google') { window.open(buildGoogleCalendarUrl(event), '_blank', 'noopener'); }
-      else if (action === 'outlook') { actionEl.href = buildOutlookUrl(event); }
-      else if (action === 'apple' || action === 'ics') { downloadICS(event); }
-      wrap.classList.remove('open');
+    if (e.target.closest('.cal-add-menu a')) {
+      e.target.closest('.cal-add').classList.remove('open');
       return;
     }
 

@@ -70,8 +70,14 @@ function openArticleModal(id) {
     : `<div class="fallback" style="height:100%">${escapeHtml(noticia.categoria)}</div>`;
   initImageFallback(thumb);
 
+  const paragrafos = noticia.corpo.slice();
+  const ultimo = paragrafos[paragrafos.length - 1] || '';
+  const assinaturaMatch = /^Escrito por:?\s*(.+)$/i.exec(ultimo.trim());
+  const corpoParaExibir = assinaturaMatch ? paragrafos.slice(0, -1) : paragrafos;
+
   overlay.querySelector('.body-text').innerHTML =
-    noticia.corpo.map(p => `<p>${linkifyHtml(p)}</p>`).join('') +
+    corpoParaExibir.map(p => `<p>${linkifyHtml(p)}</p>`).join('') +
+    (assinaturaMatch ? `<p class="news-author">Escrito por: <span class="news-author-name">${escapeHtml(assinaturaMatch[1])}</span></p>` : '') +
     (noticia.autor ? `<p class="news-author">Escrito por: <span class="news-author-name">${escapeHtml(noticia.autor)}</span></p>` : '');
 
   openModal(overlay);

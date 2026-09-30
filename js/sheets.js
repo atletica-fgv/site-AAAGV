@@ -13,8 +13,15 @@
    -----------------
    jogos:    ID | ADVERSÁRIO | MODALIDADE | GÊNERO | DATA E HORA | LOCAL |
              STATUS | PlacarAAAGV | PlacarADVERSÁRIO | COMPETIÇÃO | NEWSID
-   noticias: ID | CATEGORIA | TÍTULO | DATA | IMAGEM | RESUMO | CORPO DO TEXTO
-             (parágrafos do corpo separados por "||" ou quebra de linha)
+   noticias: ID | CATEGORIA | TÍTULO | DATA | CORPO DO TEXTO
+             (parágrafos do corpo separados por "||" ou quebra de linha;
+             o último parágrafo pode ser a assinatura, ver "Escrito por"
+             em js/noticias.js)
+
+   A planilha NÃO tem mais coluna de imagem (removida de propósito). As
+   fotos das notícias são controladas só aqui no projeto, em js/data.js,
+   e associadas pelo ID: sempre que a notícia vier da planilha sem
+   "imagem", usamos a foto da notícia de mesmo ID no data.js local.
    ===================================================================== */
 
 const SHEETS_CSV = {
@@ -69,7 +76,7 @@ function parseCSV(text) {
 function normalizeHeader(h) {
   return String(h == null ? '' : h)
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
-    .trim().toUpperCase().replace(/\s+/g, ' ');
+    .toUpperCase().replace(/[^A-Z0-9]/g, '');
 }
 
 function csvToNumber(v) {
@@ -119,8 +126,8 @@ function mapJogosRows(rows) {
       const dataHora = read(r, ['DATA E HORA', 'DATA/HORA', 'DATA'], 4);
       if (dataHora) jogo.data = dataHora;
 
-      const placarAAAGV = csvToNumber(read(r, ['PLACARAAAGV', 'PLACAR AAAGV'], 7));
-      const placarAdv = csvToNumber(read(r, ['PLACARADVERSARIO', 'PLACAR ADVERSARIO'], 8));
+      const placarAAAGV = csvToNumber(read(r, ['PLACARAAAGV', 'PLACAR AAAGV', 'PLACAR DA AAAGV', 'GOLS AAAGV', 'PONTOS AAAGV'], 7));
+      const placarAdv = csvToNumber(read(r, ['PLACARADVERSARIO', 'PLACAR ADVERSARIO', 'PLACAR DO ADVERSARIO', 'GOLS ADVERSARIO', 'PONTOS ADVERSARIO'], 8));
       if (placarAAAGV !== undefined) jogo.placarAAAGV = placarAAAGV;
       if (placarAdv !== undefined) jogo.placarAdversario = placarAdv;
 
@@ -161,7 +168,8 @@ function mapNoticiasRows(rows) {
         categoria: read(r, 'CATEGORIA', 1) || 'Institucional',
         titulo: read(r, 'TITULO', 2),
         data: read(r, 'DATA', 3),
-        imagem: read(r, 'IMAGEM', 4),
+        // Sem coluna IMAGEM na planilha (removida de propósito) — a foto vem
+        // sempre de js/data.js, pela notícia de mesmo ID (ver merge logo abaixo).
         resumo: resumo,
         corpo: corpo.length ? corpo : (resumo ? [resumo] : [])
       };
@@ -179,8 +187,11 @@ function mapNoticiasRows(rows) {
 async function fetchCSVRows(url, timeoutMs = 5000) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  // Anti-cache: garante que sempre buscamos a versão mais recente da planilha,
+  // e não uma cópia guardada pelo navegador ou por algum proxy/CDN no caminho.
+  const bustedUrl = url + (url.includes('?') ? '&' : '?') + 't=' + Date.now();
   try {
-    const res = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+    const res = await fetch(bustedUrl, { cache: 'no-store', signal: ctrl.signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return parseCSV(await res.text());
   } finally {
@@ -212,11 +223,24 @@ async function loadSiteDataFromSheets() {
   }
 
   if (SHEETS_CSV.noticias && /^https?:\/\//.test(SHEETS_CSV.noticias)) {
+    // A planilha não tem mais coluna de imagem: a foto de cada notícia vem
+    // sempre daqui (js/data.js), puxada pela notícia local de mesmo ID.
+    const noticiasLocaisPorId = new Map(SITE_DATA.noticias.map(n => [n.id, n]));
+
     jobs.push(
       fetchCSVRows(SHEETS_CSV.noticias)
         .then(rows => {
           const noticias = mapNoticiasRows(rows);
           if (noticias.length) {
+            noticias.forEach(n => {
+              if (!n.imagem) {
+                const local = noticiasLocaisPorId.get(n.id);
+                if (local && local.imagem) {
+                  n.imagem = local.imagem;
+                  if (local.imagemPosicao) n.imagemPosicao = local.imagemPosicao;
+                }
+              }
+            });
             SITE_DATA.noticias = noticias;
             console.info(`[AAAGV] ${noticias.length} notícia(s) carregada(s) da planilha.`);
           }

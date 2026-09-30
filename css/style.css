@@ -10,6 +10,7 @@
   --yellow: #ffd600;
   --white: #ffffff;
   --green: #289c5b;
+  --red: #d13c3c;
 
   --gray-950: #0a0a0a;
   --gray-900: #121212;
@@ -123,12 +124,20 @@ section { padding: 96px 0; }
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 900;
   height: var(--header-h);
-  background: rgba(0,0,0,.78);
-  backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255,255,255,.08);
-  transition: height var(--transition), background var(--transition);
+  transition: height var(--transition);
 }
-.site-header.scrolled { height: 68px; background: rgba(0,0,0,.85); }
+/* O blur fica num pseudo-elemento, não no .site-header: backdrop-filter no
+   próprio header cria um novo "containing block" para os filhos fixed (o
+   .main-nav mobile), fazendo o menu encolher pra dentro dos 88px do header
+   em vez de cobrir a tela toda. */
+.site-header::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: rgba(0,0,0,.78); backdrop-filter: blur(8px);
+  transition: background var(--transition);
+}
+.site-header.scrolled { height: 68px; }
+.site-header.scrolled::before { background: rgba(0,0,0,.85); }
 .header-inner {
   height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
@@ -165,14 +174,32 @@ section { padding: 96px 0; }
 @media (max-width: 880px) {
   .nav-toggle { display: flex; }
   .main-nav {
-    position: fixed; inset: var(--header-h) 0 0 0; background: var(--black);
-    transform: translateX(100%); transition: transform var(--transition);
-    padding: 36px 24px; overflow-y: auto;
+    position: fixed; inset: var(--header-h) 0 0 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255,217,1,.1), transparent 55%), var(--black);
+    border-top: 1px solid rgba(255,217,1,.14);
+    transform: translateX(100%); opacity: 0;
+    transition: transform .5s cubic-bezier(.22, 1, .36, 1), opacity .4s ease;
+    padding: 60px 28px 40px; overflow-y: auto;
   }
-  body.nav-open .main-nav { transform: translateX(0); }
-  .main-nav ul { flex-direction: column; align-items: flex-start; gap: 26px; }
+  body.nav-open .main-nav { transform: translateX(0); opacity: 1; }
+  .main-nav ul { flex-direction: column; align-items: flex-start; gap: 30px; }
   .main-nav a { font-size: 1.3rem; }
+  /* Os links entram em cascata (fade + leve deslize) só quando o menu abre */
+  .main-nav li {
+    opacity: 0; transform: translateY(18px) scale(.97);
+    transition: opacity .4s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
+  }
+  body.nav-open .main-nav li { opacity: 1; transform: none; }
+  body.nav-open .main-nav li:nth-child(1) { transition-delay: .1s; }
+  body.nav-open .main-nav li:nth-child(2) { transition-delay: .15s; }
+  body.nav-open .main-nav li:nth-child(3) { transition-delay: .2s; }
+  body.nav-open .main-nav li:nth-child(4) { transition-delay: .25s; }
+  body.nav-open .main-nav li:nth-child(5) { transition-delay: .3s; }
+  body.nav-open .main-nav li:nth-child(6) { transition-delay: .35s; }
   body.nav-open { overflow: hidden; }
+}
+@media (max-width: 880px) and (prefers-reduced-motion: reduce) {
+  .main-nav, .main-nav li { transition: none; }
 }
 
 /* ===== Hero ===== */
@@ -285,7 +312,8 @@ section { padding: 96px 0; }
   padding: 72px 32px 80px;
 }
 .partners-highlight {
-  position: absolute; inset: 0; background: var(--black); border-radius: var(--radius);
+  position: absolute; inset: 0; border-radius: var(--radius);
+  background: radial-gradient(circle at 50% 100%, rgba(255,214,0,.22), transparent 60%), var(--black);
   box-shadow: 0 30px 60px rgba(0,0,0,.22), 0 8px 20px rgba(0,0,0,.1); z-index: 0;
 }
 .partners-logos-wrap .section-head { position: relative; z-index: 1; margin-bottom: 48px; }
@@ -336,6 +364,10 @@ section { padding: 96px 0; }
   transform: scale(.95); transition: transform var(--transition);
 }
 .modal-overlay.open .modal-box { transform: scale(1); }
+@media (max-width: 520px) {
+  .modal-overlay { padding: 14px; }
+  .modal-box { padding: 26px 20px; }
+}
 .modal-close {
   position: absolute; top: 18px; right: 18px; width: 38px; height: 38px; border-radius: 50%;
   background: var(--gray-100); font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
@@ -352,6 +384,16 @@ section { padding: 96px 0; }
   padding: 6px 14px; border-radius: 999px; white-space: nowrap;
   box-shadow: 0 8px 20px -8px rgba(0,0,0,.35);
 }
+/* Setinha curva "clique aqui" (preto e amarelo, sem fundo), aponta pro mascote */
+.mascote-arrow {
+  display: flex; margin-bottom: -10px; position: relative; left: 14px; z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.35));
+  animation: mascoteArrowNudge 1.8s ease-in-out infinite;
+}
+@keyframes mascoteArrowNudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
 .mascote-float-btn {
   width: 120px; height: 120px; padding: 0; border: none; background: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
@@ -363,6 +405,8 @@ section { padding: 96px 0; }
   .mascote-float { right: 16px; bottom: 16px; }
   .mascote-float-btn { width: 88px; height: 88px; }
   .mascote-float-label { font-size: .68rem; padding: 5px 12px; }
+  .mascote-arrow { margin-bottom: -8px; left: 10px; }
+  .mascote-arrow svg { width: 50px; height: 32px; }
 }
 
 /* Result modal content */
@@ -402,7 +446,10 @@ section { padding: 96px 0; }
 }
 .page-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: grayscale(55%) brightness(.6); }
 .page-banner-img-up {
-  object-position: 60% 0% !important;
+  object-fit: cover !important;
+  object-position: center 25% !important;
+  top: var(--header-h) !important;
+  height: calc(100% - var(--header-h)) !important;
 }
 .page-banner-light img { filter: grayscale(30%) brightness(.78) !important; }
 .page-banner-tall { min-height: 64vh; }
@@ -426,7 +473,7 @@ section { padding: 96px 0; }
 }
 .stat-card:hover { transform: translateY(-8px); box-shadow: 0 38px 60px -20px rgba(0,0,0,.65), 0 14px 26px -10px rgba(0,0,0,.45); }
 .stat-number { font-family: var(--font-heading); font-size: clamp(1.9rem, 3.2vw, 2.7rem); color: var(--yellow); }
-.stat-number .plus { color: var(--white); }
+.stat-number .plus { color: var(--yellow); }
 .stat-label { margin-top: 8px; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: rgba(255,255,255,.68); }
 @media (max-width: 920px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .stats-bar { grid-template-columns: 1fr; } }
@@ -440,6 +487,12 @@ section { padding: 96px 0; }
   color: rgba(0,0,0,.45); font-weight: 700; text-transform: uppercase; font-size: .85rem; letter-spacing: .04em;
 }
 @media (max-width: 820px) { .tatubola-section { grid-template-columns: 1fr; gap: 28px; } .tatubola-photo-placeholder { max-width: 420px; margin: 0 auto; } }
+/* ===== APA — Amor Preto e Amarelo (mesma estrutura da Tatu Bola, em fundo preto e espelhada) ===== */
+.bg-black .tatubola-placeholder { color: rgba(255,255,255,.65); }
+.bg-black .tatubola-photo-placeholder { border-color: rgba(255,255,255,.3); color: rgba(255,255,255,.5); }
+.apa-section { grid-template-columns: .9fr 1.1fr; }
+.apa-section .tatubola-photo-placeholder { order: -1; }
+@media (max-width: 820px) { .apa-section { grid-template-columns: 1fr; } .apa-section .tatubola-photo-placeholder { order: 0; } }
 
 /* ===== History text ===== */
 .history-text { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px; font-size: 1.15rem; line-height: 1.75; color: #2a2a2a; padding-left: 24px; border-left: 3px solid var(--yellow); }
@@ -492,46 +545,60 @@ section { padding: 96px 0; }
 }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ===== Nossas Áreas — lista de diretorias + painel de detalhe (fundo preto) ===== */
+/* ===== Nossas Áreas — blocos de diretorias (4 + 3) + painel de detalhe (fundo preto) ===== */
 .areas-tabs {
   max-width: 1000px; margin: 40px auto 0;
-  display: grid; grid-template-columns: 1fr; gap: 32px;
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px;
   transition: grid-template-columns .5s cubic-bezier(.22, 1, .36, 1);
 }
 .areas-tabs.com-selecao { grid-template-columns: minmax(0, 320px) 1fr; align-items: start; }
 
-/* --- lista de diretorias --- */
+/* --- blocos de diretorias --- */
 .areas-nav {
-  display: flex; flex-direction: column; gap: 12px;
-  width: 100%; max-width: 520px; margin: 0 auto;
-  transition: max-width .5s cubic-bezier(.22, 1, .36, 1);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+  width: 100%;
 }
-.areas-tabs.com-selecao .areas-nav { max-width: none; margin: 0; }
 
 .areas-nav-btn {
-  display: flex; align-items: center; gap: 16px; width: 100%; text-align: left;
-  padding: 18px 20px; border-radius: 14px; cursor: pointer;
+  --gap: 16px;
+  position: relative; overflow: hidden; isolation: isolate;
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 22px;
+  width: calc((100% - 3 * var(--gap)) / 4); min-height: 170px; text-align: left;
+  padding: 20px; border-radius: 14px; cursor: pointer;
   background: linear-gradient(160deg, #1c1c1c, #000); border: 1px solid rgba(255,255,255,.08);
   color: rgba(255,255,255,.85);
   box-shadow: 0 18px 34px -22px rgba(0,0,0,.7);
-  transition: transform .3s cubic-bezier(.22, 1, .36, 1), box-shadow .3s ease, border-color .3s ease;
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1), box-shadow .3s ease, border-color .2s ease, color .2s ease;
 }
-.areas-nav-btn:hover { transform: translateX(4px); box-shadow: 0 22px 40px -20px rgba(0,0,0,.8); }
-.areas-nav-btn.ativo {
-  border-color: var(--yellow);
-  box-shadow: 0 0 0 2px var(--yellow), 0 22px 44px -18px rgba(255,214,0,.4);
+/* amarelo que cobre o bloco no hover e quando aberto (efeito do site da Serenas) */
+.areas-nav-btn::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; background: var(--yellow);
+  opacity: 0; transition: opacity .2s ease;
 }
+.areas-nav-btn:hover, .areas-nav-btn.ativo { color: var(--black); border-color: var(--yellow); }
+.areas-nav-btn:hover::after, .areas-nav-btn.ativo::after { opacity: 1; }
+.areas-nav-btn:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -18px rgba(255,214,0,.45); }
+.areas-nav-btn.ativo { box-shadow: 0 22px 44px -18px rgba(255,214,0,.4); }
 .areas-nav-num {
   flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
   width: 42px; height: 42px; border-radius: 50%;
   background: var(--yellow); color: var(--black);
   font-family: var(--font-heading); font-size: 1.05rem; line-height: 1;
-  transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1), background .2s ease, color .2s ease;
 }
+.areas-nav-btn:hover .areas-nav-num, .areas-nav-btn.ativo .areas-nav-num { background: var(--black); color: var(--yellow); }
 .areas-nav-btn.ativo .areas-nav-num { transform: scale(1.08); }
 .areas-nav-nome {
   font-family: var(--font-body); font-weight: 800; font-size: .95rem; line-height: 1.3;
 }
+
+/* --- com uma diretoria aberta: blocos viram lista na coluna da esquerda --- */
+.areas-tabs.com-selecao .areas-nav { flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; gap: 12px; }
+.areas-tabs.com-selecao .areas-nav-btn {
+  flex-direction: row; align-items: center; justify-content: flex-start; gap: 16px;
+  width: 100%; min-height: 0; padding: 18px 20px;
+}
+.areas-tabs.com-selecao .areas-nav-btn:hover { transform: translateX(4px); }
 
 /* --- painel de detalhe --- */
 .areas-detalhe {
@@ -572,8 +639,13 @@ section { padding: 96px 0; }
 .areas-detalhe-corpo > p + p { margin-top: 18px; }
 
 @media (max-width: 820px) {
-  .areas-tabs, .areas-tabs.com-selecao { grid-template-columns: 1fr; gap: 24px; }
-  .areas-nav, .areas-tabs.com-selecao .areas-nav { max-width: none; }
+  .areas-tabs, .areas-tabs.com-selecao { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .areas-tabs.com-selecao .areas-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
+  .areas-nav-btn, .areas-tabs.com-selecao .areas-nav-btn {
+    flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 18px;
+    width: calc((100% - var(--gap)) / 2); min-height: 140px; padding: 16px;
+  }
+  .areas-tabs.com-selecao .areas-nav-btn:hover { transform: translateY(-4px); }
   .areas-detalhe { position: static; }
   .areas-detalhe-head { padding: 20px 22px; }
   .areas-detalhe-corpo { padding: 24px 22px 28px; }
@@ -621,16 +693,19 @@ section { padding: 96px 0; }
 .org-name { font-weight: 800; font-size: .92rem; color: var(--white); margin-top: 3px; }
 @media (max-width: 640px) {
   .org-person-btn .avatar { width: 72px; height: 72px; font-size: 1.1rem; }
-  .org-tree { overflow-x: auto; padding-left: 16px; padding-right: 16px; }
+  .org-tree { overflow-x: auto; overflow-y: hidden; padding-left: 16px; padding-right: 16px; }
   .org-top-row, .org-children-row { min-width: 0; gap: 8px; }
   .org-group { gap: 8px; }
   .org-multi { gap: 6px; }
+  .org-caption { max-width: 96px; }
+  .org-role-tag { font-size: .62rem; }
+  .org-name { font-size: .76rem; }
 }
 @media (max-width: 420px) {
   .org-person-btn .avatar { width: 54px; height: 54px; font-size: .85rem; }
-  .org-caption { max-width: 90px; }
-  .org-role-tag { font-size: .6rem; }
-  .org-name { font-size: .74rem; }
+  .org-caption { max-width: 78px; }
+  .org-role-tag { font-size: .58rem; }
+  .org-name { font-size: .7rem; }
 }
 
 /* ===== Modal de pessoa ===== */
@@ -662,8 +737,25 @@ section { padding: 96px 0; }
   0%, 100% { transform: translateY(-50%) rotate(-3deg); }
   50% { transform: translateY(calc(-50% - 16px)) rotate(3deg); }
 }
-@media (max-width: 640px) {
-  .mascot-float { width: 175px; }
+@media (max-width: 860px) {
+  /* Nessa largura o conteúdo (ex.: grade do calendário) ocupa a linha toda,
+     então o mascote sai de "solto ao lado, centralizado" pra um selo
+     pequeno no canto superior. Reserva espaço de verdade no topo da seção
+     (padding-top) pra ele nunca encostar no título/card logo abaixo,
+     independente da altura do texto. */
+  .mascot-host { padding-top: 120px; }
+  .mascot-float {
+    top: 16px; right: 16px; width: 90px;
+    transform: none;
+    animation: mascotSlideInMobile .8s cubic-bezier(.16,.84,.44,1) both;
+  }
+}
+@keyframes mascotSlideInMobile {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (max-width: 420px) {
+  .mascot-float { width: 76px; top: 12px; right: 12px; }
 }
 
 /* ===== Calendário (visão mensal) ===== */
@@ -682,9 +774,9 @@ section { padding: 96px 0; }
 .cal-weekdays span {
   text-align: center; font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; color: var(--gray-600);
 }
-.cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.cal-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
 .cal-day {
-  aspect-ratio: 1; border-radius: var(--radius-sm); background: var(--gray-100); color: var(--gray-600);
+  min-width: 0; aspect-ratio: 1; border-radius: var(--radius-sm); background: var(--gray-100); color: var(--gray-600);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
   font-weight: 700; font-size: .92rem; border: 2px solid transparent; padding: 4px; transition: var(--transition);
 }
@@ -697,11 +789,17 @@ section { padding: 96px 0; }
 .cal-day.has-game:hover { border-color: var(--black); transform: translateY(-2px); }
 .cal-day.today.has-game { border-color: var(--black); }
 .cal-day.selected { background: var(--black); color: var(--white); border-color: var(--yellow); box-shadow: var(--shadow); }
-.cal-day .dots { display: flex; gap: 3px; }
+.cal-day .dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; max-width: 100%; }
 .cal-day .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--black); }
 .cal-day .dot.win { background: var(--green); }
+.cal-day .dot.loss { background: var(--red); }
+.cal-day .dot.draw { background: var(--black); }
+.cal-day .dot.scheduled { background: transparent; border: 2.2px solid var(--black); }
 .cal-day.selected .dot { background: var(--yellow); }
 .cal-day.selected .dot.win { background: var(--green); }
+.cal-day.selected .dot.loss { background: var(--red); }
+.cal-day.selected .dot.draw { background: var(--black); }
+.cal-day.selected .dot.scheduled { background: transparent; border-color: var(--yellow); }
 @media (max-width: 640px) {
   .cal-day { font-size: .74rem; }
   .cal-grid-title { font-size: 1.1rem; }
@@ -732,6 +830,8 @@ section { padding: 96px 0; }
 .game-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 .tag { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; background: var(--gray-100); color: var(--gray-600); }
 .tag.win { background: var(--green); color: var(--white); }
+.tag.loss { background: var(--red); color: var(--white); }
+.tag.draw { background: var(--black); color: var(--white); }
 .game-meta { color: var(--gray-600); font-size: .85rem; margin-top: 6px; }
 .game-meta .dot { margin: 0 8px; }
 .game-result { font-family: var(--font-heading); font-size: 1.5rem; min-width: 90px; text-align: right; }
@@ -805,10 +905,32 @@ section { padding: 96px 0; }
 }
 .article-modal .news-author-name { font-style: italic; color: #2a2a2a; }
 
-.campeonatos-modal h2 { font-family: var(--font-body); text-transform: none; font-size: 1.5rem; margin-bottom: 24px; }
-.campeonatos-modal h3 { font-family: var(--font-body); text-transform: none; font-size: 1.15rem; color: var(--black); margin: 28px 0 4px; }
+/* ===== Modal "Nossos campeonatos" — só visual, o texto segue igual ===== */
+.campeonatos-modal.modal-box {
+  max-width: 720px; padding: 44px 44px 40px;
+  background: #141414; border: 1px solid rgba(255,255,255,.1);
+}
+.campeonatos-modal h2 {
+  margin: 0 0 30px; padding-right: 48px;
+  font-family: var(--font-heading); text-transform: uppercase; letter-spacing: .01em; font-weight: 400;
+  font-size: clamp(1.7rem, 3.2vw, 2.3rem); line-height: 1.05; color: var(--white);
+}
+.campeonatos-modal h2::after {
+  content: ''; display: block; width: 56px; height: 4px; border-radius: 2px; background: var(--yellow); margin-top: 14px;
+}
+.campeonatos-modal .modal-close { background: rgba(255,255,255,.1); color: var(--white); }
+.campeonatos-modal .modal-close:hover { background: var(--yellow); color: var(--black); }
+.campeonatos-modal h3 {
+  margin: 36px 0 4px;
+  font-family: var(--font-heading); text-transform: uppercase; letter-spacing: .01em; font-weight: 400;
+  font-size: 1.4rem; line-height: 1.2; color: var(--yellow);
+}
 .campeonatos-modal h3:first-of-type { margin-top: 0; }
-.campeonatos-modal p { color: #2a2a2a; line-height: 1.7; margin: 12px 0 0; }
+.campeonatos-modal p { color: rgba(255,255,255,.82); font-size: 1rem; line-height: 1.8; margin: 14px 0 0; }
+.campeonatos-modal p strong { color: var(--yellow); font-weight: 700; }
+@media (max-width: 520px) {
+  .campeonatos-modal.modal-box { padding: 28px 22px 28px; }
+}
 
 /* ===================================================================
    Museu — sala escura, cinematográfica, cheia de memória

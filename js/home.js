@@ -121,12 +121,12 @@ function renderPartners() {
   const contatoMount = document.getElementById('partner-contact-mount');
   if (contatoMount) {
     const c = SITE_DATA.parceiros.contato;
-    const mensagem = encodeURIComponent('Olá, quero ser parceiro da AAAGV');
-    const whatsappUrl = `https://wa.me/${c.whatsapp}?text=${mensagem}`;
+    const assunto = encodeURIComponent('Quero ser parceiro da AAAGV');
+    const emailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(c.email)}&su=${assunto}`;
     contatoMount.innerHTML = `
       <p class="name">${escapeHtml(c.nome)}</p>
       <p class="role">${escapeHtml(c.cargo)}</p>
-      <a href="${whatsappUrl}" class="btn btn-primary" target="_blank" rel="noopener">Fale com nossa área de parcerias</a>`;
+      <a href="${emailUrl}" class="btn btn-primary" target="_blank" rel="noopener">Fale com nossa área de parcerias</a>`;
   }
 }
 
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inits que rodam uma vez só
   initHeroSlides();
   initPartnerModal();
-  initCalAddButtons(getGameById);
+  initCalAddButtons();
 
   // Renderiza já com os dados locais (data.js) — a página nunca fica em branco
   renderHomeDynamic();
