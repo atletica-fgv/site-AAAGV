@@ -300,6 +300,39 @@ const SITE_DATA = {
         'No primeiro tempo, houveram algumas dificuldades, mas no segundo o Fut Fem voou! Com gols de Alice Schalka e Luiza Ferreira, a GV ganha de 2x0 e garante mais uma vitória!'
       ],
       autor: 'João Henrique Viana'
+    },
+    {
+      id: 4,
+      categoria: 'Esportes',
+      titulo: 'É CAMPEÃO! FGV vira sobre o Insper e conquista o título do NDU no Handebol Masculino',
+      data: '2026-09-18',
+      imagem: '',
+      resumo: 'O Handebol Masculino da FGV venceu o Insper por 28 a 25, buscando uma virada no segundo tempo, e conquistou o título da Série A do NDU.',
+      corpo: [
+        'O Handebol Masculino da FGV escreveu mais um capítulo inesquecível de sua história. Em uma final marcada por intensidade, rivalidade e uma virada emocionante, a GV derrotou o Insper por 28 a 25 e conquistou o título da Série A do NDU.',
+        'A decisão começou complicada para os gvianos. O Insper conseguiu impor seu ritmo durante a primeira etapa e foi para o intervalo com dois gols de vantagem, deixando a FGV diante da necessidade de buscar uma reação justamente nos minutos mais importantes do campeonato. E ela veio.',
+        'No segundo tempo, a história mudou. Com uma atuação de entrega, concentração e muita intensidade, a FGV buscou a diferença, tomou a frente do placar e não permitiu que o adversário recuperasse o controle da partida. Quando o cronômetro zerou, o placar de 28 a 25 confirmou aquilo que parecia distante no intervalo: a FGV era campeã do NDU.',
+        'Mas a conquista ganhou um significado ainda maior pelo adversário que estava do outro lado da quadra, já que meses antes, nas Economíadas, a caminhada da FGV havia começado justamente com uma derrota para o Insper. Desta vez, porém, o reencontro aconteceu em outro palco e valendo uma taça.',
+        'Do primeiro jogo das Economíadas à final do NDU, a derrota virou aprendizado, a desvantagem no intervalo virou reação, e o adversário que um dia venceu a GV viu, desta vez, os gvianos levantarem o troféu.'
+      ],
+      autor: 'João Guilherme Prata'
+    },
+    {
+      id: 5,
+      categoria: 'Esportes',
+      titulo: 'O IMPOSSÍVEL CAIU! FGV vira sobre a UNIP e escreve uma noite histórica no Vôlei Feminino',
+      data: '2026-09-18',
+      imagem: '',
+      resumo: 'O Vôlei Feminino da FGV buscou uma virada histórica diante da UNIP e venceu por 3 sets a 2, revertendo a desvantagem de 2 sets a 1.',
+      corpo: [
+        'Existem vitórias, existem viradas, e existem jogos que ficam para sempre. O Vôlei Feminino da FGV protagonizou uma dessas noites. Diante da UNIP, equipe que para muitos parecia simplesmente imbatível, as gvianas fizeram o que poucos acreditavam ser possível: buscaram uma virada espetacular e venceram por 3 sets a 2, e nada veio fácil.',
+        'A UNIP mostrou dentro de quadra porque carregava tamanho favoritismo. Depois dos três primeiros sets, abriu 2 a 1 e colocou a FGV contra a parede. A partir dali, não havia mais espaço para erro. Cada ponto poderia ser o último e significar o fim, mas a GV se recusou a aceitar o roteiro que parecia escrito.',
+        'No quarto set, quando era vencer ou perder, veio a reação. A FGV sobreviveu, buscou o empate e levou a decisão para o tie-break. De repente, aquela equipe considerada inalcançável estava a apenas um set de ser derrotada, e foi ali que a história mudou de mãos.',
+        'No set decisivo, já não importava quem era favorito antes de a bola subir. Não importava quem parecia imbatível, importava quem conseguiria suportar a pressão até o último ponto. E a FGV suportou. Quando a última bola caiu, caiu junto uma certeza que existia antes daquela partida: a UNIP podia, sim, ser vencida.',
+        'O placar registrará 3 sets a 2, mas ele jamais contou sozinho tudo o que aconteceu naquela quadra. Não contou a desvantagem, a pressão, a reação e a coragem de um time que precisou estar à beira da derrota para construir uma de suas maiores vitórias. De 2 a 1 para elas, para 3 a 2 para a GV.',
+        'Contra um time que diziam ser imbatível, a FGV respondeu da única maneira que realmente importava: dentro de quadra.'
+      ],
+      autor: 'João Guilherme Prata'
     }
   ],
 
