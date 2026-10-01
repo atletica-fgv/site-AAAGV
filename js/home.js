@@ -93,19 +93,55 @@ function initNextGamesCarousel(root) {
   });
   dots.forEach(d => d.addEventListener('click', () => goTo(Number(d.dataset.index))));
 
-  // Arrastar / deslizar com o dedo para o lado
-  let startX = null, startY = null;
+  // Arrastar com o dedo (celular) ou com o mouse (notebook): o card
+  // acompanha o movimento e, ao soltar, passa para o lado se andou o bastante.
+  let startX = null, startY = null, dx = 0, dragging = false;
   track.addEventListener('pointerdown', (e) => {
-    if (e.target.closest('a, button')) return;
-    startX = e.clientX; startY = e.clientY;
+    if (e.button !== 0 || e.target.closest('a, button, .cal-add')) return;
+    if (e.pointerType === 'mouse') e.preventDefault(); // não seleciona texto ao arrastar
+    startX = e.clientX; startY = e.clientY; dx = 0; dragging = false;
   });
-  window.addEventListener('pointerup', (e) => {
+  track.addEventListener('pointermove', (e) => {
     if (startX === null) return;
-    const dx = e.clientX - startX, dy = e.clientY - startY;
-    startX = null;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) goTo(current + (dx < 0 ? 1 : -1));
+    dx = e.clientX - startX;
+    if (!dragging) {
+      if (Math.abs(dx) < 8 || Math.abs(dx) < Math.abs(e.clientY - startY)) return;
+      dragging = true;
+      track.setPointerCapture(e.pointerId);
+      track.classList.add('dragging');
+    }
+    const naPonta = (current === 0 && dx > 0) || (current === slides.length - 1 && dx < 0);
+    track.style.transform = `translateX(calc(${-current} * (100% + var(--next-games-gap)) + ${naPonta ? dx / 3 : dx}px))`;
   });
-  track.addEventListener('pointercancel', () => { startX = null; });
+  function endDrag() {
+    if (startX === null) return;
+    startX = null;
+    if (!dragging) return;
+    track.classList.remove('dragging');
+    goTo(Math.abs(dx) > track.offsetWidth * 0.15 ? current + (dx < 0 ? 1 : -1) : current);
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+  // depois de arrastar com o mouse, o "clique" de soltar não abre nada
+  track.addEventListener('click', (e) => {
+    if (dragging) { e.preventDefault(); e.stopPropagation(); dragging = false; }
+  }, true);
+
+  // Deslizar com dois dedos no touchpad do notebook (rolagem horizontal).
+  // Um gesto passa um jogo só: espera o touchpad parar antes de aceitar outro.
+  let acumulado = 0, travado = false, parouTimer = null;
+  track.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    clearTimeout(parouTimer);
+    parouTimer = setTimeout(() => { acumulado = 0; travado = false; }, 180);
+    if (travado) return;
+    acumulado += e.deltaX;
+    if (Math.abs(acumulado) > 40) {
+      goTo(current + (acumulado > 0 ? 1 : -1));
+      travado = true;
+    }
+  }, { passive: false });
 
   goTo(0);
 }

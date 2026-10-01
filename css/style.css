@@ -279,6 +279,9 @@ section { padding: 96px 0; }
   transition: transform .5s cubic-bezier(.22,.61,.36,1);
 }
 .next-games-track > .next-game-card { flex: 0 0 100%; }
+@media (hover: hover) and (pointer: fine) { .next-games-track { cursor: grab; } }
+.next-games-track.dragging { cursor: grabbing; transition: none; user-select: none; }
+.next-games-track .cal-add, .next-games-track a { cursor: pointer; }
 .next-games-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 26px; }
 .next-games-arrow {
   width: 44px; height: 44px; border-radius: 50%; font-size: 1.5rem; line-height: 1;
