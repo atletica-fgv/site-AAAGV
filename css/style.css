@@ -251,10 +251,11 @@ section { padding: 96px 0; }
 .next-game-card {
   background: var(--black); color: var(--white); border-radius: var(--radius);
   padding: 44px; display: flex; flex-wrap: wrap; gap: 36px; justify-content: space-between; align-items: center;
-  box-shadow: var(--shadow); position: relative; overflow: hidden;
+  box-shadow: var(--shadow); position: relative;
 }
 .next-game-card::before {
   content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--yellow);
+  border-radius: var(--radius) 0 0 var(--radius);
 }
 .next-game-main { flex: 1; min-width: 280px; }
 .next-game-tag {
@@ -268,6 +269,31 @@ section { padding: 96px 0; }
 .next-game-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 22px; font-size: .95rem; color: var(--gray-300); }
 .next-game-meta span { display: flex; align-items: center; gap: 8px; }
 .next-game-actions { display: flex; flex-direction: column; gap: 14px; align-items: stretch; min-width: 240px; }
+
+/* Carrossel dos próximos jogos (até 4) */
+.next-games { --next-games-gap: 40px; }
+/* o respiro lateral deixa a sombra do card aparecer sem mostrar o vizinho */
+.next-games-viewport { overflow-x: clip; margin: 0 -24px; padding: 0 24px; }
+.next-games-track {
+  display: flex; gap: var(--next-games-gap); touch-action: pan-y;
+  transition: transform .5s cubic-bezier(.22,.61,.36,1);
+}
+.next-games-track > .next-game-card { flex: 0 0 100%; }
+.next-games-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 26px; }
+.next-games-arrow {
+  width: 44px; height: 44px; border-radius: 50%; font-size: 1.5rem; line-height: 1;
+  background: var(--black); color: var(--white); display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition), color var(--transition), opacity var(--transition);
+}
+.next-games-arrow:hover:not(:disabled) { background: var(--yellow); color: var(--black); }
+.next-games-arrow:disabled { opacity: .25; cursor: default; }
+.next-games-dots { display: flex; gap: 10px; }
+.next-games-dot {
+  width: 10px; height: 10px; border-radius: 999px; background: var(--gray-300);
+  transition: width var(--transition), background var(--transition);
+}
+.next-games-dot[aria-current="true"] { width: 28px; background: var(--black); }
+@media (prefers-reduced-motion: reduce) { .next-games-track { transition: none; } }
 
 /* Calendar add dropdown */
 .cal-add { position: relative; }

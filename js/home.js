@@ -18,7 +18,9 @@ function initHeroSlides() {
   }, 4500);
 }
 
-/* ---------- Próximo jogo ---------- */
+/* ---------- Próximos jogos (até 4, passando para o lado) ---------- */
+const MAX_PROXIMOS_JOGOS = 4;
+
 function renderNextGame() {
   const mount = document.getElementById('next-game-mount');
   if (!mount) return;
@@ -26,24 +28,22 @@ function renderNextGame() {
   const now = new Date();
   const proximos = SITE_DATA.jogos
     .filter(j => j.status === 'agendado' && new Date(j.data) >= now)
-    .sort((a, b) => new Date(a.data) - new Date(b.data));
+    .sort((a, b) => new Date(a.data) - new Date(b.data))
+    .slice(0, MAX_PROXIMOS_JOGOS);
 
   if (!proximos.length) {
     mount.innerHTML = `<div class="next-game-card"><p>Nenhum jogo agendado no momento. Fique de olho no calendário completo.</p></div>`;
     return;
   }
 
-  const jogo = proximos[0];
-  const data = new Date(jogo.data);
-
-  mount.innerHTML = `
-    <div class="next-game-card" data-reveal>
+  const cards = proximos.map((jogo, i) => `
+    <div class="next-game-card" role="group" aria-roledescription="slide" aria-label="Jogo ${i + 1} de ${proximos.length}">
       <div class="next-game-main">
-        <span class="next-game-tag">Próximo jogo</span>
+        <span class="next-game-tag">${i === 0 ? 'Próximo jogo' : 'Na sequência'}</span>
         <div class="next-game-match">AAAGV <span style="color:var(--yellow)">×</span> ${escapeHtml(jogo.adversario)}</div>
         <div class="next-game-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}</div>
         <div class="next-game-meta">
-          <span>${icon('calendar')} ${formatMatchMeta(data)}</span>
+          <span>${icon('calendar')} ${formatMatchMeta(new Date(jogo.data))}</span>
           <span>${icon('pin')} ${escapeHtml(jogo.local)}</span>
         </div>
       </div>
@@ -51,7 +51,63 @@ function renderNextGame() {
         ${renderCalAdd(jogo, 'next')}
         <a href="calendario.html" class="btn-link on-dark">Ver calendário completo →</a>
       </div>
+    </div>`).join('');
+
+  const nav = proximos.length > 1 ? `
+    <div class="next-games-nav">
+      <button type="button" class="next-games-arrow" data-dir="-1" aria-label="Jogo anterior">‹</button>
+      <div class="next-games-dots">
+        ${proximos.map((_, i) => `<button type="button" class="next-games-dot" data-index="${i}" aria-label="Ir para o jogo ${i + 1}"></button>`).join('')}
+      </div>
+      <button type="button" class="next-games-arrow" data-dir="1" aria-label="Próximo jogo">›</button>
+    </div>` : '';
+
+  mount.innerHTML = `
+    <div class="next-games" data-reveal aria-roledescription="carrossel">
+      <div class="next-games-viewport"><div class="next-games-track">${cards}</div></div>
+      ${nav}
     </div>`;
+
+  if (proximos.length > 1) initNextGamesCarousel(mount.querySelector('.next-games'));
+}
+
+function initNextGamesCarousel(root) {
+  const track = root.querySelector('.next-games-track');
+  const slides = [...track.children];
+  const dots = [...root.querySelectorAll('.next-games-dot')];
+  const [prev, next] = root.querySelectorAll('.next-games-arrow');
+  let current = 0;
+
+  function goTo(i) {
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    track.style.transform = `translateX(calc(${-current} * (100% + var(--next-games-gap))))`;
+    slides.forEach((s, k) => { s.inert = k !== current; });
+    dots.forEach((d, k) => d.setAttribute('aria-current', k === current ? 'true' : 'false'));
+    prev.disabled = current === 0;
+    next.disabled = current === slides.length - 1;
+    root.querySelectorAll('.cal-add.open').forEach(el => el.classList.remove('open'));
+  }
+
+  root.querySelectorAll('.next-games-arrow').forEach(btn => {
+    btn.addEventListener('click', () => goTo(current + Number(btn.dataset.dir)));
+  });
+  dots.forEach(d => d.addEventListener('click', () => goTo(Number(d.dataset.index))));
+
+  // Arrastar / deslizar com o dedo para o lado
+  let startX = null, startY = null;
+  track.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('a, button')) return;
+    startX = e.clientX; startY = e.clientY;
+  });
+  window.addEventListener('pointerup', (e) => {
+    if (startX === null) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    startX = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) goTo(current + (dx < 0 ? 1 : -1));
+  });
+  track.addEventListener('pointercancel', () => { startX = null; });
+
+  goTo(0);
 }
 
 /* ---------- Resultados recentes ---------- */
