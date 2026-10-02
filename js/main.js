@@ -35,6 +35,13 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+/* Nome do local do jogo; vira link pro Maps quando a planilha tem o link (coluna MAPS) */
+function localHtml(jogo) {
+  const nome = escapeHtml(jogo.local);
+  if (!jogo.mapa || !/^https?:\/\//i.test(jogo.mapa)) return nome;
+  return `<a href="${escapeHtml(jogo.mapa)}" class="local-link" target="_blank" rel="noopener" title="Abrir no mapa">${nome}</a>`;
+}
+
 function linkifyHtml(str) {
   return escapeHtml(str).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 }

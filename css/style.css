@@ -863,6 +863,12 @@ section { padding: 96px 0; }
 .tag.draw { background: var(--black); color: var(--white); }
 .game-meta { color: var(--gray-600); font-size: .85rem; margin-top: 6px; }
 .game-meta .dot { margin: 0 8px; }
+.local-link {
+  color: inherit; text-decoration: underline; text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px; text-underline-offset: 3px;
+}
+.local-link:hover { color: var(--yellow); }
+.game-meta .local-link:hover { color: var(--black); text-decoration-thickness: 3px; }
 .game-result { font-family: var(--font-heading); font-size: 1.5rem; min-width: 90px; text-align: right; }
 .game-actions { margin-left: auto; }
 

@@ -49,7 +49,7 @@ function renderGameRow(jogo) {
           <span class="tag">${escapeHtml(jogo.genero)}</span>
           ${statusTag}
         </div>
-        <div class="game-meta">${icon('pin')} ${escapeHtml(jogo.local)} <span class="dot">&middot;</span> ${icon('calendar')} ${formatMatchMeta(data)}</div>
+        <div class="game-meta">${icon('pin')} ${localHtml(jogo)} <span class="dot">&middot;</span> ${icon('calendar')} ${formatMatchMeta(data)}</div>
       </div>
       ${resultBlock}
     </div>`;

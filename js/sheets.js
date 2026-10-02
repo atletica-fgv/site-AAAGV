@@ -12,7 +12,9 @@
    Colunas esperadas
    -----------------
    jogos:    ID | ADVERSÁRIO | MODALIDADE | GÊNERO | DATA E HORA | LOCAL |
-             STATUS | PlacarAAAGV | PlacarADVERSÁRIO | COMPETIÇÃO | NEWSID
+             MAPS | STATUS | PlacarAAAGV | PlacarADVERSÁRIO | COMPETIÇÃO | NEWSID
+             (MAPS é opcional: link do Google Maps; com ele, o nome do
+             local vira link no site)
    noticias: ID | CATEGORIA | TÍTULO | DATA | CORPO DO TEXTO
              (parágrafos do corpo separados por "||" ou quebra de linha;
              o último parágrafo pode ser a assinatura, ver "Escrito por"
@@ -92,14 +94,19 @@ function makeRowReader(headerRow) {
 
   return function read(dataRow, names, fallbackIndex) {
     const candidates = Array.isArray(names) ? names : [names];
+    let achouColuna = false;
     for (const name of candidates) {
       const idx = indexOfName(name);
+      if (idx !== -1) achouColuna = true;
       if (idx !== -1 && dataRow[idx] !== undefined) {
         const val = String(dataRow[idx]).trim();
         if (val !== '') return val;
       }
     }
-    if (fallbackIndex !== undefined && dataRow[fallbackIndex] !== undefined) {
+    // O índice só vale quando a coluna não existe pelo nome. Se ela existe e a
+    // célula está vazia, é vazio mesmo — senão uma coluna nova no meio (ex.:
+    // MAPS) faria um campo vazio pegar o valor da coluna vizinha.
+    if (!achouColuna && fallbackIndex !== undefined && dataRow[fallbackIndex] !== undefined) {
       return String(dataRow[fallbackIndex]).trim();
     }
     return '';
@@ -120,6 +127,7 @@ function mapJogosRows(rows) {
         modalidade: read(r, 'MODALIDADE', 2),
         genero: read(r, 'GENERO', 3),
         local: read(r, 'LOCAL', 5),
+        mapa: read(r, ['MAPS', 'LINK MAPS', 'LINK DO MAPS', 'MAPA', 'GOOGLE MAPS', 'LINK DO LOCAL']),
         status: (read(r, 'STATUS', 6) || 'agendado').toLowerCase()
       };
 

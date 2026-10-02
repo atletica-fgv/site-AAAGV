@@ -44,7 +44,7 @@ function renderNextGame() {
         <div class="next-game-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}</div>
         <div class="next-game-meta">
           <span>${icon('calendar')} ${formatMatchMeta(new Date(jogo.data))}</span>
-          <span>${icon('pin')} ${escapeHtml(jogo.local)}</span>
+          <span>${icon('pin')} ${localHtml(jogo)}</span>
         </div>
       </div>
       <div class="next-game-actions">
