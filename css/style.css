@@ -636,6 +636,8 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
 .tl-h-item.campeao.ativo .tl-h-dot { box-shadow: 0 0 0 8px rgba(var(--yellow-rgb), .25), 0 0 30px rgba(var(--yellow-rgb), .6); }
 .tl-h-item.campeao .tl-h-label { color: var(--yellow); font-size: 1.5rem; }
 .tl-h-item.campeao .tl-h-ano { gap: 6px; }
+/* o ícone sozinho na bolinha: sem a margem de quando vem ao lado de texto, pra ficar centralizado */
+.tl-h-dot .icon-inline { margin: 0; }
 
 /* janela do ano: abre por cima da página, no visual escuro da seção */
 .tl-modal {
