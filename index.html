@@ -6,7 +6,7 @@
 <title>AAAGV — Associação Atlética Acadêmica Getúlio Vargas</title>
 <meta name="description" content="Desde 1987, a AAAGV carrega o legado e marca gerações na FGV São Paulo através do esporte, de eventos e da integração entre os cursos.">
 <link rel="icon" href="images/favicon.png">
-<link rel="stylesheet" href="css/style.css?v=20261002">
+<link rel="stylesheet" href="css/style.css?v=20261007t">
 </head>
 <body>
 
@@ -21,7 +21,6 @@
         <li><a href="sobre.html">Sobre</a></li>
         <li><a href="nossas-areas.html">Nossas Áreas</a></li>
         <li><a href="calendario.html">Calendário &amp; Modalidades</a></li>
-        <li><a href="noticias.html">Notícias</a></li>
         <li><a href="museu.html">Museu</a></li>
         <li><a href="index.html#parceiros">Seja nosso parceiro</a></li>
       </ul>
@@ -80,8 +79,32 @@
     </div>
   </section>
 
+  <!-- NOTÍCIAS -->
+  <section id="noticias" class="news-home deco-host">
+    <div class="deco" aria-hidden="true">
+      <img src="images/Icones/web/8.png" alt="" class="deco-icon deco-news-seal">
+      <img src="images/Icones/web/16.png" alt="" class="deco-icon deco-news-croc">
+    </div>
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-heading">Notícias</h2>
+      </div>
+      <div class="news-grid" id="home-news-mount"></div>
+      <div class="section-foot">
+        <a href="noticias.html" class="btn btn-primary">Ver mais notícias →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- divisória entre notícias e parceiros -->
+  <div class="section-divider" aria-hidden="true">
+    <div class="container section-divider-inner">
+      <span class="section-divider-badge"><img src="images/Icones/web/16.png" alt=""></span>
+    </div>
+  </div>
+
   <!-- PARCEIROS -->
-  <section class="bg-gray" id="parceiros">
+  <section class="bg-gray partners-section" id="parceiros">
     <div class="container">
       <div class="partners-logos-wrap">
         <div class="partners-highlight"></div>
@@ -141,21 +164,6 @@
   </div>
 </footer>
 
-<!-- MASCOTE flutuante -->
-<div class="mascote-float">
-  <span class="mascote-arrow" aria-hidden="true">
-    <svg width="64" height="40" viewBox="0 0 64 40" fill="none">
-      <path d="M56 10C38 2 16 6 10 30" stroke="var(--black)" stroke-width="7" stroke-linecap="round"/>
-      <path d="M7 19L10 30L18 22" stroke="var(--black)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M56 10C38 2 16 6 10 30" stroke="var(--yellow)" stroke-width="4" stroke-linecap="round"/>
-      <path d="M7 19L10 30L18 22" stroke="var(--yellow)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </span>
-  <button type="button" class="mascote-float-btn" data-open="mascote" aria-label="Conheça nosso mascote">
-    <img src="images/FOTOS GERAIS/mascote-brandbook.png" alt="Jacaré, mascote da AAAGV">
-  </button>
-</div>
-
 <!-- MODAL: detalhe do resultado -->
 <div class="modal-overlay" id="modal-result">
   <div class="modal-box">
@@ -175,19 +183,9 @@
   </div>
 </div>
 
-<!-- MODAL: mascote -->
-<!-- TODO: substituir o texto abaixo pela história real do jacaré -->
-<div class="modal-overlay" id="modal-mascote">
-  <div class="modal-box">
-    <button type="button" class="modal-close" aria-label="Fechar">✕</button>
-    <h2 style="font-family:var(--font-body);text-transform:none;font-size:1.5rem;">Conheça nosso mascote</h2>
-    <p style="color:var(--gray-600);margin-top:12px;">Em breve, a história completa do nosso jacaré por aqui.</p>
-  </div>
-</div>
-
-<script src="js/data.js?v=20261002"></script>
-<script src="js/sheets.js?v=20261002"></script>
-<script src="js/main.js?v=20261002"></script>
-<script src="js/home.js?v=20261002"></script>
+<script src="js/data.js?v=20261007t"></script>
+<script src="js/sheets.js?v=20261007t"></script>
+<script src="js/main.js?v=20261007t"></script>
+<script src="js/home.js?v=20261007t"></script>
 </body>
 </html>

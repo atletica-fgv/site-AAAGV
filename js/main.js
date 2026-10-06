@@ -192,6 +192,12 @@ function buildOutlookUrl(event) {
   return `https://outlook.live.com/calendar/0/deeplink/compose?${params.toString()}`;
 }
 
+/* Texto dentro do .ics: vírgula, ponto e vírgula e barra precisam de escape
+   (links completos do Maps têm vírgula, ex.: @-23.5,-46.6) */
+function icsText(str) {
+  return String(str || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+}
+
 function buildICS(event) {
   const uid = `aaagv-${event.start.getTime()}@aaagv.com.br`;
   return [
@@ -204,9 +210,10 @@ function buildICS(event) {
     `DTSTAMP:${toUTCString(new Date())}`,
     `DTSTART:${toUTCString(event.start)}`,
     `DTEND:${toUTCString(event.end)}`,
-    `SUMMARY:${event.title}`,
-    `DESCRIPTION:${(event.description || '').replace(/\n/g, '\\n')}`,
-    `LOCATION:${event.location || ''}`,
+    `SUMMARY:${icsText(event.title)}`,
+    `DESCRIPTION:${icsText(event.description)}`,
+    `LOCATION:${icsText(event.location)}`,
+    ...(event.url ? [`URL:${event.url}`] : []),
     'END:VEVENT',
     'END:VCALENDAR'
   ].join('\r\n');
@@ -223,10 +230,13 @@ function icsDataUrl(event) {
 function eventoDoJogo(jogo) {
   const start = new Date(jogo.data);
   const end = new Date(start.getTime() + 90 * 60000);
+  const mapa = jogo.mapa && /^https?:\/\//i.test(jogo.mapa) ? jogo.mapa : '';
   return {
     title: `AAAGV x ${jogo.adversario} — ${jogo.modalidade} ${jogo.genero}`,
-    description: `Jogo de ${jogo.modalidade} (${jogo.genero}) da AAAGV.`,
+    description: `Jogo de ${jogo.modalidade} (${jogo.genero}) da AAAGV.` +
+      (mapa ? `\n\nComo chegar (${jogo.local}): ${mapa}` : ''),
     location: jogo.local,
+    url: mapa,
     start, end
   };
 }
@@ -276,19 +286,10 @@ function initCalAddButtons() {
   });
 }
 
-function initMascoteModal() {
-  const overlay = document.getElementById('modal-mascote');
-  if (!overlay) return;
-  document.querySelectorAll('[data-open="mascote"]').forEach(btn => {
-    btn.addEventListener('click', () => openModal(overlay));
-  });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initFooterYear();
   initReveal();
   initModalDismiss();
   initImageFallback();
-  initMascoteModal();
 });

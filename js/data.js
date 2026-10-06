@@ -29,62 +29,49 @@ const SITE_DATA = {
 
   // ===================================================================
   // MUSEU (museu.html) — NÃO é uma linha do tempo (isso já existe no
-  // "Sobre"). Aqui a atlética escolhe o que quer lembrar. Três partes:
+  // "Sobre"). Aqui a atlética escolhe o que quer lembrar. Duas partes:
   //
-  //   1) museu   — MOMENTOS: um instante marcante + o depoimento de quem
-  //                viveu. Ordem livre, por tema — nunca por ano.
-  //   2) acervo  — PAPÉIS: jornais, grades de treino, cartazes que a
-  //                atlética imprimiu. Recortes de arquivo; clique amplia.
-  //   3) gestoes — ÁLBUNS: uma "pasta" por gestão (G11...G25). Ao clicar,
-  //                abre a grade de fotos daquela gestão.
+  //   1) museu   — MOMENTOS: os três momentos marcantes em destaque,
+  //                cada um com um texto sobre o momento e 3 fotos.
+  //   2) galeria — fotos soltas das gestões passadas (mais abaixo).
   //
   // MOMENTOS — campos:
-  //   momento    : rótulo curto do instante (ex.: "A virada"); vira a
-  //                marca-d'água atrás do bloco
-  //   titulo     : frase que resume o momento
-  //   depoimento : fala completa de quem viveu
-  //   autor/cargo: quem falou e o papel dele na época
-  //   fotoAutor  : retrato (opcional; sem isso usa as iniciais)
-  //   fotos      : 2 a 6 por momento; "legenda" aparece embaixo e no zoom
-  //   Arquivos em images/museu/ com os nomes abaixo.
+  //   momento : rótulo curto em amarelo acima do título
+  //   titulo  : nome do momento
+  //   texto   : texto sobre o momento (parágrafos separados por linha em branco: \n\n)
+  //   fotos   : 3 por momento; "legenda" aparece embaixo e no zoom.
+  //             Foto que ainda não existe aparece como "Foto em breve".
   // ===================================================================
   museu: [
     {
-      momento: 'A virada',
-      titulo: 'O jogo que ninguém dava pela gente',
-      depoimento: 'Estávamos perdendo o jogo inteiro. Nos últimos dois minutos a arquibancada levantou e a equipe virou. Ninguém que estava naquele ginásio esqueceu — e muita gente que entrou na atlética depois entrou por causa daquela noite.',
-      autor: 'Nome Sobrenome',
-      cargo: 'Capitã de basquete',
-      fotoAutor: '',
+      momento: 'A maior festa da GV',
+      titulo: 'GVJADA',
+      texto: 'A GVJADA, festa da AAAGV em parceria com o DAGV, é um dos eventos mais esperados do ano na FGV. Na edição "Hoje tem…", reuniu mais de 4000 universitários, com Japa NK, Keynan e Kel, grupo de pagode e DJs residentes.\n\nAno após ano, a GVJADA se destaca pela dimensão e pela atmosfera de celebração que já fazem parte da identidade da festa.',
       fotos: [
-        { src: 'images/museu/momento-1-a.jpg', legenda: 'A arquibancada da AAAGV na final' },
-        { src: 'images/museu/momento-1-b.jpg', legenda: 'O time comemorando a virada' },
-        { src: 'images/museu/momento-1-c.jpg', legenda: 'Volta olímpica com a torcida' }
+        { src: 'images/museu/galeria/gvjada-23.jpg', legenda: 'GVJADA 23' },
+        { src: 'images/museu/galeria/gvjada-25.jpg', legenda: 'GVJADA 25' },
+        { src: 'images/museu/galeria/gvjada-26.jpg', legenda: 'GVJADA 26' }
       ]
     },
     {
-      momento: 'A travessia',
-      titulo: 'Da seletiva ao pódio no mesmo ano',
-      depoimento: 'Entrei numa seletiva sem nunca ter competido. No fim do ano estava subindo no pódio universitário. A atlética não pergunta de onde você vem — te dá o time, o treino e a camisa, e o resto é com você.',
-      autor: 'Nome Sobrenome',
-      cargo: 'Atleta de atletismo',
-      fotoAutor: '',
+      momento: 'Segundo título',
+      titulo: 'Economíadas 2025',
+      texto: 'Oito anos depois, a taça voltou para a Bela Vista. A FGV foi a campeã geral das Economíadas 2025, e o título não saiu apenas de uma modalidade. Veio de todos os times que, chegando ou não à final, honraram o manto preto e amarelo.\n\nTambém veio de fora das quadras: a FGV levou a maior torcida dos Jogos, passando nomes tradicionais, como Mackenzie e ESPM, com mais de 1500 gvnianos. Em 2017, provamos que era possível. Em 2025, provamos que não foi sorte.',
       fotos: [
-        { src: 'images/museu/momento-2-a.jpg', legenda: 'Primeiro treino da seletiva' },
-        { src: 'images/museu/momento-2-b.jpg', legenda: 'Delegação da AAAGV na competição' }
+        { src: 'images/museu/galeria/econo-25.jpg', legenda: 'Econo 25' },
+        { src: 'images/museu/galeria/festa-do-titulo-25.jpg', legenda: 'Festa do Título 25' },
+        { src: 'images/museu/galeria/festa-do-titulo-25-2.jpg', legenda: 'Festa do Título 25' }
       ]
     },
     {
-      momento: 'A casa cheia',
-      titulo: 'O CA lotado numa quarta qualquer',
-      depoimento: 'Não era jogo, não era festa. Era um treino aberto numa quarta à noite, e o CA estava cheio. É isso que a gente tenta preservar: o lugar onde as pessoas simplesmente querem estar.',
-      autor: 'Nome Sobrenome',
-      cargo: 'Diretoria de Esportes',
-      fotoAutor: '',
+      momento: 'O primeiro título',
+      titulo: 'Economíadas 2017',
+      texto: 'Faltando 1 mês para o evento, veio uma notícia inesperada: a cidade-sede não estaria mais disponível para os jogos. Foi preciso escolher São Carlos e refazer tudo do zero em tempo recorde. E foi ali que, depois de quase 30 anos de espera, a Bela Vista entrou em festa.\n\nNunca foi sorte, sempre foi garra e determinação. Os atletas se entregaram, a torcida e a bateria abraçaram, e não tinha quem tirasse aquela taça da GV, reafirmando o lema do ano: “Respeita a nossa história”.',
+      // TODO: fotos das Economíadas 2017 (colocar em images/museu/ com estes nomes)
       fotos: [
-        { src: 'images/museu/momento-3-a.jpg', legenda: 'Treino aberto no CA' },
-        { src: 'images/museu/momento-3-b.jpg', legenda: 'Bastidores antes do treino' },
-        { src: 'images/museu/momento-3-c.jpg', legenda: 'Confraternização depois' }
+        { src: 'images/museu/econo-2017-1.jpg', legenda: 'Economíadas 2017' },
+        { src: 'images/museu/econo-2017-2.jpg', legenda: 'Economíadas 2017' },
+        { src: 'images/museu/econo-2017-3.jpg', legenda: 'Economíadas 2017' }
       ]
     }
   ],
@@ -98,30 +85,45 @@ const SITE_DATA = {
   //   formato : 'retrato' | 'paisagem' | 'quadrado'  (largura do card na tira)
   //   legenda : identificação do momento (OPCIONAL). Sem legenda = só a foto.
   galeria: [
-    { src: 'images/museu/galeria/01.jpg', formato: 'paisagem', legenda: 'Título do universitário de vôlei' },
-    { src: 'images/museu/galeria/02.jpg', formato: 'retrato' },
-    { src: 'images/museu/galeria/03.jpg', formato: 'paisagem', legenda: 'Recepção dos calouros no CA' },
-    { src: 'images/museu/galeria/04.jpg', formato: 'quadrado' },
-    { src: 'images/museu/galeria/05.jpg', formato: 'retrato', legenda: 'Delegação da AAAGV em viagem' },
-    { src: 'images/museu/galeria/06.jpg', formato: 'paisagem' },
-    { src: 'images/museu/galeria/07.jpg', formato: 'retrato' },
-    { src: 'images/museu/galeria/08.jpg', formato: 'quadrado', legenda: 'Treino aberto de basquete' },
-    { src: 'images/museu/galeria/09.jpg', formato: 'paisagem' },
-    { src: 'images/museu/galeria/10.jpg', formato: 'retrato', legenda: 'Festa de aniversário da atlética' },
-    { src: 'images/museu/galeria/11.jpg', formato: 'paisagem' },
-    { src: 'images/museu/galeria/12.jpg', formato: 'quadrado' },
-    { src: 'images/museu/galeria/13.jpg', formato: 'paisagem', legenda: 'Final do campeonato universitário' },
-    { src: 'images/museu/galeria/14.jpg', formato: 'retrato' },
-    { src: 'images/museu/galeria/15.jpg', formato: 'paisagem' },
-    { src: 'images/museu/galeria/16.jpg', formato: 'retrato', legenda: 'Confraternização de fim de ano' },
-    { src: 'images/museu/galeria/17.jpg', formato: 'quadrado' },
-    { src: 'images/museu/galeria/18.jpg', formato: 'paisagem' },
-    { src: 'images/museu/galeria/19.jpg', formato: 'retrato', legenda: 'Seletiva das modalidades de quadra' },
-    { src: 'images/museu/galeria/20.jpg', formato: 'paisagem' },
-    { src: 'images/museu/galeria/21.jpg', formato: 'quadrado' },
-    { src: 'images/museu/galeria/22.jpg', formato: 'paisagem', legenda: 'Torcida da AAAGV na arquibancada' },
-    { src: 'images/museu/galeria/23.jpg', formato: 'retrato' },
-    { src: 'images/museu/galeria/24.jpg', formato: 'paisagem' }
+    { src: 'images/museu/galeria/g12.jpg', formato: 'quadrado', legenda: 'G12' },
+    { src: 'images/museu/galeria/g12-2.jpg', formato: 'quadrado', legenda: 'G12' },
+    { src: 'images/museu/galeria/integras-aaagv-12.jpg', formato: 'paisagem', legenda: 'Integras AAAGV 12' },
+    { src: 'images/museu/galeria/g13.jpg', formato: 'paisagem', legenda: 'G13' },
+    { src: 'images/museu/galeria/g14.jpg', formato: 'paisagem', legenda: 'G14' },
+    { src: 'images/museu/galeria/g14-g15.jpg', formato: 'quadrado', legenda: 'G14 + G15' },
+    { src: 'images/museu/galeria/g15.jpg', formato: 'paisagem', legenda: 'G15' },
+    { src: 'images/museu/galeria/g15-g16.jpg', formato: 'paisagem', legenda: 'G15 + G16' },
+    { src: 'images/museu/galeria/g16.jpg', formato: 'paisagem', legenda: 'G16' },
+    { src: 'images/museu/galeria/g16-g17.jpg', formato: 'paisagem', legenda: 'G16 + G17' },
+    { src: 'images/museu/galeria/g17.jpg', formato: 'retrato', legenda: 'G17' },
+    { src: 'images/museu/galeria/g17-2.jpg', formato: 'paisagem', legenda: 'G17' },
+    { src: 'images/museu/galeria/g17-3.jpg', formato: 'paisagem', legenda: 'G17' },
+    { src: 'images/museu/galeria/g17-g18.jpg', formato: 'paisagem', legenda: 'G17 + G18' },
+    { src: 'images/museu/galeria/g18.jpg', formato: 'retrato', legenda: 'G18' },
+    { src: 'images/museu/galeria/g18-2.jpg', formato: 'paisagem', legenda: 'G18' },
+    { src: 'images/museu/galeria/g18-3.jpg', formato: 'paisagem', legenda: 'G18' },
+    { src: 'images/museu/galeria/g19.jpg', formato: 'paisagem', legenda: 'G19' },
+    { src: 'images/museu/galeria/g19-g20.jpg', formato: 'paisagem', legenda: 'G19 + G20' },
+    { src: 'images/museu/galeria/intercalouros-19.jpg', formato: 'paisagem', legenda: 'Intercalouros 19' },
+    { src: 'images/museu/galeria/g20.jpg', formato: 'paisagem', legenda: 'G20' },
+    { src: 'images/museu/galeria/g20-2.jpg', formato: 'retrato', legenda: 'G20' },
+    { src: 'images/museu/galeria/g22.jpg', formato: 'paisagem', legenda: 'G22' },
+    { src: 'images/museu/galeria/integras-aaagv-22.jpg', formato: 'paisagem', legenda: 'Integras AAAGV 22' },
+    { src: 'images/museu/galeria/g23.jpg', formato: 'paisagem', legenda: 'G23' },
+    { src: 'images/museu/galeria/g23-2.jpg', formato: 'paisagem', legenda: 'G23' },
+    { src: 'images/museu/galeria/g23-g24.jpg', formato: 'quadrado', legenda: 'G23 + G24' },
+    { src: 'images/museu/galeria/g23-zeze.jpg', formato: 'paisagem', legenda: 'G23 + zezé' },
+    { src: 'images/museu/galeria/gvjada-23.jpg', formato: 'paisagem', legenda: 'GVJADA 23' },
+    { src: 'images/museu/galeria/g24.jpg', formato: 'paisagem', legenda: 'G24' },
+    { src: 'images/museu/galeria/g25.jpg', formato: 'paisagem', legenda: 'G25' },
+    { src: 'images/museu/galeria/g25-g26.jpg', formato: 'retrato', legenda: 'G25 + G26' },
+    { src: 'images/museu/galeria/econo-25.jpg', formato: 'paisagem', legenda: 'Econo 25' },
+    { src: 'images/museu/galeria/festa-do-titulo-25.jpg', formato: 'paisagem', legenda: 'Festa do Título 25' },
+    { src: 'images/museu/galeria/festa-do-titulo-25-2.jpg', formato: 'paisagem', legenda: 'Festa do Título 25' },
+    { src: 'images/museu/galeria/gvjada-25.jpg', formato: 'paisagem', legenda: 'GVJADA 25' },
+    { src: 'images/museu/galeria/g26.jpg', formato: 'retrato', legenda: 'G26' },
+    { src: 'images/museu/galeria/gvjada-26.jpg', formato: 'retrato', legenda: 'GVJADA 26' },
+    { src: 'images/museu/galeria/integras-dos-atletas-26.jpg', formato: 'paisagem', legenda: 'Integras dos atletas 26' }
   ],
 
   // Texto de cada área (parágrafos separados por \n — o site quebra em <p>).

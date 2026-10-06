@@ -80,7 +80,7 @@ function initNextGamesCarousel(root) {
 
   function goTo(i) {
     current = Math.max(0, Math.min(slides.length - 1, i));
-    track.style.transform = `translateX(calc(${-current} * (100% + var(--next-games-gap))))`;
+    track.style.transform = `translate3d(calc(${-current} * (100% + var(--next-games-gap))), 0, 0)`;
     slides.forEach((s, k) => { s.inert = k !== current; });
     dots.forEach((d, k) => d.setAttribute('aria-current', k === current ? 'true' : 'false'));
     prev.disabled = current === 0;
@@ -94,12 +94,18 @@ function initNextGamesCarousel(root) {
   dots.forEach(d => d.addEventListener('click', () => goTo(Number(d.dataset.index))));
 
   // Arrastar com o dedo (celular) ou com o mouse (notebook): o card
-  // acompanha o movimento e, ao soltar, passa para o lado se andou o bastante.
-  let startX = null, startY = null, dx = 0, dragging = false;
+  // acompanha o movimento e, ao soltar, passa para o lado se andou o bastante
+  // (ou se foi um "peteleco" rápido). Pode começar o arrasto em cima do botão.
+  let startX = null, startY = null, startT = 0, dx = 0, dragging = false, frame = 0;
+  function pintarArrasto() {
+    frame = 0;
+    const naPonta = (current === 0 && dx > 0) || (current === slides.length - 1 && dx < 0);
+    track.style.transform = `translate3d(calc(${-current} * (100% + var(--next-games-gap)) + ${naPonta ? dx / 3 : dx}px), 0, 0)`;
+  }
   track.addEventListener('pointerdown', (e) => {
-    if (e.button !== 0 || e.target.closest('a, button, .cal-add')) return;
-    if (e.pointerType === 'mouse') e.preventDefault(); // não seleciona texto ao arrastar
-    startX = e.clientX; startY = e.clientY; dx = 0; dragging = false;
+    if (e.button !== 0 || e.target.closest('.cal-add-menu')) return;
+    if (e.pointerType === 'mouse' && !e.target.closest('a, button')) e.preventDefault(); // não seleciona texto
+    startX = e.clientX; startY = e.clientY; startT = performance.now(); dx = 0; dragging = false;
   });
   track.addEventListener('pointermove', (e) => {
     if (startX === null) return;
@@ -109,37 +115,42 @@ function initNextGamesCarousel(root) {
       dragging = true;
       track.setPointerCapture(e.pointerId);
       track.classList.add('dragging');
+      root.querySelectorAll('.cal-add.open').forEach(el => el.classList.remove('open'));
     }
-    const naPonta = (current === 0 && dx > 0) || (current === slides.length - 1 && dx < 0);
-    track.style.transform = `translateX(calc(${-current} * (100% + var(--next-games-gap)) + ${naPonta ? dx / 3 : dx}px))`;
+    if (!frame) frame = requestAnimationFrame(pintarArrasto);
   });
   function endDrag() {
     if (startX === null) return;
     startX = null;
     if (!dragging) return;
+    cancelAnimationFrame(frame); frame = 0;
     track.classList.remove('dragging');
-    goTo(Math.abs(dx) > track.offsetWidth * 0.15 ? current + (dx < 0 ? 1 : -1) : current);
+    const rapido = Math.abs(dx) > 30 && performance.now() - startT < 250;
+    goTo(rapido || Math.abs(dx) > track.offsetWidth * 0.15 ? current + (dx < 0 ? 1 : -1) : current);
   }
   track.addEventListener('pointerup', endDrag);
   track.addEventListener('pointercancel', endDrag);
-  // depois de arrastar com o mouse, o "clique" de soltar não abre nada
+  // depois de arrastar, o "clique" de soltar não abre nada (nem o botão)
   track.addEventListener('click', (e) => {
     if (dragging) { e.preventDefault(); e.stopPropagation(); dragging = false; }
   }, true);
 
   // Deslizar com dois dedos no touchpad do notebook (rolagem horizontal).
-  // Um gesto passa um jogo só: espera o touchpad parar antes de aceitar outro.
-  let acumulado = 0, travado = false, parouTimer = null;
+  // Cada gesto passa um jogo. O "embalo" depois de soltar os dedos é ignorado,
+  // mas um gesto novo (o movimento volta a acelerar) já é aceito na hora.
+  let acumulado = 0, travadoAte = 0, ultimoDelta = 0, ultimoT = 0, emEmbalo = false;
   track.addEventListener('wheel', (e) => {
     if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
     e.preventDefault();
-    clearTimeout(parouTimer);
-    parouTimer = setTimeout(() => { acumulado = 0; travado = false; }, 180);
-    if (travado) return;
+    const agora = performance.now(), delta = Math.abs(e.deltaX);
+    const gestoNovo = agora - ultimoT > 150 || (delta > ultimoDelta * 1.6 && delta > 6);
+    ultimoDelta = delta; ultimoT = agora;
+    if (gestoNovo) { emEmbalo = false; acumulado = 0; }
+    if (emEmbalo || agora < travadoAte) return;
     acumulado += e.deltaX;
-    if (Math.abs(acumulado) > 40) {
+    if (Math.abs(acumulado) > 30) {
       goTo(current + (acumulado > 0 ? 1 : -1));
-      travado = true;
+      acumulado = 0; emEmbalo = true; travadoAte = agora + 250;
     }
   }, { passive: false });
 
@@ -197,6 +208,36 @@ function openResultModal(id) {
   openModal(overlay);
 }
 
+/* ---------- Notícias (as 3 mais recentes; a lista completa fica em noticias.html) ---------- */
+function renderHomeNews() {
+  const mount = document.getElementById('home-news-mount');
+  if (!mount) return;
+
+  const recentes = SITE_DATA.noticias
+    .slice()
+    .sort((a, b) => new Date(b.data) - new Date(a.data))
+    .slice(0, 3);
+
+  if (!recentes.length) {
+    mount.innerHTML = `<p class="news-empty">Ainda não há notícias publicadas.</p>`;
+    return;
+  }
+
+  mount.innerHTML = recentes.map(n => `
+    <a href="noticias.html?id=${n.id}" class="news-card" data-reveal>
+      <div class="thumb">
+        ${n.imagem
+          ? `<img src="${escapeHtml(n.imagem)}" alt="${escapeHtml(n.titulo)}" data-fallback-text="${escapeHtml(n.categoria)}" style="object-position:${escapeHtml(n.imagemPosicao || 'center')}">`
+          : `<div class="fallback">${escapeHtml(n.categoria)}</div>`}
+      </div>
+      <div class="body">
+        <span class="news-cat">${escapeHtml(n.categoria)}</span>
+        <h3>${escapeHtml(n.titulo)}</h3>
+        <div class="news-date">${formatLongDate(n.data)}</div>
+      </div>
+    </a>`).join('');
+}
+
 /* ---------- Parceiros ---------- */
 function renderPartners() {
   const strip = document.getElementById('partners-strip');
@@ -234,6 +275,7 @@ function initPartnerModal() {
 function renderHomeDynamic() {
   renderNextGame();
   renderRecentResults();
+  renderHomeNews();
   renderPartners();
   initReveal();
   initImageFallback();

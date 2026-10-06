@@ -6,7 +6,7 @@
 <title>Sobre — AAAGV</title>
 <meta name="description" content="Conheça a história da AAAGV, fundada em 1987, e a gestão que representa os estudantes da FGV São Paulo através do esporte.">
 <link rel="icon" href="images/favicon.png">
-<link rel="stylesheet" href="css/style.css?v=20261002">
+<link rel="stylesheet" href="css/style.css?v=20261007t">
 </head>
 <body>
 
@@ -21,7 +21,6 @@
         <li><a href="sobre.html">Sobre</a></li>
         <li><a href="nossas-areas.html">Nossas Áreas</a></li>
         <li><a href="calendario.html">Calendário &amp; Modalidades</a></li>
-        <li><a href="noticias.html">Notícias</a></li>
         <li><a href="museu.html">Museu</a></li>
         <li><a href="index.html#parceiros">Seja nosso parceiro</a></li>
       </ul>
@@ -48,7 +47,12 @@
     </div>
   </section>
 
-  <section class="section-tight bg-black">
+  <section class="section-tight bg-black deco-host">
+    <div class="deco" aria-hidden="true">
+      <!-- logo recortado no canto superior esquerdo; jacaré da bandeira inteiro à direita -->
+      <img src="images/Icones/web/8.png" alt="" class="deco-icon deco-hist-logo">
+      <img src="images/Icones/web/jacare-bandeira.png" alt="" class="deco-icon deco-hist-bandeira">
+    </div>
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">Quem somos</span>
@@ -66,11 +70,23 @@
         <button type="button" class="btn btn-primary" id="btn-campeonatos">Conheça nossos campeonatos</button>
       </div>
 
-      <div class="timeline" id="timeline-mount"></div>
+      <!-- linha do tempo numa faixa larga; a cara do jacaré "nasce" da borda de baixo, atrás dos anos -->
+      <div class="tl-box">
+        <img src="images/Icones/web/jacare-espiando.png" alt="" aria-hidden="true" class="tl-box-croc">
+        <div class="tl-box-head">
+          <h3 class="tl-box-titulo">Linha do tempo</h3>
+          <p class="tl-box-sub">Clique em um ano para ler a história.</p>
+        </div>
+        <div class="tl-h" id="timeline-mount"></div>
+      </div>
 
-      <div class="history-closing">
-        <h3 class="history-closing-title">Agora é com você</h3>
-        <p>Tudo aqui foi feito por alunos como você, que aprenderam na prática: gerenciando atletas, promovendo o esporte universitário e lutando por aquilo que amamos. Coisas que a sala de aula ensina na teoria e que aqui você vive na realidade. <span class="text-accent">Essa história tem quase 40 anos e continua dependendo de quem chega para carregar o legado que perpassa por dezenas de gerações.</span></p>
+      <div class="mascote-historia" data-reveal>
+        <img src="images/FOTOS GERAIS/mascote-brandbook.png" alt="Jacaré, mascote da AAAGV" class="mascote-historia-img">
+        <div class="mascote-historia-texto">
+          <span class="eyebrow">Nosso mascote</span>
+          <h3 class="mascote-historia-titulo">Por que um Jacaré?</h3>
+          <button type="button" class="btn btn-primary btn-sm" id="btn-mascote" aria-haspopup="dialog">Saiba mais</button>
+        </div>
       </div>
     </div>
   </section>
@@ -143,28 +159,26 @@
   </div>
 </footer>
 
-<!-- MASCOTE flutuante -->
-<div class="mascote-float">
-  <span class="mascote-arrow" aria-hidden="true">
-    <svg width="64" height="40" viewBox="0 0 64 40" fill="none">
-      <path d="M56 10C38 2 16 6 10 30" stroke="var(--black)" stroke-width="7" stroke-linecap="round"/>
-      <path d="M7 19L10 30L18 22" stroke="var(--black)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M56 10C38 2 16 6 10 30" stroke="var(--yellow)" stroke-width="4" stroke-linecap="round"/>
-      <path d="M7 19L10 30L18 22" stroke="var(--yellow)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </span>
-  <button type="button" class="mascote-float-btn" data-open="mascote" aria-label="Conheça nosso mascote">
-    <img src="images/FOTOS GERAIS/mascote-brandbook.png" alt="Jacaré, mascote da AAAGV">
-  </button>
+<!-- MODAL: ano da linha do tempo (conteúdo preenchido por js/sobre.js) -->
+<div class="modal-overlay" id="modal-timeline">
+  <div class="modal-box tl-modal" role="dialog" aria-modal="true" aria-label="Linha do tempo">
+    <button type="button" class="modal-close" aria-label="Fechar">✕</button>
+    <div class="tl-modal-conteudo"></div>
+  </div>
 </div>
 
-<!-- MODAL: mascote -->
-<!-- TODO: substituir o texto abaixo pela história real do jacaré -->
+<!-- MODAL: história do mascote -->
 <div class="modal-overlay" id="modal-mascote">
-  <div class="modal-box">
+  <div class="modal-box tl-modal mascote-modal" role="dialog" aria-modal="true" aria-labelledby="mascote-modal-titulo">
     <button type="button" class="modal-close" aria-label="Fechar">✕</button>
-    <h2 style="font-family:var(--font-body);text-transform:none;font-size:1.5rem;">Conheça nosso mascote</h2>
-    <p style="color:var(--gray-600);margin-top:12px;">Em breve, a história completa do nosso jacaré por aqui.</p>
+    <img src="images/FOTOS GERAIS/mascote-brandbook.png" alt="" class="mascote-modal-img" aria-hidden="true">
+    <span class="eyebrow">Nosso mascote</span>
+    <h2 class="mascote-modal-titulo" id="mascote-modal-titulo">Por que o mascote da AAAGV é um Jacaré?</h2>
+    <p class="mascote-modal-lead">A escolha foi inspirada no <strong>Jacaré Teimoso</strong> (jacaré-de-papo-amarelo) encontrado no <strong>Rio Tietê em 1990</strong>, que ficou conhecido por sua resistência e permanência em um lugar inesperado para um animal daquela espécie. Esse fato acabou convergindo com a identidade que a AAAGV começava a construir na época, já que estava em busca de um símbolo marcante, que representasse toda a <strong>força e a persistência dos seus atletas</strong>, dentro e fora das quadras.</p>
+    <p>Desde então, o Jacaré passou a ser protagonista desta história, transmitindo a autoridade e segurança de quem sabe respeitar e é respeitado, nos ensinando sobre <em>a força silenciosa</em> de quem trabalha nos bastidores, <em>a disciplina</em> de quem treina e <em>a coragem</em> de encarar qualquer desafio. Mas, acima de tudo, nos ensina sobre <strong>garra</strong>.</p>
+    <blockquote class="mascote-modal-destaque">A garra que aparece quando o jogo aperta e mesmo assim ninguém solta a mão de ninguém.</blockquote>
+    <p>Hoje ele é nossa <strong>marca de pertencimento</strong>, é um lembrete de onde a gente veio, da nossa força e de tudo que construímos juntos. O Jacaré veio para ser símbolo da AAAGV. Ele está nas grifes, nos uniformes e nos gritos que juntam o time e a torcida.</p>
+    <p class="mascote-modal-fecho">Enquanto houver entrega e vontade de fazer acontecer, o Jacaré vai ser mais do que mascote, <span>será identidade.</span></p>
   </div>
 </div>
 
@@ -196,8 +210,8 @@
   </div>
 </div>
 
-<script src="js/data.js?v=20261002"></script>
-<script src="js/main.js?v=20261002"></script>
-<script src="js/sobre.js?v=20261002"></script>
+<script src="js/data.js?v=20261007t"></script>
+<script src="js/main.js?v=20261007t"></script>
+<script src="js/sobre.js?v=20261007t"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
    AAAGV — lógica da página Museu (museu.html)
 
    Duas partes, alimentadas por SITE_DATA:
-     - museu    -> MOMENTOS (#museu-galeria) : depoimento + fotos, alternando
+     - museu    -> MOMENTOS (#museu-galeria) : texto sobre o momento + 3 fotos, alternando o lado
      - galeria  -> GALERIA  (#galeria-strip) : fotos soltas de gestões passadas,
                    tira arrastável; passando do limite, botão "Ver mais fotos"
                    abre o resto numa grade embaixo (#galeria-panel)
@@ -16,11 +16,6 @@
 // para a grade que abre embaixo.
 const GALERIA_STRIP_MAX = 15;
 
-function museuIniciais(nome) {
-  if (!nome) return 'AAAGV';
-  return nome.split(' ').filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase();
-}
-
 /* ---------- 1) MOMENTOS ---------- */
 function fotoTile(foto, extraClass, reveal = true) {
   const legenda = foto.legenda || '';
@@ -29,7 +24,7 @@ function fotoTile(foto, extraClass, reveal = true) {
             aria-label="Ampliar${legenda ? ': ' + escapeHtml(legenda) : ' imagem'}"
             data-src="${escapeHtml(foto.src || '')}" data-legenda="${escapeHtml(legenda)}">
       <div class="frame">
-        <img src="${escapeHtml(foto.src || '')}" alt="${escapeHtml(legenda)}" data-fallback-text="">
+        <img src="${escapeHtml(foto.src || '')}" alt="${escapeHtml(legenda)}" data-fallback-text="Foto em breve">
       </div>
       ${legenda ? `<figcaption class="legenda">${escapeHtml(legenda)}</figcaption>` : ''}
     </figure>`;
@@ -37,27 +32,15 @@ function fotoTile(foto, extraClass, reveal = true) {
 
 function renderMuseuBloco(bloco, index) {
   const reverse = index % 2 === 1;
-  const rotulo = bloco.momento || bloco.era || '';
-  const fotos = (bloco.fotos || []).slice(0, 6).map(f => fotoTile(f, 'museu-foto')).join('');
-  const autorAvatar = bloco.fotoAutor
-    ? `<img src="${escapeHtml(bloco.fotoAutor)}" alt="${escapeHtml(bloco.autor || '')}" data-fallback-text="${museuIniciais(bloco.autor)}">`
-    : museuIniciais(bloco.autor);
+  const fotos = (bloco.fotos || []).slice(0, 3).map(f => fotoTile(f, 'museu-foto')).join('');
+  const paragrafos = String(bloco.texto || '').split(/\n\n+/).map(p => p.trim()).filter(Boolean);
 
   return `
     <article class="museu-bloco ${reverse ? 'reverse' : ''}">
-      <span class="museu-era-bg" aria-hidden="true">${escapeHtml(rotulo)}</span>
-
       <div class="museu-depoimento" data-reveal>
-        ${rotulo ? `<div class="museu-era">${escapeHtml(rotulo)}</div>` : ''}
+        ${bloco.momento ? `<div class="museu-era">${escapeHtml(bloco.momento)}</div>` : ''}
         ${bloco.titulo ? `<h2 class="museu-titulo">${escapeHtml(bloco.titulo)}</h2>` : ''}
-        <blockquote class="museu-quote">${escapeHtml(bloco.depoimento || '')}</blockquote>
-        <div class="museu-autor">
-          <div class="avatar">${autorAvatar}</div>
-          <div>
-            <div class="museu-autor-nome">${escapeHtml(bloco.autor || '')}</div>
-            <div class="museu-autor-cargo">${escapeHtml(bloco.cargo || '')}</div>
-          </div>
-        </div>
+        <div class="museu-texto">${paragrafos.map(p => `<p>${escapeHtml(p)}</p>`).join('')}</div>
       </div>
 
       <div class="museu-fotos">${fotos}</div>
