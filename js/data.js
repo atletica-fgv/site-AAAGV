@@ -67,11 +67,10 @@ const SITE_DATA = {
       momento: 'O primeiro título',
       titulo: 'Economíadas 2017',
       texto: 'Faltando 1 mês para o evento, veio uma notícia inesperada: a cidade-sede não estaria mais disponível para os jogos. Foi preciso escolher São Carlos e refazer tudo do zero em tempo recorde. E foi ali que, depois de quase 30 anos de espera, a Bela Vista entrou em festa.\n\nNunca foi sorte, sempre foi garra e determinação. Os atletas se entregaram, a torcida e a bateria abraçaram, e não tinha quem tirasse aquela taça da GV, reafirmando o lema do ano: “Respeita a nossa história”.',
-      // TODO: fotos das Economíadas 2017 (colocar em images/museu/ com estes nomes)
       fotos: [
-        { src: 'images/museu/econo-2017-1.jpg', legenda: 'Economíadas 2017' },
-        { src: 'images/museu/econo-2017-2.jpg', legenda: 'Economíadas 2017' },
-        { src: 'images/museu/econo-2017-3.jpg', legenda: 'Economíadas 2017' }
+        { src: 'images/museu/galeria/Economiadas 17-1.jpeg', legenda: 'Economíadas 2017' },
+        { src: 'images/museu/galeria/Economiadas 17-2.jpeg', legenda: 'Economíadas 2017' },
+        { src: 'images/museu/galeria/Economiadas 17-3.jpeg', legenda: 'Economíadas 2017' }
       ]
     }
   ],
@@ -281,7 +280,7 @@ const SITE_DATA = {
       categoria: 'Parcerias',
       titulo: 'Réveillon Araxás',
       data: '2026-09-14',
-      imagem: '',
+      imagem: 'images/FOTOS NOTÍCIAS/araxas noticia.png.webp',
       resumo: 'AAAGV firma parceria com o Réveillon Araxás e garante 5% de desconto para alunos da FGV na compra de ingressos.',
       corpo: [
         'A Atlética da Fundação Getulio Vargas firmou parceria com o Réveillon Araxás, festa que acontece do dia 27 de dezembro ao dia 2 de janeiro, no Litoral Norte. O Réveillon Araxás foi nosso patrocinador oficial nesse ano. Como parte desse apoio, a marca esteve presente nos abadás e sacochilas produzidos para as Economíadas.',
@@ -306,11 +305,12 @@ const SITE_DATA = {
       autor: 'João Henrique Viana'
     },
     {
-      id: 4,
+      id: 5,
       categoria: 'Esportes',
       titulo: 'É CAMPEÃO! FGV vira sobre o Insper e conquista o título do NDU no Handebol Masculino',
       data: '2026-09-18',
-      imagem: '',
+      imagem: 'images/FOTOS NOTÍCIAS/hm ndu 26.1.jpg',
+      imagemPosicao: '25% center',
       resumo: 'O Handebol Masculino da FGV venceu o Insper por 28 a 25, buscando uma virada no segundo tempo, e conquistou o título da Série A do NDU.',
       corpo: [
         'O Handebol Masculino da FGV escreveu mais um capítulo inesquecível de sua história. Em uma final marcada por intensidade, rivalidade e uma virada emocionante, a GV derrotou o Insper por 28 a 25 e conquistou o título da Série A do NDU.',
@@ -322,11 +322,11 @@ const SITE_DATA = {
       autor: 'João Guilherme Prata'
     },
     {
-      id: 5,
+      id: 1,
       categoria: 'Esportes',
       titulo: 'O IMPOSSÍVEL CAIU! FGV vira sobre a UNIP e escreve uma noite histórica no Vôlei Feminino',
       data: '2026-09-18',
-      imagem: '',
+      imagem: 'images/FOTOS NOTÍCIAS/vf ndu 26.1.jpg',
       resumo: 'O Vôlei Feminino da FGV buscou uma virada histórica diante da UNIP e venceu por 3 sets a 2, revertendo a desvantagem de 2 sets a 1.',
       corpo: [
         'Existem vitórias, existem viradas, e existem jogos que ficam para sempre. O Vôlei Feminino da FGV protagonizou uma dessas noites. Diante da UNIP, equipe que para muitos parecia simplesmente imbatível, as gvianas fizeram o que poucos acreditavam ser possível: buscaram uma virada espetacular e venceram por 3 sets a 2, e nada veio fácil.',
@@ -337,6 +337,20 @@ const SITE_DATA = {
         'Contra um time que diziam ser imbatível, a FGV respondeu da única maneira que realmente importava: dentro de quadra.'
       ],
       autor: 'João Guilherme Prata'
+    },
+    {
+      id: 6,
+      categoria: 'Parcerias',
+      titulo: 'Alpes Saúde Esportiva',
+      data: '2026-09-14',
+      imagem: 'images/FOTOS NOTÍCIAS/Alpes noticia.png',
+      resumo: 'A AAAGV mantém parceria com a Alpes Saúde Esportiva, clínica de medicina esportiva, ortopedia, fisioterapia e nutrição, com desconto para alunos da FGV.',
+      corpo: [
+        'A Atlética Fundação Getulio Vargas mantém parceria com a Alpes Saúde Esportiva, clínica especializada em medicina esportiva, ortopedia, fisioterapia e nutrição. Todos os alunos da FGV têm acesso a desconto em sessões de fisioterapia, bastando apenas mostrar a carteirinha.',
+        'Além do benefício oferecido aos alunos, a Alpes também atuou diretamente no suporte aos atletas da AAAGV durante as Economíadas. Ao longo da competição, os atletas podem chegar a disputar jogos em até três dias seguidos, e a recuperação é importante para manter o alto desempenho ao longo dos jogos. A parceria também conta com a nova área de nutrição, oferecendo ainda mais suporte aos atletas.',
+        'Para conhecer mais sobre a Alpes, basta buscar no Instagram @alpes.saudeesportiva.'
+      ],
+      autor: 'José Eduardo Sanz'
     }
   ],
 

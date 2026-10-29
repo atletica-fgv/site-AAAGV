@@ -444,8 +444,7 @@ section { padding: 96px 0; }
 .mascote-modal p { color: var(--gray-300); line-height: 1.85; font-size: 1.02rem; }
 .mascote-modal p + p, .mascote-modal-destaque + p { margin-top: 18px; }
 .mascote-modal strong { color: var(--white); font-weight: 800; }
-.mascote-modal em { font-style: normal; color: var(--white); box-shadow: inset 0 -.4em 0 rgba(var(--yellow-rgb), .28); }
-.mascote-modal-lead { font-size: 1.12rem !important; color: rgba(255,255,255,.9) !important; }
+.mascote-modal-lead { color: rgba(255,255,255,.9) !important; }
 .mascote-modal-lead::first-letter {
   float: left; font-family: var(--font-heading); font-size: 3.6rem; line-height: .85;
   color: var(--yellow); margin: 6px 10px 0 0;
@@ -454,7 +453,7 @@ section { padding: 96px 0; }
 .mascote-modal-fecho span { font-weight: 800; color: var(--yellow); }
 .mascote-modal-destaque {
   clear: both; margin: 26px 0; padding: 4px 0 4px 20px; border-left: 4px solid var(--yellow);
-  font-weight: 800; font-size: 1.2rem; line-height: 1.5; color: var(--yellow);
+  font-weight: 800; font-size: 1.12rem; line-height: 1.5; color: var(--yellow);
 }
 @media (max-width: 520px) {
   .mascote-modal-img { width: 90px; margin-left: 14px; }

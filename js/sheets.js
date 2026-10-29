@@ -241,13 +241,12 @@ async function loadSiteDataFromSheets() {
           const noticias = mapNoticiasRows(rows);
           if (noticias.length) {
             noticias.forEach(n => {
-              if (!n.imagem) {
-                const local = noticiasLocaisPorId.get(n.id);
-                if (local && local.imagem) {
-                  n.imagem = local.imagem;
-                  if (local.imagemPosicao) n.imagemPosicao = local.imagemPosicao;
-                }
+              const local = noticiasLocaisPorId.get(n.id);
+              if (!n.imagem && local && local.imagem) {
+                n.imagem = local.imagem;
+                if (local.imagemPosicao) n.imagemPosicao = local.imagemPosicao;
               }
+              if (!n.autor && local && local.autor) n.autor = local.autor;
             });
             SITE_DATA.noticias = noticias;
             console.info(`[AAAGV] ${noticias.length} notícia(s) carregada(s) da planilha.`);
