@@ -165,7 +165,7 @@ const SITE_DATA = {
     { slug: 'futebol-de-campo', nome: 'Futebol de Campo', generos: ['Masculino'], foto: 'images/modalidades/futebol-de-campo.png', instagram: 'https://www.instagram.com/futcampofgv/' },
     { slug: 'futsal', nome: 'Futsal', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/futsal.png', instagram: { Masculino: 'https://www.instagram.com/futsalafgv/', Feminino: 'https://www.instagram.com/futfamous/' } },
     { slug: 'handebol', nome: 'Handebol', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/handebol.png', instagram: { Masculino: 'https://www.instagram.com/handmasc/', Feminino: 'https://www.instagram.com/handfem/' } },
-    { slug: 'jiu-jitsu', nome: 'Jiu-Jitsu', generos: ['Masculino'], foto: 'images/modalidades/jiu-jitsu.png', instagram: 'https://www.instagram.com/bjj.fgv/' },
+    { slug: 'jiu-jitsu', nome: 'Jiu-Jitsu', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/jiu-jitsu.png', instagram: 'https://www.instagram.com/bjj.fgv/' },
     { slug: 'judo', nome: 'Judô', generos: ['Masculino'], foto: 'images/modalidades/judo.png', instagram: 'https://www.instagram.com/judofgv/' },
     { slug: 'natacao', nome: 'Natação', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/natacao.png', instagram: 'https://www.instagram.com/natafgv/' },
     { slug: 'rugby', nome: 'Rugby', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/rugby.png', instagram: 'https://www.instagram.com/rugbyfgv/' },
@@ -175,15 +175,284 @@ const SITE_DATA = {
     { slug: 'xadrez', nome: 'Xadrez', generos: ['Masculino', 'Feminino'], foto: 'images/modalidades/xadrez.png' }
   ],
 
-  // TODO: preencher com o elenco real de cada modalidade/gênero. Enquanto uma
-  // combinação modalidade+gênero não estiver aqui, o site mostra atletas de exemplo.
+  // Elenco real de cada modalidade/gênero, com fotos em images/atletas/<modalidade>/<gênero>/.
+  // Enquanto uma combinação modalidade+gênero não estiver aqui, o site mostra atletas de exemplo.
+
   atletas: {
+    atletismo: {
+      Misto: [
+        { nome: 'Arthur Almeida', foto: 'images/atletas-rosto/atletismo/Masculino/Arthur Almeida.jpg' },
+        { nome: 'Celina Chen', foto: 'images/atletas-rosto/atletismo/Feminino/Celina Chen.jpg' },
+        { nome: 'Felipe Wang Hsu', foto: 'images/atletas-rosto/atletismo/Masculino/Felipe Wang Hsu.jpg' },
+        { nome: 'Fiona Berit', foto: 'images/atletas-rosto/atletismo/Feminino/Fiona Berit_.jpg' },
+        { nome: 'Lais Arita', foto: 'images/atletas-rosto/atletismo/Feminino/Lais Arita.jpg' },
+        { nome: 'Laura Naomi Kobayashi', foto: 'images/atletas-rosto/atletismo/Feminino/Laura Naomi Kobayashi.jpg' },
+        { nome: 'Luis Felipe de Oliveira', foto: 'images/atletas-rosto/atletismo/Masculino/Luis Felipe de Oliveira_.jpg' },
+        { nome: 'Luisa do Valle', foto: 'images/atletas-rosto/atletismo/Feminino/Luisa do Valle_.jpg' },
+        { nome: 'Manuela Bahdur', foto: 'images/atletas-rosto/atletismo/Feminino/Manuela Bahdur_.jpg' },
+        { nome: 'Maria Clara Toreto', foto: 'images/atletas-rosto/atletismo/Feminino/Maria Clara Toreto.jpg' },
+        { nome: 'Maria Paula Demian', foto: 'images/atletas-rosto/atletismo/Feminino/Maria Paula Demian.jpg' },
+        { nome: 'Mariana Landi', foto: 'images/atletas-rosto/atletismo/Feminino/Mariana Landi.jpg' },
+        { nome: 'Nicolas Navarro Ayala', foto: 'images/atletas-rosto/atletismo/Masculino/Nicolas Navarro Ayala.jpg' },
+        { nome: 'Otávio Henrique Marmo', foto: 'images/atletas-rosto/atletismo/Masculino/Otávio Henrique Marmo.jpg' },
+        { nome: 'Sophia Helena Goya', foto: 'images/atletas-rosto/atletismo/Feminino/Sophia Helena Goya_.jpg' }
+      ]
+    },
     basquete: {
       Feminino: [
-        { nome: 'Manu Abrão', foto: 'images/FOTOS INDIVIDUAIS/ATLETAS/manu-abrao.jpg' }
+        { nome: 'Manu Abrão', foto: 'images/atletas-rosto/basquete/Feminino/manu-abrao.jpg' },
+        { nome: 'Atleta', foto: 'images/atletas-rosto/basquete/Feminino/FGV-573.jpg' },
+        { nome: 'Beatriz Alonso', foto: 'images/atletas-rosto/basquete/Feminino/Beatriz Alonso.jpg' },
+        { nome: 'Gabriela Ferraz', foto: 'images/atletas-rosto/basquete/Feminino/Gabriela Ferraz.jpg' },
+        { nome: 'Gabriela Leal', foto: 'images/atletas-rosto/basquete/Feminino/Gabriela Leal.jpg' },
+        { nome: 'Giovana Brujin', foto: 'images/atletas-rosto/basquete/Feminino/Giovana Brujin.jpg' },
+        { nome: 'Giovana Lopez', foto: 'images/atletas-rosto/basquete/Feminino/Giovana Lopez.jpg' },
+        { nome: 'Giovanna Camargo', foto: 'images/atletas-rosto/basquete/Feminino/Giovanna Camargo.jpg' },
+        { nome: 'Lara Salviano', foto: 'images/atletas-rosto/basquete/Feminino/Lara Salviano.jpg' },
+        { nome: 'Luiza Pensa', foto: 'images/atletas-rosto/basquete/Feminino/Luiza Pensa.jpg' },
+        { nome: 'Manuela Pereira', foto: 'images/atletas-rosto/basquete/Feminino/Manuela Pereira.jpg' },
+        { nome: 'Marina Ribeiro', foto: 'images/atletas-rosto/basquete/Feminino/Marina Ribeiro.jpg' },
+        { nome: 'Nayure Chen Lin', foto: 'images/atletas-rosto/basquete/Feminino/Nayure Chen Lin.jpg' },
+        { nome: 'Nina Neves', foto: 'images/atletas-rosto/basquete/Feminino/Nina Neves.jpg' }
+      ],
+      Masculino: [
+        { nome: 'Eduardo Pereira', foto: 'images/atletas-rosto/basquete/Masculino/Eduardo Pereira.jpg' },
+        { nome: 'Gustavo Leão', foto: 'images/atletas-rosto/basquete/Masculino/Gustavo Leão.jpg' },
+        { nome: 'Leonardo Lamaita', foto: 'images/atletas-rosto/basquete/Masculino/Leonardo Lamaita_.jpg' },
+        { nome: 'Lucas Miléo', foto: 'images/atletas-rosto/basquete/Masculino/Lucas Miléo.jpg' },
+        { nome: 'Luiz Fernando Vilela', foto: 'images/atletas-rosto/basquete/Masculino/Luiz Fernando Vilela.jpg' },
+        { nome: 'Manoel de Souza', foto: 'images/atletas-rosto/basquete/Masculino/Manoel de Souza_.jpg' },
+        { nome: 'Patrick Girard', foto: 'images/atletas-rosto/basquete/Masculino/Patrick Girard.jpg' },
+        { nome: 'Pedro Campanella', foto: 'images/atletas-rosto/basquete/Masculino/Pedro Campanella.jpg' },
+        { nome: 'Victor Sheldon', foto: 'images/atletas-rosto/basquete/Masculino/Victor Sheldon.jpg' }
+      ]
+    },
+    'futebol-de-campo': {
+      Masculino: [
+        { nome: 'Davi Lima', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Davi Lima.jpg' },
+        { nome: 'Eduardo Gomiero', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Eduardo Gomiero.jpg' },
+        { nome: 'Eduardo Lancellotti', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Eduardo Lancellotti.jpg' },
+        { nome: 'Eduardo Makdissi', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Eduardo Makdissi.jpg' },
+        { nome: 'Enzo Thó', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Enzo Thó.jpg' },
+        { nome: 'Francisco Junqueira', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Francisco Junqueira.jpg' },
+        { nome: 'Francisco Margarido', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Francisco Margarido.jpg' },
+        { nome: 'Henrique Linge', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Henrique Linge.jpg' },
+        { nome: 'João Panariello', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/João Panariello.jpg' },
+        { nome: 'João Victor Mazza', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/João Victor Mazza.jpg' },
+        { nome: 'Kadu Yuji', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Kadu Yuji_.jpg' },
+        { nome: 'Kaiky Fujimoto', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Kaiky Fujimoto.jpg' },
+        { nome: 'Lucas Jeff', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Lucas Jeff.jpg' },
+        { nome: 'Lucas Prado', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Lucas Prado_.jpg' },
+        { nome: 'Matteo Conrado', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Matteo Conrado.jpg' },
+        { nome: 'Pedro Nogueira', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Pedro Nogueira.jpg' },
+        { nome: 'Raí Akio', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Raí Akio.jpg' },
+        { nome: 'Raphael Storino', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Raphael Storino.jpg' },
+        { nome: 'Rodrigo Berezin', foto: 'images/atletas-rosto/futebol-de-campo/Masculino/Rodrigo Berezin.jpg' }
+      ]
+    },
+    futsal: {
+      Feminino: [
+        { nome: 'Alice Marinho', foto: 'images/atletas-rosto/futsal/Feminino/Alice Marinho.jpg' },
+        { nome: 'Alice Schalka', foto: 'images/atletas-rosto/futsal/Feminino/Alice Schalka.jpg' },
+        { nome: 'Ana Carolina Schramm', foto: 'images/atletas-rosto/futsal/Feminino/Ana Carolina Schramm.jpg' },
+        { nome: 'Ana Nassar', foto: 'images/atletas-rosto/futsal/Feminino/Ana Nassar.jpg' },
+        { nome: 'Christina Sodré', foto: 'images/atletas-rosto/futsal/Feminino/Christina Sodré.jpg' },
+        { nome: 'Clara Junqueira', foto: 'images/atletas-rosto/futsal/Feminino/Clara Junqueira.jpg' },
+        { nome: 'Elisa Moreira', foto: 'images/atletas-rosto/futsal/Feminino/Elisa Moreira.jpg' },
+        { nome: 'Gabriela Angelotti', foto: 'images/atletas-rosto/futsal/Feminino/Gabriela Angelotti.jpg' },
+        { nome: 'Helena Vinholis', foto: 'images/atletas-rosto/futsal/Feminino/Helena Vinholis_.jpg' },
+        { nome: 'Karina Arazi', foto: 'images/atletas-rosto/futsal/Feminino/Karina Arazi.jpg' },
+        { nome: 'Larissa Monteiro', foto: 'images/atletas-rosto/futsal/Feminino/Larissa Monteiro.jpg' },
+        { nome: 'Luiza Ferreira', foto: 'images/atletas-rosto/futsal/Feminino/Luiza Ferreira.jpg' },
+        { nome: 'Maria Julia Centim', foto: 'images/atletas-rosto/futsal/Feminino/Maria Julia Centim.jpg' },
+        { nome: 'Mariana Clerici', foto: 'images/atletas-rosto/futsal/Feminino/Mariana Clerici.jpg' },
+        { nome: 'Mariana Pimentel', foto: 'images/atletas-rosto/futsal/Feminino/Mariana Pimentel.jpg' },
+        { nome: 'Nicole Linhares', foto: 'images/atletas-rosto/futsal/Feminino/Nicole Linhares.jpg' },
+        { nome: 'Thamires Louverde', foto: 'images/atletas-rosto/futsal/Feminino/Thamires Louverde.jpg' }
+      ],
+      Masculino: [
+        { nome: 'Felipe Tonalezi', foto: 'images/atletas-rosto/futsal/Masculino/Felipe Tonalezi.jpg' },
+        { nome: 'Gustavo Garone', foto: 'images/atletas-rosto/futsal/Masculino/Gustavo Garone.jpg' }
+      ]
+    },
+    handebol: {
+      Feminino: [
+        { nome: 'Ayla Yilmaz', foto: 'images/atletas-rosto/handebol/Feminino/Ayla Yilmaz_.jpg' },
+        { nome: 'Bettina Kalassa', foto: 'images/atletas-rosto/handebol/Feminino/Bettina Kalassa.jpg' },
+        { nome: 'Bianca Mathias', foto: 'images/atletas-rosto/handebol/Feminino/Bianca Mathias_.jpg' },
+        { nome: 'Camila Duarte', foto: 'images/atletas-rosto/handebol/Feminino/Camila Duarte_.jpg' },
+        { nome: 'Candice Schlesser', foto: 'images/atletas-rosto/handebol/Feminino/Candice Schlesser.jpg' },
+        { nome: 'Carolina Bortot', foto: 'images/atletas-rosto/handebol/Feminino/Carolina Bortot.jpg' },
+        { nome: 'Carolina Boulos', foto: 'images/atletas-rosto/handebol/Feminino/Carolina Boulos.jpg' },
+        { nome: 'Carolina Fodor', foto: 'images/atletas-rosto/handebol/Feminino/Carolina Fodor.jpg' },
+        { nome: 'Carolina Lima', foto: 'images/atletas-rosto/handebol/Feminino/Carolina Lima_.jpg' },
+        { nome: 'Catarina Dos Santos', foto: 'images/atletas-rosto/handebol/Feminino/Catarina Dos Santos.jpg' },
+        { nome: 'Elis Suzuki', foto: 'images/atletas-rosto/handebol/Feminino/Elis Suzuki.jpg' },
+        { nome: 'Giovanna de Miranda', foto: 'images/atletas-rosto/handebol/Feminino/Giovanna de Miranda_.jpg' },
+        { nome: 'Giulia Crisi Grotti', foto: 'images/atletas-rosto/handebol/Feminino/Giulia Crisi Grotti.jpg' },
+        { nome: 'Helena Rodrigues', foto: 'images/atletas-rosto/handebol/Feminino/Helena Rodrigues_.jpg' },
+        { nome: 'Isabela Pinho', foto: 'images/atletas-rosto/handebol/Feminino/Isabela Pinho.jpg' },
+        { nome: 'Julia Bonfanti', foto: 'images/atletas-rosto/handebol/Feminino/Julia Bonfanti.jpg' },
+        { nome: 'Júlia Comar', foto: 'images/atletas-rosto/handebol/Feminino/Júlia Comar.jpg' },
+        { nome: 'Luana Sverzut', foto: 'images/atletas-rosto/handebol/Feminino/Luana Sverzut.jpg' },
+        { nome: 'Luísa Pereira', foto: 'images/atletas-rosto/handebol/Feminino/Luísa Pereira_.jpg' },
+        { nome: 'Luiza Paiva', foto: 'images/atletas-rosto/handebol/Feminino/Luiza Paiva_.jpg' },
+        { nome: 'Malu Ernesto', foto: 'images/atletas-rosto/handebol/Feminino/Malu Ernesto_.jpg' },
+        { nome: 'Manuela Chade', foto: 'images/atletas-rosto/handebol/Feminino/Manuela Chade.jpg' },
+        { nome: 'Marcela Pereira', foto: 'images/atletas-rosto/handebol/Feminino/Marcela Pereira.jpg' },
+        { nome: 'Maria Julia Trevisi', foto: 'images/atletas-rosto/handebol/Feminino/Maria Julia Trevisi.jpg' },
+        { nome: 'Maria Meraz', foto: 'images/atletas-rosto/handebol/Feminino/Maria Meraz.jpg' },
+        { nome: 'Sara Leopoldo', foto: 'images/atletas-rosto/handebol/Feminino/Sara Leopoldo_.jpg' },
+        { nome: 'Sofia Junqueira', foto: 'images/atletas-rosto/handebol/Feminino/Sofia Junqueira.jpg' },
+        { nome: 'Sofia Tommasini', foto: 'images/atletas-rosto/handebol/Feminino/Sofia Tommasini_.jpg' }
+      ],
+      Masculino: [
+        { nome: 'Antônio Fileti', foto: 'images/atletas-rosto/handebol/Masculino/Antônio Fileti.jpg' },
+        { nome: 'Enrico Romariz', foto: 'images/atletas-rosto/handebol/Masculino/Enrico Romariz_.jpg' },
+        { nome: 'Fernando Fischer', foto: 'images/atletas-rosto/handebol/Masculino/Fernando Fischer.jpg' },
+        { nome: 'Gabriel Elyseu', foto: 'images/atletas-rosto/handebol/Masculino/Gabriel Elyseu.jpg' },
+        { nome: 'Giuliano Bove', foto: 'images/atletas-rosto/handebol/Masculino/Giuliano Bove.jpg' },
+        { nome: 'João Pedro Lima', foto: 'images/atletas-rosto/handebol/Masculino/João Pedro Lima.jpg' },
+        { nome: 'Lorenzo Braguini', foto: 'images/atletas-rosto/handebol/Masculino/Lorenzo Braguini_.jpg' },
+        { nome: 'Luca Giovanetti', foto: 'images/atletas-rosto/handebol/Masculino/Luca Giovanetti.jpg' },
+        { nome: 'Luca Glorigiano', foto: 'images/atletas-rosto/handebol/Masculino/Luca Glorigiano_.jpg' },
+        { nome: 'Marcelo Blanco', foto: 'images/atletas-rosto/handebol/Masculino/Marcelo Blanco_.jpg' }
+      ]
+    },
+    'jiu-jitsu': {
+      Feminino: [
+        { nome: 'Ana Laura Penteado', foto: 'images/atletas-rosto/jiu-jitsu/Feminino/Ana Laura Penteado_.jpg' },
+        { nome: 'Mayara Aline', foto: 'images/atletas-rosto/jiu-jitsu/Feminino/Mayara Aline_.jpg' }
+      ],
+      Masculino: [
+        { nome: 'Bernardo Lorch', foto: 'images/atletas-rosto/jiu-jitsu/Masculino/Bernardo Lorch.jpg' },
+        { nome: 'Enzo Fredi', foto: 'images/atletas-rosto/jiu-jitsu/Masculino/Enzo Fredi_.jpg' },
+        { nome: 'Felipe Whitaker', foto: 'images/atletas-rosto/jiu-jitsu/Masculino/Felipe Whitaker_.jpg' },
+        { nome: 'João Pedro Serafim', foto: 'images/atletas-rosto/jiu-jitsu/Masculino/João Pedro Serafim_.jpg' },
+        { nome: 'Tomas de Sá Costa', foto: 'images/atletas-rosto/jiu-jitsu/Masculino/Tomas de Sá Costa_.jpg' }
+      ]
+    },
+    judo: {
+      Masculino: [
+        { nome: 'David Herszkowicz', foto: 'images/atletas-rosto/judo/Masculino/David Herszkowicz_.jpg' },
+        { nome: 'Enzo Fredi', foto: 'images/atletas-rosto/judo/Masculino/Enzo Fredi_.jpg' },
+        { nome: 'Felipe Whitaker', foto: 'images/atletas-rosto/judo/Masculino/Felipe Whitaker_.jpg' },
+        { nome: 'Gabriel Cavasin', foto: 'images/atletas-rosto/judo/Masculino/Gabriel Cavasin.jpg' }
+      ]
+    },
+    natacao: {
+      Feminino: [
+        { nome: 'Alice Centurion', foto: 'images/atletas-rosto/natacao/Feminino/Alice Centurion.jpg' },
+        { nome: 'Atleta', foto: 'images/atletas-rosto/natacao/Feminino/FGV-41.jpg' },
+        { nome: 'Bruna Carvalho', foto: 'images/atletas-rosto/natacao/Feminino/Bruna Carvalho.jpg' },
+        { nome: 'Carolina Ferraz', foto: 'images/atletas-rosto/natacao/Feminino/Carolina Ferraz.jpg' },
+        { nome: 'Elis Suzuki', foto: 'images/atletas-rosto/natacao/Feminino/Elis Suzuki.jpg' },
+        { nome: 'Isabela Martins', foto: 'images/atletas-rosto/natacao/Feminino/Isabela Martins.jpg' },
+        { nome: 'Isabella Barrera', foto: 'images/atletas-rosto/natacao/Feminino/Isabella Barrera.jpg' },
+        { nome: 'Julia Dente', foto: 'images/atletas-rosto/natacao/Feminino/Julia Dente.jpg' },
+        { nome: 'Lara Moura', foto: 'images/atletas-rosto/natacao/Feminino/Lara Moura.jpg' },
+        { nome: 'Luísa de Freitas', foto: 'images/atletas-rosto/natacao/Feminino/Luísa de Freitas.jpg' },
+        { nome: 'Manuela Baptistella', foto: 'images/atletas-rosto/natacao/Feminino/Manuela Baptistella.jpg' }
+      ],
+      Masculino: [
+        { nome: 'André Guedes', foto: 'images/atletas-rosto/natacao/Masculino/André Guedes.jpg' },
+        { nome: 'Artur Passos', foto: 'images/atletas-rosto/natacao/Masculino/Artur Passos.jpg' },
+        { nome: 'Francisco Heck', foto: 'images/atletas-rosto/natacao/Masculino/Francisco Heck.jpg' },
+        { nome: 'Guilherme Carneiro', foto: 'images/atletas-rosto/natacao/Masculino/Guilherme Carneiro.jpg' },
+        { nome: 'Matheus Chahin', foto: 'images/atletas-rosto/natacao/Masculino/Matheus Chahin.jpg' },
+        { nome: 'Matheus Papa', foto: 'images/atletas-rosto/natacao/Masculino/Matheus Papa.jpg' },
+        { nome: 'Pedro Julião', foto: 'images/atletas-rosto/natacao/Masculino/Pedro Julião_.jpg' },
+        { nome: 'Seiji Sakamoto', foto: 'images/atletas-rosto/natacao/Masculino/Seiji Sakamoto.jpg' },
+        { nome: 'Thales', foto: 'images/atletas-rosto/natacao/Masculino/Thales.jpg' }
+      ]
+    },
+    rugby: {
+      Feminino: [
+        { nome: 'Ana Karoline Santos', foto: 'images/atletas-rosto/rugby/Feminino/Ana Karoline Santos.jpg' },
+        { nome: 'Bruna Bento', foto: 'images/atletas-rosto/rugby/Feminino/Bruna Bento.jpg' },
+        { nome: 'Bruna Kita', foto: 'images/atletas-rosto/rugby/Feminino/Bruna Kita.jpg' },
+        { nome: 'Bruna Mattos', foto: 'images/atletas-rosto/rugby/Feminino/Bruna Mattos.jpg' },
+        { nome: 'Celina Lebeis', foto: 'images/atletas-rosto/rugby/Feminino/Celina Lebeis.jpg' },
+        { nome: 'Fernanda Soares', foto: 'images/atletas-rosto/rugby/Feminino/Fernanda Soares.jpg' },
+        { nome: 'Júlia Ferreira', foto: 'images/atletas-rosto/rugby/Feminino/Júlia Ferreira.jpg' },
+        { nome: 'Júlia Freitas', foto: 'images/atletas-rosto/rugby/Feminino/Júlia Freitas.jpg' },
+        { nome: 'Larissa Cardoso', foto: 'images/atletas-rosto/rugby/Feminino/Larissa Cardoso.jpg' },
+        { nome: 'Luiza Andrade', foto: 'images/atletas-rosto/rugby/Feminino/Luiza Andrade.jpg' },
+        { nome: 'Maitê Paulino', foto: 'images/atletas-rosto/rugby/Feminino/Maitê Paulino.jpg' },
+        { nome: 'Mariana Barbaric', foto: 'images/atletas-rosto/rugby/Feminino/Mariana Barbaric.jpg' },
+        { nome: 'Mariana Cabral', foto: 'images/atletas-rosto/rugby/Feminino/Mariana Cabral.jpg' },
+        { nome: 'Marina Nogueira', foto: 'images/atletas-rosto/rugby/Feminino/Marina Nogueira.jpg' },
+        { nome: 'Sophia Carvalho', foto: 'images/atletas-rosto/rugby/Feminino/Sophia Carvalho.jpg' },
+        { nome: 'Victoria Ji Won', foto: 'images/atletas-rosto/rugby/Feminino/Victoria Ji Won.jpg' }
+      ],
+      Masculino: [
+        { nome: 'Andrew Phillips', foto: 'images/atletas-rosto/rugby/Masculino/Andrew Phillips_.jpg' },
+        { nome: 'Augusto Rodrigues', foto: 'images/atletas-rosto/rugby/Masculino/Augusto Rodrigues.jpg' },
+        { nome: 'Bernardo Pallerosi', foto: 'images/atletas-rosto/rugby/Masculino/Bernardo Pallerosi.jpg' },
+        { nome: 'Enrique Santin', foto: 'images/atletas-rosto/rugby/Masculino/Enrique Santin.jpg' },
+        { nome: 'Enzo Vanzan', foto: 'images/atletas-rosto/rugby/Masculino/Enzo Vanzan.jpg' },
+        { nome: 'Eric Frenzei', foto: 'images/atletas-rosto/rugby/Masculino/Eric Frenzei.jpg' },
+        { nome: 'Felipe Liu', foto: 'images/atletas-rosto/rugby/Masculino/Felipe Liu_.jpg' },
+        { nome: 'Filipe Barbosa', foto: 'images/atletas-rosto/rugby/Masculino/Filipe Barbosa_.jpg' },
+        { nome: 'Gabriel Girard', foto: 'images/atletas-rosto/rugby/Masculino/Gabriel Girard.jpg' },
+        { nome: 'Gustavo Teles', foto: 'images/atletas-rosto/rugby/Masculino/Gustavo Teles_.jpg' },
+        { nome: 'João Pedro Souza', foto: 'images/atletas-rosto/rugby/Masculino/João Pedro Souza.jpg' },
+        { nome: 'João Pedro Vergolino', foto: 'images/atletas-rosto/rugby/Masculino/João Pedro Vergolino.jpg' },
+        { nome: 'João Victor Barros', foto: 'images/atletas-rosto/rugby/Masculino/João Victor Barros.jpg' },
+        { nome: 'Lorenzo Paixão', foto: 'images/atletas-rosto/rugby/Masculino/Lorenzo Paixão.jpg' },
+        { nome: 'Mateus Bicudo', foto: 'images/atletas-rosto/rugby/Masculino/Mateus Bicudo.jpg' },
+        { nome: 'Matheus Elias', foto: 'images/atletas-rosto/rugby/Masculino/Matheus Elias.jpg' },
+        { nome: 'Miguel Luiz Silva', foto: 'images/atletas-rosto/rugby/Masculino/Miguel Luiz Silva.jpg' },
+        { nome: 'Paulo Eduardo Carvalho', foto: 'images/atletas-rosto/rugby/Masculino/Paulo Eduardo Carvalho.jpg' },
+        { nome: 'Pedro Henrique de Assis', foto: 'images/atletas-rosto/rugby/Masculino/Pedro Henrique de Assis.jpg' },
+        { nome: 'Rafael Orselli', foto: 'images/atletas-rosto/rugby/Masculino/Rafael Orselli.jpg' },
+        { nome: 'Tomás Feitosa', foto: 'images/atletas-rosto/rugby/Masculino/Tomás Feitosa.jpg' }
+      ]
+    },
+    'tenis-de-campo': {
+      Feminino: [
+        { nome: 'Cecília Frederico', foto: 'images/atletas-rosto/tenis-de-campo/Feminino/Cecília Frederico_.jpg' },
+        { nome: 'Juliana Amaral', foto: 'images/atletas-rosto/tenis-de-campo/Feminino/Juliana Amaral.jpg' },
+        { nome: 'Luiza Garmendia', foto: 'images/atletas-rosto/tenis-de-campo/Feminino/Luiza Garmendia.jpg' },
+        { nome: 'Marina Andrade', foto: 'images/atletas-rosto/tenis-de-campo/Feminino/Marina Andrade_.jpg' }
+      ],
+      Masculino: [
+        { nome: 'Alexandre Jubram', foto: 'images/atletas-rosto/tenis-de-campo/Masculino/Alexandre Jubram.jpg' }
+      ]
+    },
+    'tenis-de-mesa': {
+      Feminino: [
+        { nome: 'Isabela Sassatani', foto: 'images/atletas-rosto/tenis-de-mesa/Feminino/Isabela Sassatani.jpg' },
+        { nome: 'Sol Lee Min', foto: 'images/atletas-rosto/tenis-de-mesa/Feminino/Sol Lee Min.jpg' }
+      ],
+      Masculino: [
+        { nome: 'Mateus Coscelli', foto: 'images/atletas-rosto/tenis-de-mesa/Masculino/Mateus Coscelli.jpg' },
+        { nome: 'Pedro Henrique de Almeida', foto: 'images/atletas-rosto/tenis-de-mesa/Masculino/Pedro Henrique de Almeida.jpg' }
+      ]
+    },
+    volei: {
+      Feminino: [
+        { nome: 'Ana Clara Cardoso', foto: 'images/atletas-rosto/volei/Feminino/Ana Clara Cardoso.jpg' },
+        { nome: 'Júlia Chalita', foto: 'images/atletas-rosto/volei/Feminino/Júlia Chalita.jpg' },
+        { nome: 'Laís Swioklo', foto: 'images/atletas-rosto/volei/Feminino/Laís Swioklo.jpg' },
+        { nome: 'Letícia Oliveira', foto: 'images/atletas-rosto/volei/Feminino/Letícia Oliveira.jpg' }
+      ],
+      Masculino: [
+        { nome: 'Arthur Marçal', foto: 'images/atletas-rosto/volei/Masculino/Arthur Marçal.jpg' },
+        { nome: 'Gabriel Palulian', foto: 'images/atletas-rosto/volei/Masculino/Gabriel Palulian.jpg' },
+        { nome: 'Gustavo Lamarca', foto: 'images/atletas-rosto/volei/Masculino/Gustavo Lamarca_.jpg' },
+        { nome: 'João Eduardo Simão', foto: 'images/atletas-rosto/volei/Masculino/João Eduardo Simão.jpg' },
+        { nome: 'João Miguel Grossmann', foto: 'images/atletas-rosto/volei/Masculino/João Miguel Grossmann.jpg' },
+        { nome: 'José Eduardo Antunes', foto: 'images/atletas-rosto/volei/Masculino/José Eduardo Antunes.jpg' },
+        { nome: 'Lucas Rocca', foto: 'images/atletas-rosto/volei/Masculino/Lucas Rocca_.jpg' },
+        { nome: 'Otávio de Melo', foto: 'images/atletas-rosto/volei/Masculino/Otávio de Melo_.jpg' },
+        { nome: 'Pedro Faim', foto: 'images/atletas-rosto/volei/Masculino/Pedro Faim_.jpg' },
+        { nome: 'Teodoro Souza', foto: 'images/atletas-rosto/volei/Masculino/Teodoro Souza.jpg' },
+        { nome: 'Vinicius Pastana', foto: 'images/atletas-rosto/volei/Masculino/Vinicius Pastana.jpg' }
       ]
     }
   },
+
 
   // TODO: substituir pelos jogos e resultados reais do calendário da AAAGV
   // status: "agendado" ou "finalizado"
@@ -266,7 +535,7 @@ const SITE_DATA = {
       categoria: 'Eventos',
       titulo: 'GVJADA: Hoje tem…',
       data: '2026-09-14',
-      imagem: 'images/FOTOS NOTÍCIAS/N-ID3.jpg',
+      imagem: 'images/FOTOS NOTÍCIAS/Gvjada Não Se Compara.jpg',
       resumo: 'A festa GVJADA reuniu mais de 4000 universitários em sua edição "Hoje tem…", com Japa NK, Keynan e Kel, pagode e DJ\'s residentes.',
       corpo: [
         'A famosa festa GVJADA, da AAAGV e DAGV, ocorreu dia 15 de agosto, em sua edição: "Hoje tem…". O evento contou com artistas como Japa NK, Keynan e Kel, grupo de pagode e DJ\'s residentes.',

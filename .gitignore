@@ -1,3 +1,8 @@
 desktop.ini
 .DS_Store
 
+# Fotos originais em alta resolução dos atletas (1,7 GB) — o site usa só as
+# miniaturas recortadas em images/atletas-rosto/. Mantidas no disco como
+# arquivo/fonte, mas fora do controle de versão por causa do tamanho.
+images/atletas/
+

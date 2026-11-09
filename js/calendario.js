@@ -228,9 +228,9 @@ function openAthletesPanel(modalidade) {
     grid.innerHTML = atletas.map(a => `
       <button type="button" class="athlete-card"
         data-nome="${escapeHtml(a.nome)}" data-genero="${escapeHtml(genero)}"
-        data-foto="${escapeHtml(a.foto || '')}" data-numero="${escapeHtml(a.numero != null ? String(a.numero) : '')}"
+        data-foto="${escapeHtml(a.foto || '')}" data-foto-posicao="${escapeHtml(a.fotoPosicao || '')}" data-numero="${escapeHtml(a.numero != null ? String(a.numero) : '')}"
         data-modalidade="${escapeHtml(modalidade.nome)}">
-        <div class="avatar">${a.foto ? `<img src="${escapeHtml(a.foto)}" alt="${escapeHtml(a.nome)}" data-fallback-text="${athleteInitials(a.nome)}">` : (a.numero ?? athleteInitials(a.nome))}</div>
+        <div class="avatar">${a.foto ? `<img src="${escapeHtml(a.foto)}" alt="${escapeHtml(a.nome)}" data-fallback-text="${athleteInitials(a.nome)}" style="object-position:${escapeHtml(a.fotoPosicao || 'center')}">` : (a.numero ?? athleteInitials(a.nome))}</div>
         <div class="name">${escapeHtml(a.nome)}</div>
         <div class="number">${escapeHtml(genero)}</div>
       </button>`).join('');
@@ -257,11 +257,11 @@ function initAtletaModal() {
     const card = e.target.closest('.athlete-card');
     if (!card) return;
 
-    const { nome = '', genero = '', foto = '', numero = '', modalidade = '' } = card.dataset;
+    const { nome = '', genero = '', foto = '', fotoPosicao = '', numero = '', modalidade = '' } = card.dataset;
     const initials = athleteInitials(nome);
 
     overlay.querySelector('#atleta-avatar').innerHTML = foto
-      ? `<img src="${escapeHtml(foto)}" alt="${escapeHtml(nome)}" data-fallback-text="${initials}">`
+      ? `<img src="${escapeHtml(foto)}" alt="${escapeHtml(nome)}" data-fallback-text="${initials}" style="object-position:${escapeHtml(fotoPosicao || 'center')}">`
       : (numero || initials);
     overlay.querySelector('#atleta-nome').textContent = nome;
     overlay.querySelector('#atleta-genero').textContent = [modalidade, genero].filter(Boolean).join(' · ');
