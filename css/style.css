@@ -505,6 +505,7 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
   height: calc(100% - var(--header-h)) !important;
 }
 .page-banner-light img { filter: grayscale(30%) brightness(.78) !important; }
+.page-banner-color img { filter: brightness(.78) !important; }
 .page-banner-tall { min-height: 64vh; }
 .page-banner-light::after { background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.15) 25%, rgba(0,0,0,.82)) !important; }
 .page-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.9)); }
