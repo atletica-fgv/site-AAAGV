@@ -6,7 +6,3 @@ desktop.ini
 # arquivo/fonte, mas fora do controle de versão por causa do tamanho.
 images/atletas/
 
-
-# Fotos originais dos atletas por modalidade (1,8 GB). O site usa as versões
-# reduzidas em images/atletas-fotos/, geradas a partir delas.
-images/FOTOS INDIVIDUAIS/ATLETAS/*/
