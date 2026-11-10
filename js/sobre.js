@@ -133,9 +133,33 @@ function renderTimeline() {
   }).observe(overlay, { attributes: true, attributeFilter: ['class'] });
 }
 
+/* Fotos da APA passando sozinhas (troca a cada 5s; os pontinhos trocam na mão) */
+function initApaSlideshow() {
+  const box = document.getElementById('apa-slideshow');
+  if (!box) return;
+  const fotos = box.querySelectorAll('img');
+  const dots = box.querySelectorAll('.apa-dots button');
+  let atual = 0;
+  let timer;
+
+  function mostrar(i) {
+    atual = (i + fotos.length) % fotos.length;
+    fotos.forEach((f, j) => f.classList.toggle('active', j === atual));
+    dots.forEach((d, j) => d.classList.toggle('active', j === atual));
+  }
+  function iniciar() {
+    clearInterval(timer);
+    timer = setInterval(() => mostrar(atual + 1), 5000);
+  }
+
+  dots.forEach((d, j) => d.addEventListener('click', () => { mostrar(j); iniciar(); }));
+  iniciar();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderStats();
   renderTimeline();
+  initApaSlideshow();
   initReveal();
   initImageFallback();
 
