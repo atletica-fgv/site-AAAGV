@@ -41,7 +41,7 @@ function renderNextGame() {
       <div class="next-game-main">
         <span class="next-game-tag">${i === 0 ? 'Próximo jogo' : 'Na sequência'}</span>
         <div class="next-game-match">AAAGV <span style="color:var(--yellow)">×</span> ${escapeHtml(jogo.adversario)}</div>
-        <div class="next-game-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}</div>
+        <div class="next-game-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}${jogo.competicao ? ` <span class="next-game-comp">· ${escapeHtml(jogo.competicao)}</span>` : ''}</div>
         <div class="next-game-meta">
           <span>${icon('calendar')} ${formatMatchMeta(new Date(jogo.data))}</span>
           <span>${icon('pin')} ${localHtml(jogo)}</span>
@@ -179,6 +179,7 @@ function renderRecentResults() {
       <button class="result-card" data-reveal data-id="${jogo.id}">
         <div class="result-score">AAAGV <span class="${cls}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}</div>
         <div class="result-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}</div>
+        ${jogo.competicao ? `<div class="result-comp">${escapeHtml(jogo.competicao)}</div>` : ''}
         <div class="result-date">${String(data.getDate()).padStart(2,'0')} ${MESES_ABREV[data.getMonth()]}</div>
       </button>`;
   }).join('');

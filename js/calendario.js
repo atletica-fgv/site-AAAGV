@@ -43,6 +43,7 @@ function renderGameRow(jogo) {
         <span class="month">${MESES_ABREV[data.getMonth()]}</span>
       </div>
       <div class="game-info">
+        ${jogo.competicao ? `<div class="game-comp">${escapeHtml(jogo.competicao)}</div>` : ''}
         <div class="game-teams">AAAGV × ${escapeHtml(jogo.adversario)}</div>
         <div class="game-tags">
           <span class="tag">${escapeHtml(jogo.modalidade)}</span>

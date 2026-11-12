@@ -269,6 +269,7 @@ section { padding: 96px 0; }
   font-family: var(--font-heading); font-size: clamp(1.8rem, 3.4vw, 2.8rem); letter-spacing: .01em;
 }
 .next-game-modality { margin-top: 10px; color: var(--gray-300); font-weight: 600; }
+.next-game-comp { color: var(--yellow); }
 .next-game-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 22px; font-size: .95rem; color: var(--gray-300); }
 .next-game-meta span { display: flex; align-items: center; gap: 8px; }
 .next-game-actions { display: flex; flex-direction: column; gap: 14px; align-items: stretch; min-width: 240px; }
@@ -331,6 +332,8 @@ section { padding: 96px 0; }
 .result-score .loss { color: var(--red); }
 .result-modality { margin-top: 8px; font-weight: 700; font-size: .95rem; }
 .result-date { margin-top: 6px; color: var(--gray-600); font-size: .85rem; }
+.result-comp { margin-top: 4px; font-size: .78rem; font-weight: 700; color: var(--gray-600); }
+.bg-black .result-comp { color: var(--yellow); }
 .bg-black .result-card {
   background: var(--gray-900); border-color: rgba(255,255,255,.14); color: var(--white);
 }
@@ -1002,6 +1005,8 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
 .game-date-box .month { font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; color: var(--yellow); margin-top: 2px; }
 .game-info { flex: 1; min-width: 200px; }
 .game-teams { font-weight: 800; font-size: 1.05rem; }
+/* campeonato do jogo (coluna COMPETIÇÃO da planilha) */
+.game-comp { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 4px; }
 .game-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 .tag { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; background: var(--gray-100); color: var(--gray-600); }
 .tag.win { background: var(--green); color: var(--white); }
