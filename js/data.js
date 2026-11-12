@@ -857,6 +857,20 @@ const SITE_DATA = {
         'Para quem estava lá, ficou a certeza de que a GVJADA realmente não se compara. Com uma organização que entregou o que prometeu, mais uma vez a AAAGV e DAGV fizeram da festa uma das mais marcantes do semestre.'
       ],
       autor: 'Nayure Lin'
+    },
+    {
+      id: 8,
+      categoria: 'Social',
+      titulo: 'Puppy Yoga',
+      data: '2026-09-14',
+      imagem: 'images/FOTOS NOTÍCIAS/puppy yoga.jpg',
+      resumo: 'O Puppy Yoga reuniu uma aula de yoga e interação com cachorros disponíveis para adoção, em parceria com a Conex FGV e a Empatatia.',
+      corpo: [
+        'O Puppy Yoga foi realizado no dia 28 de março. A ação social, promovida pela AAAGV e pela Conex FGV, reuniu uma aula de yoga e a interação com cachorros. Em parceria com a Empatatia, os cães que participaram da atividade eram todos animais disponíveis para adoção.',
+        'O evento foi um sucesso entre o alunato da FGV. Com todas as sessões esgotadas, os participantes aproveitaram uma tarde de muita diversão e carinho, alternando entre as poses da aula e os momentos de brincadeira com os cachorros.',
+        'Muita gente destacou como foi bom desacelerar no meio da rotina corrida da faculdade. E os cachorros, sem dúvida os mais disputados da tarde, chamaram atenção de todo mundo e ainda ganharam uma boa chance de encontrar uma família.'
+      ],
+      autor: 'Nayure Lin'
     }
   ],
 
