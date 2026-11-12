@@ -87,6 +87,30 @@ function csvToNumber(v) {
   return Number.isNaN(n) ? undefined : n;
 }
 
+/* Placar da planilha. Além de número, aceita:
+   - colocação no lugar do placar da AAAGV: "Campeão", "1o lugar", "3º lugar"...
+     (vira jogo.colocacao; 1 = campeão)
+   - pênaltis entre parênteses: "5(3)" x "5(4)" = 5 a 5, pênaltis 3 a 4 */
+function interpretarPlacar(textoAAAGV, textoAdv) {
+  const out = {};
+  const a = String(textoAAAGV || '').trim();
+  const b = String(textoAdv || '').trim();
+
+  if (/campe/i.test(a)) { out.colocacao = 1; return out; }
+  const lugar = a.match(/^(\d+)\s*(?:o|º|°|ª|a)?\.?\s*(?:lugar|colocad)/i);
+  if (lugar) { out.colocacao = Number(lugar[1]); return out; }
+
+  const lerLado = (txt, chavePlacar, chavePen) => {
+    const pen = txt.match(/^(\d+)\s*\(\s*(\d+)\s*\)$/);
+    if (pen) { out[chavePlacar] = Number(pen[1]); out[chavePen] = Number(pen[2]); return; }
+    const n = csvToNumber(txt);
+    if (n !== undefined) out[chavePlacar] = n;
+  };
+  lerLado(a, 'placarAAAGV', 'penaltisAAAGV');
+  lerLado(b, 'placarAdversario', 'penaltisAdversario');
+  return out;
+}
+
 /* Devolve uma função de leitura de célula por nome de coluna (com fallback por índice) */
 function makeRowReader(headerRow) {
   const norm = headerRow.map(normalizeHeader);
@@ -134,10 +158,9 @@ function mapJogosRows(rows) {
       const dataHora = read(r, ['DATA E HORA', 'DATA/HORA', 'DATA'], 4);
       if (dataHora) jogo.data = dataHora;
 
-      const placarAAAGV = csvToNumber(read(r, ['PLACARAAAGV', 'PLACAR AAAGV', 'PLACAR DA AAAGV', 'GOLS AAAGV', 'PONTOS AAAGV'], 7));
-      const placarAdv = csvToNumber(read(r, ['PLACARADVERSARIO', 'PLACAR ADVERSARIO', 'PLACAR DO ADVERSARIO', 'GOLS ADVERSARIO', 'PONTOS ADVERSARIO'], 8));
-      if (placarAAAGV !== undefined) jogo.placarAAAGV = placarAAAGV;
-      if (placarAdv !== undefined) jogo.placarAdversario = placarAdv;
+      const placarAAAGV = read(r, ['PLACARAAAGV', 'PLACAR AAAGV', 'PLACAR DA AAAGV', 'GOLS AAAGV', 'PONTOS AAAGV'], 7);
+      const placarAdv = read(r, ['PLACARADVERSARIO', 'PLACAR ADVERSARIO', 'PLACAR DO ADVERSARIO', 'GOLS ADVERSARIO', 'PONTOS ADVERSARIO'], 8);
+      Object.assign(jogo, interpretarPlacar(placarAAAGV, placarAdv));
 
       const competicao = read(r, 'COMPETICAO', 9);
       if (competicao) jogo.competicao = competicao;

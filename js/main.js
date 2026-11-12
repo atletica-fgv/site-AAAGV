@@ -26,6 +26,28 @@ function icon(name, size = 18) {
   return `<span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${paths}</svg></span>`;
 }
 
+/* Resultado de um jogo finalizado: 'win' | 'loss' | 'draw' | 'champion' | 'place' (colocação) | null */
+function resultadoDoJogo(jogo) {
+  if (jogo.status !== 'finalizado') return null;
+  if (jogo.colocacao) return jogo.colocacao === 1 ? 'champion' : 'place';
+  const a = jogo.placarAAAGV, b = jogo.placarAdversario;
+  if (typeof a !== 'number' || typeof b !== 'number') return null;
+  if (a !== b) return a > b ? 'win' : 'loss';
+  const pa = jogo.penaltisAAAGV, pb = jogo.penaltisAdversario;
+  if (typeof pa === 'number' && typeof pb === 'number' && pa !== pb) return pa > pb ? 'win' : 'loss';
+  return 'draw';
+}
+
+function textoColocacao(jogo) {
+  return jogo.colocacao === 1 ? 'Campeão' : `${jogo.colocacao}º lugar`;
+}
+
+/* "5 (3)" quando teve pênaltis, senão só o número */
+function textoPlacar(placar, penaltis) {
+  if (typeof placar !== 'number') return '–';
+  return typeof penaltis === 'number' ? `${placar} (${penaltis})` : String(placar);
+}
+
 function escapeHtml(str) {
   if (str === null || str === undefined) return '';
   return String(str)

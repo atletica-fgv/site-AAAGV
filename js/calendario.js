@@ -7,13 +7,10 @@ function getGameById(id) {
 }
 
 function getResultadoJogo(jogo) {
-  if (jogo.status !== 'finalizado') return null;
-  if (jogo.placarAAAGV > jogo.placarAdversario) return 'win';
-  if (jogo.placarAAAGV < jogo.placarAdversario) return 'loss';
-  return 'draw';
+  return resultadoDoJogo(jogo);
 }
 
-const RESULTADO_LABEL = { win: 'Vitória', loss: 'Derrota', draw: 'Empate' };
+const RESULTADO_LABEL = { win: 'Vitória', loss: 'Derrota', draw: 'Empate', champion: 'Campeão' };
 
 function renderGameRow(jogo) {
   const data = new Date(jogo.data);
@@ -22,16 +19,21 @@ function renderGameRow(jogo) {
   const resultado = getResultadoJogo(jogo);
 
   let resultBlock;
-  if (finalizado) {
-    resultBlock = `<div class="game-result">${jogo.placarAAAGV} × ${jogo.placarAdversario}</div>`;
+  if (finalizado && jogo.colocacao) {
+    resultBlock = `<div class="game-result ${resultado}">${jogo.colocacao === 1 ? icon('trophy', 26) + ' ' : ''}${textoColocacao(jogo)}</div>`;
+  } else if (finalizado) {
+    resultBlock = `<div class="game-result">${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)} × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)}</div>`;
   } else if (passado) {
     resultBlock = `<div class="game-result" style="font-size:.82rem;color:var(--gray-600);">Encerrado</div>`;
   } else {
     resultBlock = `<div class="game-actions">${renderCalAdd(jogo, 'full-' + jogo.id)}</div>`;
   }
 
-  const statusTag = finalizado
-    ? `<span class="tag ${resultado}">${RESULTADO_LABEL[resultado]}</span>`
+  const statusTag = !finalizado ? null
+    : resultado === 'place' ? `<span class="tag">${textoColocacao(jogo)}</span>`
+    : resultado ? `<span class="tag ${resultado}">${RESULTADO_LABEL[resultado]}${jogo.penaltisAAAGV !== undefined ? ' nos pênaltis' : ''}</span>`
+    : `<span class="tag">Finalizado</span>`;
+  const statusTagFinal = statusTag !== null ? statusTag
     : passado
       ? `<span class="tag">Encerrado</span>`
       : `<span class="tag">Agendado</span>`;
@@ -43,11 +45,12 @@ function renderGameRow(jogo) {
         <span class="month">${MESES_ABREV[data.getMonth()]}</span>
       </div>
       <div class="game-info">
+        ${jogo.competicao ? `<div class="game-comp">${escapeHtml(jogo.competicao)}</div>` : ''}
         <div class="game-teams">AAAGV × ${escapeHtml(jogo.adversario)}</div>
         <div class="game-tags">
           <span class="tag">${escapeHtml(jogo.modalidade)}</span>
           <span class="tag">${escapeHtml(jogo.genero)}</span>
-          ${statusTag}
+          ${statusTagFinal}
         </div>
         <div class="game-meta">${icon('pin')} ${localHtml(jogo)} <span class="dot">&middot;</span> ${icon('calendar')} ${formatMatchMeta(data)}</div>
       </div>

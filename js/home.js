@@ -41,7 +41,7 @@ function renderNextGame() {
       <div class="next-game-main">
         <span class="next-game-tag">${i === 0 ? 'Próximo jogo' : 'Na sequência'}</span>
         <div class="next-game-match">AAAGV <span style="color:var(--yellow)">×</span> ${escapeHtml(jogo.adversario)}</div>
-        <div class="next-game-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}</div>
+        <div class="next-game-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}${jogo.competicao ? ` <span class="next-game-comp">· ${escapeHtml(jogo.competicao)}</span>` : ''}</div>
         <div class="next-game-meta">
           <span>${icon('calendar')} ${formatMatchMeta(new Date(jogo.data))}</span>
           <span>${icon('pin')} ${localHtml(jogo)}</span>
@@ -173,12 +173,13 @@ function renderRecentResults() {
   }
 
   mount.innerHTML = finalizados.map(jogo => {
-    const venceu = jogo.placarAAAGV > jogo.placarAdversario;
+    const cls = classePlacar(jogo);
     const data = new Date(jogo.data);
     return `
       <button class="result-card" data-reveal data-id="${jogo.id}">
-        <div class="result-score">AAAGV <span class="${venceu ? 'win' : ''}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}</div>
+        <div class="result-score">${placarHomeHtml(jogo, cls)}</div>
         <div class="result-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}</div>
+        ${jogo.competicao ? `<div class="result-comp">${escapeHtml(jogo.competicao)}</div>` : ''}
         <div class="result-date">${String(data.getDate()).padStart(2,'0')} ${MESES_ABREV[data.getMonth()]}</div>
       </button>`;
   }).join('');
@@ -188,15 +189,30 @@ function renderRecentResults() {
   });
 }
 
+function classePlacar(jogo) {
+  const r = resultadoDoJogo(jogo);
+  if (r === 'win' || r === 'champion') return 'win';
+  if (r === 'loss') return 'loss';
+  return '';
+}
+
+/* "AAAGV 2 × 1 Adversário"; em competição por colocação, "AAAGV Campeão" / "AAAGV 3º lugar" */
+function placarHomeHtml(jogo, cls, comCor) {
+  const estilo = comCor && cls ? ` style="color:var(--${cls === 'win' ? 'green' : 'red'})"` : '';
+  if (jogo.colocacao) {
+    return `AAAGV <span class="${cls}"${estilo}>${textoColocacao(jogo)}</span>`;
+  }
+  return `AAAGV <span class="${cls}"${estilo}>${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)}</span> × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)} ${escapeHtml(jogo.adversario)}`;
+}
+
 function openResultModal(id) {
   const jogo = getGameById(id);
   if (!jogo) return;
   const overlay = document.getElementById('modal-result');
-  const venceu = jogo.placarAAAGV > jogo.placarAdversario;
+  const cls = classePlacar(jogo);
   const noticia = jogo.newsId ? SITE_DATA.noticias.find(n => n.id === jogo.newsId) : null;
 
-  overlay.querySelector('.result-modal-score').innerHTML =
-    `AAAGV <span class="${venceu ? 'win' : ''}" style="${venceu ? 'color:var(--green)' : ''}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}`;
+  overlay.querySelector('.result-modal-score').innerHTML = placarHomeHtml(jogo, cls, true);
   overlay.querySelector('.result-modal-comp').textContent = `${jogo.modalidade} ${jogo.genero}${jogo.competicao ? ' — ' + jogo.competicao : ''}`;
   overlay.querySelector('.result-modal-summary').textContent = jogo.resumo || '';
 
