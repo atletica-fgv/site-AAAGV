@@ -968,13 +968,13 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
 .cal-day.selected { background: var(--black); color: var(--white); border-color: var(--yellow); box-shadow: var(--shadow); }
 .cal-day .dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; max-width: 100%; }
 .cal-day .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--black); flex: none; }
-.cal-day .dot.win { background: var(--green); }
+.cal-day .dot.win, .cal-day .dot.champion { background: var(--green); }
 .cal-day .dot.loss { background: var(--red); }
-.cal-day .dot.draw { background: var(--black); }
+.cal-day .dot.draw, .cal-day .dot.place { background: var(--black); }
 /* anel desenhado com gradiente (e não borda): a borda arredonda diferente conforme a posição e as bolinhas saíam de tamanhos diferentes */
 .cal-day .dot.scheduled { --ring: var(--black); background: radial-gradient(circle closest-side, transparent 52%, var(--ring) 60%); }
 .cal-day.selected .dot { background: var(--yellow); }
-.cal-day.selected .dot.win { background: var(--green); }
+.cal-day.selected .dot.win, .cal-day.selected .dot.champion { background: var(--green); }
 .cal-day.selected .dot.loss { background: var(--red); }
 .cal-day.selected .dot.draw { background: var(--black); }
 .cal-day.selected .dot.scheduled { --ring: var(--yellow); background: radial-gradient(circle closest-side, transparent 52%, var(--ring) 60%); }
@@ -1009,6 +1009,9 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
 .game-comp { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 4px; }
 .game-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 .tag { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; background: var(--gray-100); color: var(--gray-600); }
+.tag.champion { background: var(--black); color: var(--yellow); }
+.game-result.champion { display: flex; align-items: center; gap: 8px; }
+.game-result.champion .icon-inline { color: var(--yellow); background: var(--black); border-radius: 50%; padding: 6px; display: inline-flex; }
 .tag.win { background: var(--green); color: var(--white); }
 .tag.loss { background: var(--red); color: var(--white); }
 .tag.draw { background: var(--black); color: var(--white); }

@@ -177,7 +177,7 @@ function renderRecentResults() {
     const data = new Date(jogo.data);
     return `
       <button class="result-card" data-reveal data-id="${jogo.id}">
-        <div class="result-score">AAAGV <span class="${cls}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}</div>
+        <div class="result-score">${placarHomeHtml(jogo, cls)}</div>
         <div class="result-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}</div>
         ${jogo.competicao ? `<div class="result-comp">${escapeHtml(jogo.competicao)}</div>` : ''}
         <div class="result-date">${String(data.getDate()).padStart(2,'0')} ${MESES_ABREV[data.getMonth()]}</div>
@@ -190,9 +190,19 @@ function renderRecentResults() {
 }
 
 function classePlacar(jogo) {
-  if (jogo.placarAAAGV > jogo.placarAdversario) return 'win';
-  if (jogo.placarAAAGV < jogo.placarAdversario) return 'loss';
+  const r = resultadoDoJogo(jogo);
+  if (r === 'win' || r === 'champion') return 'win';
+  if (r === 'loss') return 'loss';
   return '';
+}
+
+/* "AAAGV 2 × 1 Adversário"; em competição por colocação, "AAAGV Campeão" / "AAAGV 3º lugar" */
+function placarHomeHtml(jogo, cls, comCor) {
+  const estilo = comCor && cls ? ` style="color:var(--${cls === 'win' ? 'green' : 'red'})"` : '';
+  if (jogo.colocacao) {
+    return `AAAGV <span class="${cls}"${estilo}>${textoColocacao(jogo)}</span>`;
+  }
+  return `AAAGV <span class="${cls}"${estilo}>${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)}</span> × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)} ${escapeHtml(jogo.adversario)}`;
 }
 
 function openResultModal(id) {
@@ -202,8 +212,7 @@ function openResultModal(id) {
   const cls = classePlacar(jogo);
   const noticia = jogo.newsId ? SITE_DATA.noticias.find(n => n.id === jogo.newsId) : null;
 
-  overlay.querySelector('.result-modal-score').innerHTML =
-    `AAAGV <span class="${cls}" style="${cls ? `color:var(--${cls === 'win' ? 'green' : 'red'})` : ''}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}`;
+  overlay.querySelector('.result-modal-score').innerHTML = placarHomeHtml(jogo, cls, true);
   overlay.querySelector('.result-modal-comp').textContent = `${jogo.modalidade} ${jogo.genero}${jogo.competicao ? ' — ' + jogo.competicao : ''}`;
   overlay.querySelector('.result-modal-summary').textContent = jogo.resumo || '';
 
