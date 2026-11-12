@@ -897,25 +897,23 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
 
 /* ===== Mascote flutuante ===== */
 .mascot-host { position: relative; }
+/* Parado ao lado do calendário, numa altura fixa a partir do topo da seção.
+   (Antes ficava em top: 50% e balançando; quando a lista de jogos do dia abria,
+   a seção crescia e ele descia pra cima dos resultados.) */
 .mascot-float {
-  position: absolute; top: 50%; right: 3%; width: 320px; height: auto; z-index: 5;
-  transform: translateY(-50%);
+  position: absolute; top: 250px; right: 3%; width: 300px; height: auto; z-index: 0;
   filter: drop-shadow(0 16px 30px rgba(0,0,0,.35));
-  animation: mascotSlideIn 1.2s cubic-bezier(.16,.84,.44,1) both,
-             mascotFloat 5s ease-in-out 1.2s infinite;
+  animation: mascotSlideIn 1.2s cubic-bezier(.16,.84,.44,1) both;
   pointer-events: none;
-  transition: top .7s ease, right .7s ease, transform .5s ease;
 }
 @keyframes mascotSlideIn {
-  from { right: -360px; }
-  to   { right: 3%; }
+  from { transform: translateX(130%); }
+  to   { transform: none; }
 }
-@keyframes mascotFloat {
-  0%, 100% { transform: translateY(-50%) rotate(-3deg); }
-  50% { transform: translateY(calc(-50% - 16px)) rotate(3deg); }
-}
-@media (max-width: 860px) {
-  /* Nessa largura o conteúdo (ex.: grade do calendário) ocupa a linha toda,
+/* em telas médias sobra menos espaço ao lado do calendário; o jaca diminui pra não encostar nele */
+@media (max-width: 1400px) { .mascot-float { width: 240px; right: 1.5%; } }
+@media (max-width: 1100px) {
+  /* Nessa largura não sobra espaço ao lado do calendário,
      então o mascote sai de "solto ao lado, centralizado" pra um selo
      pequeno no canto superior. Reserva espaço de verdade no topo da seção
      (padding-top) pra ele nunca encostar no título/card logo abaixo,
@@ -923,7 +921,6 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
   .mascot-host { padding-top: 120px; }
   .mascot-float {
     top: 16px; right: 16px; width: 90px;
-    transform: none;
     animation: mascotSlideInMobile .8s cubic-bezier(.16,.84,.44,1) both;
   }
 }
