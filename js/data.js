@@ -878,7 +878,7 @@ const SITE_DATA = {
       titulo: 'Páscoa Solidária',
       data: '2026-09-14',
       imagem: 'images/FOTOS NOTÍCIAS/Pascoa Solidaria.png',
-      imagemPosicao: 'center 45%',
+      imagemPosicao: 'center 20%',
       resumo: 'Em parceria com a Casas Taiguara, a Atlética decorou ovos de Páscoa com as crianças da casa, em uma ação que já soma anos de realização.',
       corpo: [
         'A Páscoa Solidária é um projeto em parceria com a Casas Taiguara em que a Atlética realiza a decoração de ovos de Páscoa com as crianças da casa. Há realização de uma rifa, na qual o dinheiro arrecadado é usado para comprar os ovos e as guloseimas usadas. Essa atividade é um momento de grande expressão para a área de Social, sendo uma parceria que já conta anos de realização e transformação de um momento festivo em um momento de lembrança e diversão para os envolvidos.'
