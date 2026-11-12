@@ -964,16 +964,17 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
 .cal-day.today.has-game { border-color: var(--black); }
 .cal-day.selected { background: var(--black); color: var(--white); border-color: var(--yellow); box-shadow: var(--shadow); }
 .cal-day .dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; max-width: 100%; }
-.cal-day .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--black); }
+.cal-day .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--black); flex: none; }
 .cal-day .dot.win { background: var(--green); }
 .cal-day .dot.loss { background: var(--red); }
 .cal-day .dot.draw { background: var(--black); }
-.cal-day .dot.scheduled { background: transparent; border: 2.2px solid var(--black); }
+/* anel desenhado com gradiente (e não borda): a borda arredonda diferente conforme a posição e as bolinhas saíam de tamanhos diferentes */
+.cal-day .dot.scheduled { --ring: var(--black); background: radial-gradient(circle closest-side, transparent 52%, var(--ring) 60%); }
 .cal-day.selected .dot { background: var(--yellow); }
 .cal-day.selected .dot.win { background: var(--green); }
 .cal-day.selected .dot.loss { background: var(--red); }
 .cal-day.selected .dot.draw { background: var(--black); }
-.cal-day.selected .dot.scheduled { background: transparent; border-color: var(--yellow); }
+.cal-day.selected .dot.scheduled { --ring: var(--yellow); background: radial-gradient(circle closest-side, transparent 52%, var(--ring) 60%); }
 @media (max-width: 640px) {
   .cal-day { font-size: .74rem; }
   .cal-grid-title { font-size: 1.1rem; }
