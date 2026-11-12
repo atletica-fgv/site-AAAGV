@@ -843,6 +843,20 @@ const SITE_DATA = {
         'Para conhecer mais sobre a Alpes, basta buscar no Instagram @alpes.saudeesportiva.'
       ],
       autor: 'José Eduardo Sanz'
+    },
+    {
+      id: 7,
+      categoria: 'Eventos',
+      titulo: 'GVJADA: Não se compara',
+      data: '2026-09-14',
+      imagem: 'images/FOTOS NOTÍCIAS/Gvjada Não Se Compara.jpg',
+      resumo: 'A festa "GVJADA: Não se compara" foi a mais esperada do primeiro semestre de 2026, com line up de GP da ZL e GBR e open completo.',
+      corpo: [
+        'A "GVJADA: Não se compara" ocorreu dia 14 de março, e foi a festa mais esperada do primeiro semestre de 2026. A line up contou com grandes nomes como GP da ZL e GBR. E um open de qualidade como Xeque Mate, Beats, Vodka e Cerveja.',
+        'E a festa não decepcionou. Com diversos feedbacks positivos, a festa se tornou inesquecível para os universitários, que lotaram a pista desde cedo e só foram embora quando as luzes acenderam.',
+        'Para quem estava lá, ficou a certeza de que a GVJADA realmente não se compara. Com uma organização que entregou o que prometeu, mais uma vez a AAAGV e DAGV fizeram da festa uma das mais marcantes do semestre.'
+      ],
+      autor: 'Nayure Lin'
     }
   ],
 
