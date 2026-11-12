@@ -329,6 +329,7 @@ section { padding: 96px 0; }
 .result-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: transparent; }
 .result-score { font-family: var(--font-heading); font-size: 2rem; }
 .result-score .win { color: var(--green); }
+.result-score .loss { color: var(--red); }
 .result-modality { margin-top: 8px; font-weight: 700; font-size: .95rem; }
 .result-date { margin-top: 6px; color: var(--gray-600); font-size: .85rem; }
 .bg-black .result-card {

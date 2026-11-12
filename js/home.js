@@ -173,11 +173,11 @@ function renderRecentResults() {
   }
 
   mount.innerHTML = finalizados.map(jogo => {
-    const venceu = jogo.placarAAAGV > jogo.placarAdversario;
+    const cls = classePlacar(jogo);
     const data = new Date(jogo.data);
     return `
       <button class="result-card" data-reveal data-id="${jogo.id}">
-        <div class="result-score">AAAGV <span class="${venceu ? 'win' : ''}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}</div>
+        <div class="result-score">AAAGV <span class="${cls}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}</div>
         <div class="result-modality">${escapeHtml(jogo.modalidade)} ${escapeHtml(jogo.genero)}</div>
         <div class="result-date">${String(data.getDate()).padStart(2,'0')} ${MESES_ABREV[data.getMonth()]}</div>
       </button>`;
@@ -188,15 +188,21 @@ function renderRecentResults() {
   });
 }
 
+function classePlacar(jogo) {
+  if (jogo.placarAAAGV > jogo.placarAdversario) return 'win';
+  if (jogo.placarAAAGV < jogo.placarAdversario) return 'loss';
+  return '';
+}
+
 function openResultModal(id) {
   const jogo = getGameById(id);
   if (!jogo) return;
   const overlay = document.getElementById('modal-result');
-  const venceu = jogo.placarAAAGV > jogo.placarAdversario;
+  const cls = classePlacar(jogo);
   const noticia = jogo.newsId ? SITE_DATA.noticias.find(n => n.id === jogo.newsId) : null;
 
   overlay.querySelector('.result-modal-score').innerHTML =
-    `AAAGV <span class="${venceu ? 'win' : ''}" style="${venceu ? 'color:var(--green)' : ''}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}`;
+    `AAAGV <span class="${cls}" style="${cls ? `color:var(--${cls === 'win' ? 'green' : 'red'})` : ''}">${jogo.placarAAAGV}</span> × ${jogo.placarAdversario} ${escapeHtml(jogo.adversario)}`;
   overlay.querySelector('.result-modal-comp').textContent = `${jogo.modalidade} ${jogo.genero}${jogo.competicao ? ' — ' + jogo.competicao : ''}`;
   overlay.querySelector('.result-modal-summary').textContent = jogo.resumo || '';
 
