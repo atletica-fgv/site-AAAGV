@@ -46,7 +46,7 @@ const SITE_DATA = {
     {
       momento: 'A maior festa da GV',
       titulo: 'GVJADA',
-      texto: 'A GVJADA, festa da AAAGV em parceria com o DAGV, é um dos eventos mais esperados do ano na FGV. Na edição "Hoje tem…", reuniu mais de 4000 universitários, com Japa NK, Keynan e Kel, grupo de pagode e DJs residentes.\n\nAno após ano, a GVJADA se destaca pela dimensão e pela atmosfera de celebração que já fazem parte da identidade da festa.',
+      texto: 'A GVJADA, festa da AAAGV em parceria com o DAGV, é um dos eventos mais esperados do ano na FGV. Na edição "Hoje tem…", reuniu mais de 4500 pessoas de público, com Japa NK, Keynan e Kel, grupo de pagode e DJs residentes.\n\nAno após ano, a GVJADA se destaca pela dimensão e pela atmosfera de celebração que já fazem parte da identidade da festa.',
       fotos: [
         { src: 'images/museu/galeria/gvjada-23.jpg', legenda: 'GVJADA 23' },
         { src: 'images/museu/galeria/gvjada-25.jpg', legenda: 'GVJADA 25' },
@@ -133,7 +133,7 @@ const SITE_DATA = {
     { area: 'Diretoria de Eventos', texto: 'A área cria experiências que aproximam os alunos e fortalecem a vida universitária. Somos responsáveis pelo planejamento e execução de eventos, festas e ações da Atlética, como a GVJADA, acompanhando todas as etapas necessárias para a realização de cada projeto. Dessa forma, promovemos integração, conexão e experiências marcantes que fazem parte da trajetória dos alunos na FGV.' },
     { area: 'Diretoria de Produtos', texto: 'A área desenvolve e comercializa produtos que traduzem a identidade e a essência da Atlética. Cuidamos do design, da escolha e do contato com fornecedores parceiros, que produzem os itens, e da comercialização, buscando fortalecer a presença da marca no dia a dia dos alunos. Dessa forma, aproximamos a comunidade da AAAGV e viabilizamos novos projetos, iniciativas e experiências.' },
     { area: 'Diretoria de Captação de Recursos', texto: 'A área busca, desenvolve e proporciona novas parcerias para a AAAGV, contribuindo diretamente para o desenvolvimento dos nossos atletas e para o fortalecimento da entidade. As parcerias podem assumir diferentes formatos, desde apoio financeiro e patrocínios até o fornecimento de produtos, serviços, descontos, benefícios e outras formas de colaboração, sempre adaptadas aos interesses e objetivos tanto da AAAGV quanto de cada parceiro.' },
-    { area: 'Diretoria de Projetos Sociais', texto: 'A área promove iniciativas que geram impacto positivo tanto dentro quanto fora da Atlética. Desenvolvemos projetos que fomentam o senso de comunidade, solidariedade e participação da comunidade estudantil, além de estabelecer e ampliar parcerias com instituições externas. Dessa forma, utilizamos o alcance da Atlética como instrumento para incentivar o engajamento social e contribuir, de maneira concreta, para a sociedade.' }
+    { area: 'Diretoria de Responsabilidade Social', texto: 'A área promove iniciativas que geram impacto positivo tanto dentro quanto fora da Atlética. Desenvolvemos projetos que fomentam o senso de comunidade, solidariedade e participação da comunidade estudantil, além de estabelecer e ampliar parcerias com instituições externas. Dessa forma, utilizamos o alcance da Atlética como instrumento para incentivar o engajamento social e contribuir, de maneira concreta, para a sociedade.' }
   ],
 
   // Estrutura da Gestão 2026 vigente. Fotos em images/FOTOS INDIVIDUAIS/G26/
@@ -203,7 +203,6 @@ const SITE_DATA = {
     },
     basquete: {
       Feminino: [
-        { nome: 'Atleta', foto: 'images/atletas-rosto/basquete/Feminino/FGV-573.jpg' },
         { nome: 'Beatriz Alonso', foto: 'images/atletas-rosto/basquete/Feminino/Beatriz Alonso.jpg' },
         { nome: 'Beatriz Vicente' },
         { nome: 'Carolina Kise' },
@@ -225,7 +224,6 @@ const SITE_DATA = {
       Masculino: [
         { nome: 'Andrei Gonçalves' },
         { nome: 'Eduardo Franchi' },
-        { nome: 'Eduardo Pereira', foto: 'images/atletas-rosto/basquete/Masculino/Eduardo Pereira.jpg' },
         { nome: 'Felipe Alves' },
         { nome: 'Fernando Ribas' },
         { nome: 'Gustavo Leão', foto: 'images/atletas-rosto/basquete/Masculino/Gustavo Leão.jpg' },

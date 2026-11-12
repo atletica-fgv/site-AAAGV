@@ -1056,6 +1056,7 @@ main:has(> section.bg-black:last-child) + .site-footer { border-top: 6px solid v
 }
 .athlete-card:hover { transform: translateY(-3px); }
 .athlete-card .avatar { width: 78px; height: 78px; font-size: 1.1rem; margin: 0 auto 12px; background: var(--gray-800); color: var(--yellow); }
+#atleta-avatar { background: var(--gray-800); color: var(--yellow); }
 .athlete-card .name { font-weight: 700; font-size: .88rem; }
 .athlete-card .number { color: var(--gray-300); font-size: .78rem; margin-top: 2px; }
 
