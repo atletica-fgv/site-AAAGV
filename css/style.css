@@ -177,13 +177,16 @@ section { padding: 96px 0; }
 
 @media (max-width: 880px) {
   .nav-toggle { display: flex; }
+  /* O menu cobre a tela toda a partir do topo (por baixo do logo e do X).
+     Antes começava em var(--header-h) = 88px, mas com a página rolada o
+     cabeçalho encolhe pra 68px e sobrava uma faixa vazia entre os dois. */
+  .logo-link, .nav-toggle { position: relative; z-index: 2; }
   .main-nav {
-    position: fixed; inset: var(--header-h) 0 0 0;
+    position: fixed; inset: 0; z-index: 1;
     background: radial-gradient(circle at 50% 0%, rgba(var(--yellow-rgb), .1), transparent 55%), var(--black);
-    border-top: 1px solid rgba(var(--yellow-rgb), .14);
     transform: translateX(100%); opacity: 0;
     transition: transform .5s cubic-bezier(.22, 1, .36, 1), opacity .4s ease;
-    padding: 60px 28px 40px; overflow-y: auto;
+    padding: calc(var(--header-h) + 56px) 28px 40px; overflow-y: auto;
   }
   body.nav-open .main-nav { transform: translateX(0); opacity: 1; }
   .main-nav ul { flex-direction: column; align-items: flex-start; gap: 30px; }
