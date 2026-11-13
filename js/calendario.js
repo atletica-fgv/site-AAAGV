@@ -235,7 +235,6 @@ function openAthletesPanel(modalidade) {
         data-modalidade="${escapeHtml(modalidade.nome)}">
         <div class="avatar">${a.foto ? `<img src="${escapeHtml(a.foto)}" alt="${escapeHtml(a.nome)}" data-fallback-text="${athleteInitials(a.nome)}" style="object-position:${escapeHtml(a.fotoPosicao || 'center')}">` : (a.numero ?? athleteInitials(a.nome))}</div>
         <div class="name">${escapeHtml(a.nome)}</div>
-        <div class="number">${escapeHtml(genero)}</div>
       </button>`).join('');
     initImageFallback(grid);
   }
