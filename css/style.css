@@ -1650,7 +1650,11 @@ a.news-card { display: block; }
   .galeria-foto { width: 210px; }
   .galeria-foto.fmt-paisagem { width: 290px; }
   .galeria-foto.fmt-quadrado { width: 236px; }
-  .galeria-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  /* as larguras de cima são do carrossel; na grade do "Ver mais fotos" a foto ocupa a coluna
+     (sem isso as fotos ficavam com 236px em colunas de 130px e se sobrepunham) */
+  .galeria-foto.na-grade { width: auto; min-width: 0; }
+  .galeria-panel { padding: 14px; }
+  .galeria-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
 }
 @media (max-width: 420px) {
   .museu-fotos { grid-template-columns: 1fr; }
