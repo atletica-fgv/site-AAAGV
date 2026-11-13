@@ -1656,9 +1656,12 @@ a.news-card { display: block; }
   .galeria-panel { padding: 14px; }
   .galeria-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
 }
-@media (max-width: 420px) {
-  .museu-fotos { grid-template-columns: 1fr; }
-  .museu-foto, .museu-foto:nth-child(n) { transform: none; }
+/* celular: mantém o arranjo do computador (1 foto grande + 2 lado a lado), só com moldura menor.
+   Antes as 3 ficavam uma embaixo da outra. */
+@media (max-width: 520px) {
+  .museu-fotos { gap: 12px; }
+  .museu-foto { padding: 7px 7px 26px; }
+  .museu-foto .legenda { left: 9px; right: 9px; bottom: 7px; font-size: .62rem; }
 }
 
 /* ===== Utility responsive ===== */
