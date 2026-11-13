@@ -156,7 +156,33 @@ function initApaSlideshow() {
   iniciar();
 }
 
+/* Textos longos (Nossa História, Bateria, APA): no celular mostra só o 1º parágrafo e um "Ler mais"
+   (no computador o botão fica escondido pelo CSS e o texto aparece inteiro) */
+function initLerMais() {
+  document.querySelectorAll('.history-text, .tatubola-text').forEach(bloco => {
+    const paragrafos = bloco.querySelectorAll('p');
+    if (paragrafos.length < 2) return;
+    bloco.classList.add('recolhivel');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ler-mais';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = 'Ler mais';
+    btn.addEventListener('click', () => {
+      const aberto = bloco.classList.toggle('aberto');
+      btn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+      btn.textContent = aberto ? 'Ler menos' : 'Ler mais';
+      // ao fechar, se o começo do texto ficou lá em cima, volta a tela pra ele
+      if (!aberto && bloco.getBoundingClientRect().top < 0) {
+        bloco.scrollIntoView({ block: 'start' });
+      }
+    });
+    bloco.appendChild(btn);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initLerMais();
   renderStats();
   renderTimeline();
   initApaSlideshow();

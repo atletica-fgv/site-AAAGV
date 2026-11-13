@@ -1234,6 +1234,18 @@ a.news-card { display: block; }
 }
 .news-card h3 { font-family: var(--font-body); text-transform: none; font-weight: 800; font-size: 1.08rem; line-height: 1.35; }
 .news-date { margin-top: 10px; color: var(--gray-600); font-size: .82rem; }
+.ler-mais { display: none; }
+@media (max-width: 640px) {
+  .recolhivel:not(.aberto) p ~ p { display: none; }
+  .history-text .ler-mais { align-self: flex-start; margin-top: -8px; font-size: .8rem; }
+  .ler-mais {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 4px 0;
+    font-weight: 800; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase;
+    color: inherit; border-bottom: 2px solid var(--yellow);
+  }
+  .ler-mais::after { content: '↓'; }
+  .aberto > .ler-mais::after { content: '↑'; }
+}
 .news-empty { text-align: center; padding: 60px 20px; color: var(--gray-600); grid-column: 1/-1; }
 
 .article-modal .news-cat { margin-bottom: 16px; }
