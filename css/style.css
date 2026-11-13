@@ -382,6 +382,8 @@ section { padding: 96px 0; }
   background: transparent; box-shadow: none;
 }
 .partners-strip .partner-logo--plain img { max-height: 96px; }
+/* o PNG do Araxás é quadrado com muita margem vazia em volta; amplia só ele pra ficar do tamanho dos outros */
+.partners-strip img[src*="Arax"] { transform: scale(1.6); }
 /* celular: logos 2 por linha e mais baixos (antes era um embaixo do outro, mais de 4 telas) */
 @media (max-width: 520px) {
   .partners-logos-wrap { padding: 48px 18px 52px; margin-bottom: 56px; }
