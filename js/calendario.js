@@ -19,7 +19,10 @@ function renderGameRow(jogo) {
   const resultado = getResultadoJogo(jogo);
 
   let resultBlock;
-  if (finalizado && jogo.colocacao) {
+  if (finalizado && jogo.colocacao && temPlacar(jogo)) {
+    // final com placar: mostra o placar, com a taça se foi campeão (a tag diz "Campeão")
+    resultBlock = `<div class="game-result ${resultado}">${jogo.colocacao === 1 ? icon('trophy', 26) + ' ' : ''}${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)} × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)}</div>`;
+  } else if (finalizado && jogo.colocacao) {
     resultBlock = `<div class="game-result ${resultado}">${jogo.colocacao === 1 ? icon('trophy', 26) + ' ' : ''}${textoColocacao(jogo)}</div>`;
   } else if (finalizado) {
     resultBlock = `<div class="game-result">${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)} × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)}</div>`;

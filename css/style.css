@@ -333,6 +333,14 @@ section { padding: 96px 0; }
 .result-score { font-family: var(--font-heading); font-size: 2rem; }
 .result-score .win { color: var(--green); }
 .result-score .loss { color: var(--red); }
+/* selo de colocação quando a final tem placar ("Campeão" com taça) */
+.result-badge {
+  display: flex; width: fit-content; align-items: center; gap: 6px; margin-top: 10px;
+  padding: 4px 12px; border-radius: 999px; background: var(--gray-100); color: var(--gray-600);
+  font-family: var(--font-body, inherit); font-size: .75rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .04em; line-height: 1.4;
+}
+.result-badge.champion { background: var(--yellow); color: var(--black); }
 .result-modality { margin-top: 8px; font-weight: 700; font-size: .95rem; }
 .result-date { margin-top: 6px; color: var(--gray-600); font-size: .85rem; }
 .result-comp { margin-top: 4px; font-size: .78rem; font-weight: 700; color: var(--gray-600); }

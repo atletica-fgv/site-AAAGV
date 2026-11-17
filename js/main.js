@@ -38,6 +38,11 @@ function resultadoDoJogo(jogo) {
   return 'draw';
 }
 
+/* Final com placar E colocação (ex.: "24 Campeão" x "10") */
+function temPlacar(jogo) {
+  return typeof jogo.placarAAAGV === 'number' && typeof jogo.placarAdversario === 'number';
+}
+
 function textoColocacao(jogo) {
   return jogo.colocacao === 1 ? 'Campeão' : `${jogo.colocacao}º lugar`;
 }
