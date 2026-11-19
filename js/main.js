@@ -109,7 +109,7 @@ function initHeader() {
     if (href === current) link.classList.add('active');
   });
 
-  // Fallback do logo (caso images/logo.png ainda não exista)
+  // Fallback do logo (caso images/LOGOS/logo-amarela.png não carregue)
   document.querySelectorAll('.logo-link').forEach(link => {
     const img = link.querySelector('.logo-img');
     if (!img) return;

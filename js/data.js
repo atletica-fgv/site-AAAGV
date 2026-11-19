@@ -46,7 +46,7 @@ const SITE_DATA = {
     {
       momento: 'A maior festa da GV',
       titulo: 'GVJADA',
-      texto: 'A GVJADA, festa da AAAGV em parceria com o DAGV, é um dos eventos mais esperados do ano na FGV. Na edição "Hoje tem…", reuniu mais de 4500 pessoas de público, com Japa NK, Keynan e Kel, grupo de pagode e DJs residentes.\n\nAno após ano, a GVJADA se destaca pela dimensão e pela atmosfera de celebração que já fazem parte da identidade da festa.',
+      texto: 'A GVJADA é uma das festas mais tradicionais e aguardadas da comunidade da Fundação Getulio Vargas, organizada em conjunto pela AAAGV e pelo DAGV (Diretório Acadêmico Getúlio Vargas). Realizada desde 2014 e reconhecida como a maior cervejada da América Latina, é um evento de grande porte e enorme relevância para a história e a vivência universitária da FGV, reunindo vários estudantes e atravessando gerações.\n\nPara cada membro da Atlética, fazer parte da organização significa dar continuidade a uma tradição construída ao longo dos anos, contribuindo para manter sua relevância e aprimorar a cada edição.',
       fotos: [
         { src: 'images/museu/galeria/gvjada-23.jpg', legenda: 'GVJADA 23' },
         { src: 'images/museu/galeria/gvjada-26-publico.jpeg', legenda: 'GVJADA 26' },
