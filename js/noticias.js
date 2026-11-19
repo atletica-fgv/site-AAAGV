@@ -75,10 +75,13 @@ function openArticleModal(id) {
   const assinaturaMatch = /^Escrito por:?\s*(.+)$/i.exec(ultimo.trim());
   const corpoParaExibir = assinaturaMatch ? paragrafos.slice(0, -1) : paragrafos;
 
+  // O nome aparece uma vez só: o que estiver escrito no fim do texto da planilha,
+  // ou, se não tiver, o "autor" da notícia (planilha ou js/data.js)
+  const autor = assinaturaMatch ? assinaturaMatch[1] : noticia.autor;
+
   overlay.querySelector('.body-text').innerHTML =
     corpoParaExibir.map(p => `<p>${linkifyHtml(p)}</p>`).join('') +
-    (assinaturaMatch ? `<p class="news-author">Escrito por: <span class="news-author-name">${escapeHtml(assinaturaMatch[1])}</span></p>` : '') +
-    (noticia.autor ? `<p class="news-author">Escrito por: <span class="news-author-name">${escapeHtml(noticia.autor)}</span></p>` : '');
+    (autor ? `<p class="news-author">Escrito por: <span class="news-author-name">${escapeHtml(autor)}</span></p>` : '');
 
   openModal(overlay);
   history.replaceState(null, '', `noticias.html?id=${id}`);

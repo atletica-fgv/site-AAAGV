@@ -19,7 +19,10 @@ function renderGameRow(jogo) {
   const resultado = getResultadoJogo(jogo);
 
   let resultBlock;
-  if (finalizado && jogo.colocacao) {
+  if (finalizado && jogo.colocacao && temPlacar(jogo)) {
+    // final com placar: mostra o placar, com a taça se foi campeão (a tag diz "Campeão")
+    resultBlock = `<div class="game-result ${resultado}">${jogo.colocacao === 1 ? icon('trophy', 26) + ' ' : ''}${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)} × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)}</div>`;
+  } else if (finalizado && jogo.colocacao) {
     resultBlock = `<div class="game-result ${resultado}">${jogo.colocacao === 1 ? icon('trophy', 26) + ' ' : ''}${textoColocacao(jogo)}</div>`;
   } else if (finalizado) {
     resultBlock = `<div class="game-result">${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)} × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)}</div>`;
@@ -52,7 +55,7 @@ function renderGameRow(jogo) {
           <span class="tag">${escapeHtml(jogo.genero)}</span>
           ${statusTagFinal}
         </div>
-        <div class="game-meta">${icon('pin')} ${localHtml(jogo)} <span class="dot">&middot;</span> ${icon('calendar')} ${formatMatchMeta(data)}</div>
+        <div class="game-meta">${icon('pin')} ${localHtml(jogo)} <span class="dot">&middot;</span> <span class="game-when">${icon('calendar')} ${formatMatchMeta(data)}</span></div>
       </div>
       ${resultBlock}
     </div>`;
@@ -235,7 +238,6 @@ function openAthletesPanel(modalidade) {
         data-modalidade="${escapeHtml(modalidade.nome)}">
         <div class="avatar">${a.foto ? `<img src="${escapeHtml(a.foto)}" alt="${escapeHtml(a.nome)}" data-fallback-text="${athleteInitials(a.nome)}" style="object-position:${escapeHtml(a.fotoPosicao || 'center')}">` : (a.numero ?? athleteInitials(a.nome))}</div>
         <div class="name">${escapeHtml(a.nome)}</div>
-        <div class="number">${escapeHtml(genero)}</div>
       </button>`).join('');
     initImageFallback(grid);
   }

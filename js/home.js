@@ -199,10 +199,14 @@ function classePlacar(jogo) {
 /* "AAAGV 2 × 1 Adversário"; em competição por colocação, "AAAGV Campeão" / "AAAGV 3º lugar" */
 function placarHomeHtml(jogo, cls, comCor) {
   const estilo = comCor && cls ? ` style="color:var(--${cls === 'win' ? 'green' : 'red'})"` : '';
-  if (jogo.colocacao) {
+  if (jogo.colocacao && !temPlacar(jogo)) {
     return `AAAGV <span class="${cls}"${estilo}>${textoColocacao(jogo)}</span>`;
   }
-  return `AAAGV <span class="${cls}"${estilo}>${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)}</span> × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)} ${escapeHtml(jogo.adversario)}`;
+  // final com placar + colocação: placar normal e um selo "Campeão" / "3º lugar" embaixo
+  const selo = jogo.colocacao
+    ? `<span class="result-badge${jogo.colocacao === 1 ? ' champion' : ''}">${jogo.colocacao === 1 ? icon('trophy', 14) + ' ' : ''}${textoColocacao(jogo)}</span>`
+    : '';
+  return `AAAGV <span class="${cls}"${estilo}>${textoPlacar(jogo.placarAAAGV, jogo.penaltisAAAGV)}</span> × ${textoPlacar(jogo.placarAdversario, jogo.penaltisAdversario)} ${escapeHtml(jogo.adversario)}${selo}`;
 }
 
 function openResultModal(id) {

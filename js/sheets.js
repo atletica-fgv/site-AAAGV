@@ -90,15 +90,27 @@ function csvToNumber(v) {
 /* Placar da planilha. Além de número, aceita:
    - colocação no lugar do placar da AAAGV: "Campeão", "1o lugar", "3º lugar"...
      (vira jogo.colocacao; 1 = campeão)
+   - placar E colocação juntos (final de campeonato): "24 Campeão" x "10"
+     = 24 a 10 e campeão; vale também "Campeão 24", "24 (Campeão)", "2 3º lugar"
    - pênaltis entre parênteses: "5(3)" x "5(4)" = 5 a 5, pênaltis 3 a 4 */
 function interpretarPlacar(textoAAAGV, textoAdv) {
   const out = {};
-  const a = String(textoAAAGV || '').trim();
+  let a = String(textoAAAGV || '').trim();
   const b = String(textoAdv || '').trim();
 
-  if (/campe/i.test(a)) { out.colocacao = 1; return out; }
-  const lugar = a.match(/^(\d+)\s*(?:o|º|°|ª|a)?\.?\s*(?:lugar|colocad)/i);
-  if (lugar) { out.colocacao = Number(lugar[1]); return out; }
+  const reLugar = /(\d+)\s*(?:o|º|°|ª|a)?\.?\s*(?:lugar|colocad[^\s()]*)/i;
+  if (/campe/i.test(a)) {
+    out.colocacao = 1;
+    a = a.replace(/campe[^\s()]*/ig, '');
+  } else {
+    const lugar = a.match(reLugar);
+    if (lugar) { out.colocacao = Number(lugar[1]); a = a.replace(reLugar, ''); }
+  }
+  if (out.colocacao) {
+    // sobra o placar (se tiver): tira parênteses vazios e separadores soltos
+    a = a.replace(/\(\s*\)/g, '').replace(/^[\s\-–—,;/|]+|[\s\-–—,;/|]+$/g, '');
+    if (!a) return out;
+  }
 
   const lerLado = (txt, chavePlacar, chavePen) => {
     const pen = txt.match(/^(\d+)\s*\(\s*(\d+)\s*\)$/);

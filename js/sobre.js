@@ -133,7 +133,56 @@ function renderTimeline() {
   }).observe(overlay, { attributes: true, attributeFilter: ['class'] });
 }
 
+/* Fotos da APA passando sozinhas (troca a cada 5s; os pontinhos trocam na mão) */
+function initApaSlideshow() {
+  const box = document.getElementById('apa-slideshow');
+  if (!box) return;
+  const fotos = box.querySelectorAll('img');
+  const dots = box.querySelectorAll('.apa-dots button');
+  let atual = 0;
+  let timer;
+
+  function mostrar(i) {
+    atual = (i + fotos.length) % fotos.length;
+    fotos.forEach((f, j) => f.classList.toggle('active', j === atual));
+    dots.forEach((d, j) => d.classList.toggle('active', j === atual));
+  }
+  function iniciar() {
+    clearInterval(timer);
+    timer = setInterval(() => mostrar(atual + 1), 5000);
+  }
+
+  dots.forEach((d, j) => d.addEventListener('click', () => { mostrar(j); iniciar(); }));
+  iniciar();
+}
+
+/* Textos longos (Nossa História, Bateria, APA): no celular mostra só o 1º parágrafo e um "Ler mais"
+   (no computador o botão fica escondido pelo CSS e o texto aparece inteiro) */
+function initLerMais() {
+  document.querySelectorAll('.history-text, .tatubola-text').forEach(bloco => {
+    const paragrafos = bloco.querySelectorAll('p');
+    if (paragrafos.length < 2) return;
+    bloco.classList.add('recolhivel');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ler-mais';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = 'Ler mais';
+    btn.addEventListener('click', () => {
+      const aberto = bloco.classList.toggle('aberto');
+      btn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+      btn.textContent = aberto ? 'Ler menos' : 'Ler mais';
+      // ao fechar, se o começo do texto ficou lá em cima, volta a tela pra ele
+      if (!aberto && bloco.getBoundingClientRect().top < 0) {
+        bloco.scrollIntoView({ block: 'start' });
+      }
+    });
+    bloco.appendChild(btn);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initLerMais();
   renderStats();
   renderTimeline();
   initReveal();
