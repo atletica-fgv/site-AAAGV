@@ -341,19 +341,33 @@ function initIdiomas() {
   if (!ul) return;
   const atual = idiomaAtual();
 
-  const li = document.createElement('li');
-  li.className = 'lang-switch notranslate';
-  li.setAttribute('translate', 'no');
-  li.innerHTML = IDIOMAS.map(l =>
+  const botoes = IDIOMAS.map(l =>
     `<button type="button" data-lang="${l}" class="${l === atual ? 'active' : ''}"
        aria-pressed="${l === atual}" aria-label="${{ pt: 'Português', en: 'English', es: 'Español' }[l]}">${l.toUpperCase()}</button>`
   ).join('<span aria-hidden="true">|</span>');
-  ul.appendChild(li);
-
-  li.addEventListener('click', e => {
+  const onClick = e => {
     const btn = e.target.closest('button[data-lang]');
     if (btn && btn.dataset.lang !== atual) definirIdioma(btn.dataset.lang);
-  });
+  };
+
+  // Computador: último item do menu
+  const li = document.createElement('li');
+  li.className = 'lang-switch lang-desktop notranslate';
+  li.setAttribute('translate', 'no');
+  li.innerHTML = botoes;
+  li.addEventListener('click', onClick);
+  ul.appendChild(li);
+
+  // Celular: na barra de cima, ao lado do botão do menu
+  const toggle = document.querySelector('.site-header .nav-toggle');
+  if (toggle) {
+    const mob = document.createElement('div');
+    mob.className = 'lang-switch lang-mobile notranslate';
+    mob.setAttribute('translate', 'no');
+    mob.innerHTML = botoes;
+    mob.addEventListener('click', onClick);
+    toggle.before(mob);
+  }
 
   if (atual === 'pt') return;
   const holder = document.createElement('div');

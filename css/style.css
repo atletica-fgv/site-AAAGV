@@ -175,6 +175,7 @@ section { padding: 96px 0; }
 }
 .lang-switch button:hover { color: var(--white); }
 .lang-switch button.active { color: var(--yellow); }
+.lang-mobile { display: none; }
 
 /* Esconde a barra e os balões que o Google Tradutor coloca na página */
 .goog-te-banner-frame, iframe.skiptranslate, #goog-gt-tt, .goog-te-balloon-frame,
@@ -219,9 +220,10 @@ font[style] { background: none !important; box-shadow: none !important; }
   body.nav-open .main-nav li:nth-child(4) { transition-delay: .25s; }
   body.nav-open .main-nav li:nth-child(5) { transition-delay: .3s; }
   body.nav-open .main-nav li:nth-child(6) { transition-delay: .35s; }
-  .lang-switch { padding-left: 0; margin-top: 10px; gap: 10px; }
-  .lang-switch button { font-size: 1rem; }
-  .lang-switch span { font-size: 1rem; }
+  /* No celular os idiomas ficam na barra de cima, ao lado do menu */
+  .lang-desktop { display: none; }
+  .lang-mobile { display: flex; position: relative; z-index: 2; margin-left: auto; margin-right: -8px; }
+  .lang-mobile button { padding: 10px 3px; }
   body.nav-open { overflow: hidden; }
 }
 @media (max-width: 880px) and (prefers-reduced-motion: reduce) {
