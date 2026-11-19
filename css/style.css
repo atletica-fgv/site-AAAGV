@@ -166,6 +166,22 @@ section { padding: 96px 0; }
 .main-nav a:hover::after, .main-nav a.active::after { right: 0; }
 .main-nav a.active { color: var(--yellow); }
 
+/* Seletor de idioma (PT | EN | ES) — último item do menu */
+.lang-switch { display: flex; align-items: center; gap: 6px; padding-left: 4px; }
+.lang-switch span { color: rgba(255,255,255,.3); font-size: .75rem; }
+.lang-switch button {
+  color: rgba(255,255,255,.6); font-weight: 700; font-size: .74rem; letter-spacing: .06em;
+  padding: 6px 2px; transition: color var(--transition);
+}
+.lang-switch button:hover { color: var(--white); }
+.lang-switch button.active { color: var(--yellow); }
+
+/* Esconde a barra e os balões que o Google Tradutor coloca na página */
+.goog-te-banner-frame, iframe.skiptranslate, #goog-gt-tt, .goog-te-balloon-frame,
+.VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
+body { top: 0 !important; }
+font[style] { background: none !important; box-shadow: none !important; }
+
 .nav-toggle {
   display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px;
   flex-shrink: 0;
@@ -203,6 +219,9 @@ section { padding: 96px 0; }
   body.nav-open .main-nav li:nth-child(4) { transition-delay: .25s; }
   body.nav-open .main-nav li:nth-child(5) { transition-delay: .3s; }
   body.nav-open .main-nav li:nth-child(6) { transition-delay: .35s; }
+  .lang-switch { padding-left: 0; margin-top: 10px; gap: 10px; }
+  .lang-switch button { font-size: 1rem; }
+  .lang-switch span { font-size: 1rem; }
   body.nav-open { overflow: hidden; }
 }
 @media (max-width: 880px) and (prefers-reduced-motion: reduce) {
