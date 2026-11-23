@@ -147,7 +147,7 @@ const SITE_DATA = {
   organograma: {
     nivel1: [
       { cargo: 'VPE', cargoCompleto: 'Vice-presidente Esportivo', pessoas: [{ nome: 'Enzo Fredi Araujo', curso: 'Administração de Empresas, 6° semestre', foto: 'images/FOTOS INDIVIDUAIS/G26/enzo-fredi.jpg' }], filhos: 'vpe' },
-      { cargo: 'SG', cargoCompleto: 'Secretário Geral', pessoas: [{ nome: 'Arthur Passos', curso: 'Administração de Empresas, 5° semestre', foto: 'images/FOTOS INDIVIDUAIS/G26/arthur-passos.jpg' }] },
+      { cargo: 'SG', cargoCompleto: 'Secretário Geral', pessoas: [{ nome: 'Arthur Passos', curso: 'Economia, 5° semestre', foto: 'images/FOTOS INDIVIDUAIS/G26/arthur-passos.jpg' }] },
       { cargo: 'Presidente', cargoCompleto: 'Presidente', pessoas: [{ nome: 'Matheus Papa', curso: 'Administração de Empresas, 5° semestre', foto: 'images/FOTOS INDIVIDUAIS/G26/matheus-papa.jpg' }] },
       { cargo: 'Financeiro', cargoCompleto: 'Financeiro', pessoas: [{ nome: 'Gustavo Teles', curso: 'Administração de Empresas, 6° semestre', foto: 'images/FOTOS INDIVIDUAIS/G26/gustavo-teles.jpg' }] },
       { cargo: 'VPA', cargoCompleto: 'Vice-presidente Administrativa', pessoas: [{ nome: 'Marina Correa', curso: 'Administração de Empresas, 4° semestre', foto: 'images/FOTOS INDIVIDUAIS/G26/marina-correa.jpg' }], filhos: 'vpa' }
