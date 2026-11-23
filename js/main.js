@@ -161,6 +161,8 @@ function closeModal(overlay) {
   if (!overlay) return;
   overlay.classList.remove('open');
   document.body.style.overflow = '';
+  // Para vídeos embutidos (ex.: After Movie) ao fechar o modal
+  overlay.querySelectorAll('iframe').forEach(f => { const src = f.src; f.src = 'about:blank'; f.src = src; });
 }
 function initModalDismiss() {
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
