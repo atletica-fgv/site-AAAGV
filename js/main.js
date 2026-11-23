@@ -109,7 +109,7 @@ function initHeader() {
     if (href === current) link.classList.add('active');
   });
 
-  // Fallback do logo (caso images/logo.png ainda não exista)
+  // Fallback do logo (caso images/LOGOS/logo-amarela.png não carregue)
   document.querySelectorAll('.logo-link').forEach(link => {
     const img = link.querySelector('.logo-img');
     if (!img) return;
@@ -161,6 +161,8 @@ function closeModal(overlay) {
   if (!overlay) return;
   overlay.classList.remove('open');
   document.body.style.overflow = '';
+  // Para vídeos embutidos (ex.: After Movie) ao fechar o modal
+  overlay.querySelectorAll('iframe').forEach(f => { const src = f.src; f.src = 'about:blank'; f.src = src; });
 }
 function initModalDismiss() {
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
@@ -313,7 +315,77 @@ function initCalAddButtons() {
   });
 }
 
+/* ---------- Idiomas (PT / EN / ES) ----------
+   Tradução automática do Google Tradutor. O idioma escolhido fica no
+   cookie "googtrans" (/pt/en ou /pt/es), que o Google lê ao carregar;
+   por isso cada troca recarrega a página. PT = sem tradução. */
+const IDIOMAS = ['pt', 'en', 'es'];
+
+function idiomaAtual() {
+  const m = document.cookie.match(/(?:^|;\s*)googtrans=\/pt\/(\w+)/);
+  return m && IDIOMAS.includes(m[1]) ? m[1] : 'pt';
+}
+
+function definirIdioma(lang) {
+  const host = location.hostname;
+  const dominios = ['', host, host.includes('.') ? '.' + host.split('.').slice(-2).join('.') : ''];
+  dominios.forEach(d => {
+    const dom = d ? `; domain=${d}` : '';
+    document.cookie = lang === 'pt'
+      ? `googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT${dom}`
+      : `googtrans=/pt/${lang}; path=/${dom}`;
+  });
+  location.reload();
+}
+
+function initIdiomas() {
+  const ul = document.querySelector('.main-nav ul');
+  if (!ul) return;
+  const atual = idiomaAtual();
+
+  const botoes = IDIOMAS.map(l =>
+    `<button type="button" data-lang="${l}" class="${l === atual ? 'active' : ''}"
+       aria-pressed="${l === atual}" aria-label="${{ pt: 'Português', en: 'English', es: 'Español' }[l]}">${l.toUpperCase()}</button>`
+  ).join('<span aria-hidden="true">|</span>');
+  const onClick = e => {
+    const btn = e.target.closest('button[data-lang]');
+    if (btn && btn.dataset.lang !== atual) definirIdioma(btn.dataset.lang);
+  };
+
+  // Computador: último item do menu
+  const li = document.createElement('li');
+  li.className = 'lang-switch lang-desktop notranslate';
+  li.setAttribute('translate', 'no');
+  li.innerHTML = botoes;
+  li.addEventListener('click', onClick);
+  ul.appendChild(li);
+
+  // Celular: na barra de cima, ao lado do botão do menu
+  const toggle = document.querySelector('.site-header .nav-toggle');
+  if (toggle) {
+    const mob = document.createElement('div');
+    mob.className = 'lang-switch lang-mobile notranslate';
+    mob.setAttribute('translate', 'no');
+    mob.innerHTML = botoes;
+    mob.addEventListener('click', onClick);
+    toggle.before(mob);
+  }
+
+  if (atual === 'pt') return;
+  const holder = document.createElement('div');
+  holder.id = 'google_translate_element';
+  holder.hidden = true;
+  document.body.appendChild(holder);
+  window.googleTranslateInit = () => {
+    new google.translate.TranslateElement({ pageLanguage: 'pt', includedLanguages: 'en,es', autoDisplay: false }, 'google_translate_element');
+  };
+  const s = document.createElement('script');
+  s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateInit';
+  document.body.appendChild(s);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initIdiomas();
   initHeader();
   initFooterYear();
   initReveal();

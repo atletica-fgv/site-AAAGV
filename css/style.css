@@ -166,6 +166,23 @@ section { padding: 96px 0; }
 .main-nav a:hover::after, .main-nav a.active::after { right: 0; }
 .main-nav a.active { color: var(--yellow); }
 
+/* Seletor de idioma (PT | EN | ES) — último item do menu */
+.lang-switch { display: flex; align-items: center; gap: 6px; padding-left: 4px; }
+.lang-switch span { color: rgba(255,255,255,.3); font-size: .75rem; }
+.lang-switch button {
+  color: rgba(255,255,255,.6); font-weight: 700; font-size: .74rem; letter-spacing: .06em;
+  padding: 6px 2px; transition: color var(--transition);
+}
+.lang-switch button:hover { color: var(--white); }
+.lang-switch button.active { color: var(--yellow); }
+.lang-mobile { display: none; }
+
+/* Esconde a barra e os balões que o Google Tradutor coloca na página */
+.goog-te-banner-frame, iframe.skiptranslate, #goog-gt-tt, .goog-te-balloon-frame,
+.VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
+body { top: 0 !important; }
+font[style] { background: none !important; box-shadow: none !important; }
+
 .nav-toggle {
   display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px;
   flex-shrink: 0;
@@ -203,6 +220,10 @@ section { padding: 96px 0; }
   body.nav-open .main-nav li:nth-child(4) { transition-delay: .25s; }
   body.nav-open .main-nav li:nth-child(5) { transition-delay: .3s; }
   body.nav-open .main-nav li:nth-child(6) { transition-delay: .35s; }
+  /* No celular os idiomas ficam na barra de cima, ao lado do menu */
+  .lang-desktop { display: none; }
+  .lang-mobile { display: flex; position: relative; z-index: 2; margin-left: auto; margin-right: -8px; }
+  .lang-mobile button { padding: 10px 3px; }
   body.nav-open { overflow: hidden; }
 }
 @media (max-width: 880px) and (prefers-reduced-motion: reduce) {
@@ -1290,6 +1311,9 @@ a.news-card { display: block; }
 .campeonatos-modal h3:first-of-type { margin-top: 0; }
 .campeonatos-modal p { color: rgba(255,255,255,.82); font-size: 1rem; line-height: 1.8; margin: 14px 0 0; }
 .campeonatos-modal p strong { color: var(--yellow); font-weight: 700; }
+.campeonatos-modal .campeonatos-video-titulo { margin-top: 28px; margin-bottom: 12px; }
+.campeonatos-modal .campeonatos-video { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; }
+.campeonatos-modal .campeonatos-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 @media (max-width: 520px) {
   .campeonatos-modal.modal-box { padding: 28px 22px 28px; }
 }
